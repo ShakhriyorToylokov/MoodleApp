@@ -48,3 +48,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+#Build results
+[Bb]in/
+[Oo]bj/
