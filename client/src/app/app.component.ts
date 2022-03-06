@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from './_models/user';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -7,32 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Moodle App';
-  students: any;
-  teachers:any;
-  api ="https://localhost:5001/api/";
-  constructor(private http: HttpClient){}
-  ngOnInit(){
-    this.getStudents();
-    this.getTeachers();
-  }
-
-  getStudents(){
-
-      this.http.get(this.api +'students').subscribe(response=>{
-        this.students=response
-      },error =>{
-      console.log(error);
-      })
-  }
-
   
-  getTeachers(){
+   
+  title = 'Moodle App';
+  user: User;
+  constructor(private http: HttpClient, private accountService: AccountService){}
+  ngOnInit(){
+    this.setCurrentUser();
+  }
 
-    this.http.get(this.api +'teachers').subscribe(response=>{
-      this.teachers=response
-    },error =>{
-    console.log(error);
-    })
-}
+  setCurrentUser(){
+    this.user= JSON.parse(localStorage.getItem('user'));
+    this.accountService.setCurrentUser(this.user);
+    
+  }
+  
 }

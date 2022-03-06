@@ -1,17 +1,4 @@
-<h1>{{title}}</h1>
-<div>
-  <h3>List of students</h3>
-  <ul *ngFor="let student of students">
-    <li>
-     {{student.id}} - {{student.userName}}
-    </li>
-  </ul>
-  <div style="margin: -17.5% 20%; ">
-    <h3>List of teachers</h3>
-  <ul *ngFor="let teacher of teachers">
-    <li>
-     {{teacher.id}} - {{teacher.userName}}
-    </li>
-  </ul>
-</div>
+<app-nav></app-nav>
+<div class="container" style="margin-top: 5%;">
+ <app-home ></app-home>
 </div>
