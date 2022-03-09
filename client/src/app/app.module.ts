@@ -17,6 +17,7 @@ import { TeacherDetailsComponent } from './teachers/teacher-details/teacher-deta
 import { MessagesComponent } from './messages/messages.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 import { TestComponent } from './test/test.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,10 @@ import { TestComponent } from './test/test.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass:'toast-bottom-right'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

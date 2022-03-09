@@ -9,17 +9,25 @@ import { MessagesComponent } from './messages/messages.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentDetailsComponent } from './students/student-details/student-details.component';
 import { TeacherDetailsComponent } from './teachers/teacher-details/teacher-details.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {path:'',component: HomeComponent},
-  {path:'students',component: StudentListsComponent},
-  {path:'teachers',component: TeachersListsComponent},
-  {path:'register',component: RegisterComponent},
-  {path:'courses',component: CoursesListsComponent},
-  {path:'messages',component: MessagesComponent},
-  {path:'students/:id',component: StudentDetailsComponent},
-  {path:'teachers/:id',component: TeacherDetailsComponent},
-  {path:'courses/:id',component: CourseDetailsComponent},
+  {
+    path:'',
+    runGuardsAndResolvers: 'always',
+    canActivate:[AuthGuard],
+    children:[
+      {path:'students',component: StudentListsComponent},
+      {path:'teachers',component: TeachersListsComponent},
+      {path:'register',component: RegisterComponent},
+      {path:'courses',component: CoursesListsComponent},
+      {path:'messages',component: MessagesComponent},
+      {path:'students/:id',component: StudentDetailsComponent},
+      {path:'teachers/:id',component: TeacherDetailsComponent},
+      {path:'courses/:id',component: CourseDetailsComponent}    
+    ]
+  },
   {path:'**',component: HomeComponent, pathMatch: 'full'}
 ];
 

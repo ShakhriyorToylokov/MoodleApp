@@ -6,7 +6,8 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>           
-              <ul class="navbar-nav mr-auto " *ngIf="currentUser$ | async">
+              <ul class="navbar-nav mr-auto " >
+                <ng-container *ngIf="currentUser$ | async">
                 <li class="nav-item">
                   <a class="nav-link " aria-current="page" routerLink="/" >Home</a>
                 </li>
@@ -25,7 +26,9 @@
                 <li class="nav-item">
                   <a class="nav-link " routerLink="/messages" routerLinkActive='active'>Messages</a>
                 </li>
+              </ng-container>
               </ul>
+
               <div class="dropdown" dropdown *ngIf="currentUser$ | async">
                 <a class="dropdown-toggle text-light" dropdownToggle>Welcome User</a>
                 <div class="dropdown-menu mt-3" *dropdownMenu >
