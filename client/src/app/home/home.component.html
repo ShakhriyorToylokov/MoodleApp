@@ -12,10 +12,6 @@
     </div>
 </div>
 
-<div class="container" *ngIf="registerMode">
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <app-register (cancelRegister)="registerModeCancel($event)" ></app-register>
-        </div>
-    </div> 
+<div  *ngIf="registerMode && (currentUser$ | async) ">
+        <app-register (cancelRegister)="registerModeCancel($event)" ></app-register>
 </div>
