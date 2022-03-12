@@ -31,9 +31,6 @@ export class NavComponent implements OnInit {
       else{
         this.router.navigateByUrl('/courses');
       }
-    },error=>{
-      console.log(error);
-      this.toastr.error(error.error);
     });
   }
   getUserType(){

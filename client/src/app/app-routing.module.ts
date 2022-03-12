@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
 import { CoursesListsComponent } from './lists/courses-lists/courses-lists.component';
 import { StudentListsComponent } from './lists/student-lists/student-lists.component';
@@ -28,7 +31,10 @@ const routes: Routes = [
       {path:'courses/:id',component: CourseDetailsComponent}    
     ]
   },
-  {path:'**',component: HomeComponent, pathMatch: 'full'}
+  {path:'errors',component: TestErrorsComponent},
+  {path:'not-found',component: NotFoundComponent},
+  {path:'server-error',component: ServerErrorComponent},
+  {path:'**',component: NotFoundComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

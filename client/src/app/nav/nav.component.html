@@ -6,7 +6,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>           
-              <ul class="navbar-nav mr-auto " >
+              <ul class="navbar-nav mr-auto ">
                 <ng-container *ngIf="currentUser$ | async">
                 <li class="nav-item">
                   <a class="nav-link " aria-current="page" routerLink="/" >Home</a>
@@ -27,6 +27,10 @@
                   <a class="nav-link " routerLink="/messages" routerLinkActive='active'>Messages</a>
                 </li>
               </ng-container>
+
+              <li class="nav-item">
+                <a class="nav-link " routerLink="/errors" routerLinkActive='active'>Errors</a>
+              </li>
               </ul>
 
               <div class="dropdown" dropdown *ngIf="(currentUser$ | async) as user">
