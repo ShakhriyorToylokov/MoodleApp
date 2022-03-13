@@ -7,6 +7,10 @@ namespace API.Entities
 {
     public class Adminstrator : AppUser
     {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string AdminType { get; set; }
         
     }
 }
