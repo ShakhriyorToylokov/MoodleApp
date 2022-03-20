@@ -1,0 +1,30 @@
+[
+    {
+      "UserName":"@admin123456",
+      "Name": "Shakhriyor",
+      "Surname": "Toylokov",
+      "Email": "shaxrik99.uz@mail.ru",
+      "AdminType": "Main"
+    },
+    {
+      "UserName":"@admin213453",
+      "Name": "Holder",
+      "Surname": "Matthews",
+      "Email": "holdermatthews@comveyer.com",
+      "AdminType": "Registrator"
+    },
+    {
+      "UserName":"@admin321456",
+        "Name": "Howell",
+        "Surname": "Gomez",
+        "Email": "howellgomez@comveyer.com",
+        "AdminType": "Supervisor"
+    },
+    {
+      "UserName":"@admin423124",
+      "Name": "Mccormick",
+      "Surname": "Austin",
+      "Email": "mccormickaustin@comveyer.com",
+      "AdminType": "NewsAdmin"
+    }
+  ]

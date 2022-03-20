@@ -60,77 +60,15 @@ namespace API.Data.Migrations
                     b.Property<string>("Definition")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FacultyId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("LastAccessed")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NameOfCourse")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("FacultyId");
-
-                    b.HasIndex("TeacherId");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("API.Entities.Faculty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("NameOfFaculty")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Faculties");
-                });
-
-            modelBuilder.Entity("API.Entities.Photo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId")
-                        .IsUnique();
-
-                    b.HasIndex("StudentId")
-                        .IsUnique();
-
-                    b.HasIndex("TeacherId")
-                        .IsUnique();
-
-                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("API.Entities.Student", b =>
@@ -151,9 +89,6 @@ namespace API.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FacultyId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Gender")
                         .HasColumnType("TEXT");
 
@@ -169,8 +104,8 @@ namespace API.Data.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
 
-                    b.Property<int>("StdNum")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StdNum")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Surname")
                         .HasColumnType("TEXT");
@@ -180,9 +115,32 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FacultyId");
-
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("API.Entities.StudentPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentPhoto");
                 });
 
             modelBuilder.Entity("API.Entities.Teacher", b =>
@@ -203,14 +161,11 @@ namespace API.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FacultyId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("InsNum")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("InsNum")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastActive")
                         .HasColumnType("TEXT");
@@ -232,9 +187,32 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FacultyId");
-
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("API.Entities.TeacherPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("TeacherPhotos");
                 });
 
             modelBuilder.Entity("CourseStudent", b =>
@@ -252,87 +230,41 @@ namespace API.Data.Migrations
                     b.ToTable("CourseStudent");
                 });
 
-            modelBuilder.Entity("StudentTeacher", b =>
+            modelBuilder.Entity("CourseTeacher", b =>
                 {
-                    b.Property<int>("StudentsId")
+                    b.Property<int>("CoursesId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TeachersId")
+                    b.Property<int>("TeacherId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("StudentsId", "TeachersId");
+                    b.HasKey("CoursesId", "TeacherId");
 
-                    b.HasIndex("TeachersId");
+                    b.HasIndex("TeacherId");
 
-                    b.ToTable("StudentTeacher");
+                    b.ToTable("CourseTeacher");
                 });
 
-            modelBuilder.Entity("API.Entities.Course", b =>
+            modelBuilder.Entity("API.Entities.StudentPhoto", b =>
                 {
-                    b.HasOne("API.Entities.Faculty", "Faculty")
-                        .WithMany("Courses")
-                        .HasForeignKey("FacultyId")
+                    b.HasOne("API.Entities.Student", "Student")
+                        .WithMany("Photos")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("API.Entities.TeacherPhoto", b =>
+                {
                     b.HasOne("API.Entities.Teacher", "Teacher")
-                        .WithMany("Courses")
+                        .WithMany("Photos")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Faculty");
-
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("API.Entities.Photo", b =>
-                {
-                    b.HasOne("API.Entities.Course", "Course")
-                        .WithOne("Photo")
-                        .HasForeignKey("API.Entities.Photo", "CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Entities.Student", "Student")
-                        .WithOne("Photo")
-                        .HasForeignKey("API.Entities.Photo", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Entities.Teacher", "Teacher")
-                        .WithOne("Photo")
-                        .HasForeignKey("API.Entities.Photo", "TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("API.Entities.Student", b =>
-                {
-                    b.HasOne("API.Entities.Faculty", "Faculty")
-                        .WithMany("Students")
-                        .HasForeignKey("FacultyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Faculty");
-                });
-
-            modelBuilder.Entity("API.Entities.Teacher", b =>
-                {
-                    b.HasOne("API.Entities.Faculty", "Faculty")
-                        .WithMany("Teachers")
-                        .HasForeignKey("FacultyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Faculty");
                 });
 
             modelBuilder.Entity("CourseStudent", b =>
@@ -350,45 +282,29 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentTeacher", b =>
+            modelBuilder.Entity("CourseTeacher", b =>
                 {
-                    b.HasOne("API.Entities.Student", null)
+                    b.HasOne("API.Entities.Course", null)
                         .WithMany()
-                        .HasForeignKey("StudentsId")
+                        .HasForeignKey("CoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("API.Entities.Teacher", null)
                         .WithMany()
-                        .HasForeignKey("TeachersId")
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API.Entities.Course", b =>
-                {
-                    b.Navigation("Photo");
-                });
-
-            modelBuilder.Entity("API.Entities.Faculty", b =>
-                {
-                    b.Navigation("Courses");
-
-                    b.Navigation("Students");
-
-                    b.Navigation("Teachers");
-                });
-
             modelBuilder.Entity("API.Entities.Student", b =>
                 {
-                    b.Navigation("Photo");
+                    b.Navigation("Photos");
                 });
 
             modelBuilder.Entity("API.Entities.Teacher", b =>
                 {
-                    b.Navigation("Courses");
-
-                    b.Navigation("Photo");
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,132 @@
+[
+    {
+      "UserName":"Ins254846",
+      "Name": "Mullen",
+      "Surname": "Bruce",
+      "InsNum":"254846",
+      "Email": "mullenbruce@comveyer.com",
+      "Gender": "female",
+      "DateOfBirth": "1995-07-16",
+      "Created": "2019-03-26",
+      "LastActive": "2020-05-16",
+      "Country": "Andorra",
+      "Photos": [
+        {
+          "Url": "https://randomuser.me/api/portraits/men/37.jpg",
+          "IsMain": true
+        }
+      ],
+      "Courses": [
+        {
+            "NameOfCourse": "Construction Management",
+            "CourseCode": "CE415",
+        "Definition" : "Course for Civil Engineering students"
+          }
+      ]
+    },
+    {
+      "UserName":"Ins155667",
+      "Name": "Cem",
+      "Surname": "Kalyoncu",
+      "InsNum": "155667",
+      "Email": "CemKalyoncu@comveyer.com",
+      "Gender": "male",
+      "DateOfBirth": "1983-09-28",
+      "Created": "2019-02-10",
+      "LastActive": "2020-05-12",
+      "Country": "Cyprus",
+      "Photos": [
+        {
+          "Url": "https://randomuser.me/api/portraits/men/21.jpg",
+          "IsMain": true
+        }
+      ],
+     "Courses": [
+        {
+          "NameOfCourse": "System Programming",
+          "CourseCode": "COMP339",
+          "Definition" : "Course for Electrical, Software and Computer Engineering students "
+        }
+      ]
+    },
+    {
+      "UserName":"Ins145782",
+      "Name": "Ferhun",
+      "Surname": "Yorgancioglu",
+      "InsNum":"145782",
+      "Email": "ferhunyorganciogly@gmail.com",
+      "Gender": "male",
+      "DateOfBirth": "1994-01-04",
+      "Created": "2019-09-22",
+      "LastActive": "2020-06-26",
+      "Country": "Turkey",
+      "Photos": [
+        {
+          "Url": "https://randomuser.me/api/portraits/men/14.jpg",
+          "IsMain": true
+        }
+      ],
+     "Courses": [
+        {
+          "NameOfCourse": "Database Management Systems",
+          "CourseCode": "COMP337",
+          "Definition" : "Course for Computer and Software Engineering students "
+        }
+      ]
+    },
+    {
+      "UserName":"Ins137854",
+      "Name": "Soydan",
+      "Surname": "Redif",
+      "InsNum":"137854",
+      "Email": "soydanredif@gmail.com",
+      "Gender": "male",
+      "DateOfBirth": "1956-08-18",
+      "Created": "2019-10-21",
+      "LastActive": "2020-06-27",
+      "Country": "England",
+      "Photos": [
+        {
+          "Url": "https://randomuser.me/api/portraits/men/22.jpg",
+          "IsMain": true
+        }
+      ],
+      "Courses": [
+        {
+          "NameOfCourse": "Signal and Systems",
+          "CourseCode": "COMP343",
+          "Definition" : "Course for Electricaland Computer Engineering students "
+        }
+      ]
+    },
+    {
+      "UserName":"Ins254875",
+      "Name": "Ezgi",
+      "Surname": "Ulker",
+      "InsNum":"254875",
+      "Email": "ezgiulker@comveyer.com",
+      "Gender": "female",
+      "DateOfBirth": "1992-02-04",
+      "Created": "2019-12-14",
+      "LastActive": "2020-06-23",
+      "Country": "Cyprus",
+      "Photos": [
+        {
+          "Url": "https://randomuser.me/api/portraits/women/63.jpg",
+          "IsMain": true
+        }
+      ],
+      "Courses": [
+        {
+          "NameOfCourse": "Analysis and Algorithms",
+          "CourseCode": "COMP335",
+         "Definition" : "Course for Electrical, Software and Computer Engineering students "
+        },
+        {
+          "NameOfCourse": "Computer Networks",
+          "CourseCode": "COMP342",
+          "Definition" : "Course for Software and Computer Engineering students "
+          }
+      ]
+    }
+  ]

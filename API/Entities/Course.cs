@@ -12,11 +12,9 @@ namespace API.Entities
         public string CourseCode { get; set; }
         public string Definition { get; set; }
         public DateTime LastAccessed { get; set; }  = DateTime.Now;
-        public Faculty Faculty { get; set; }
-        public int FacultyId { get; set; }
-        public Teacher Teacher { get; set; }
-        public int TeacherId { get; set; }
+   //     public ICollection<Photo> Photos { get; set; }
+        public ICollection<Teacher> Teacher { get; set; }
         public ICollection<Student> Students { get; set; }
-        public Photo Photo { get; set; }
+
     }
 }

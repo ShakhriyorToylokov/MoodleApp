@@ -1,0 +1,154 @@
+[
+  {
+    "UserName":"Std184118",
+    "Name": "Clara",
+    "Surname": "Swanson",
+    "StdNum":"184118",
+    "Email": "claraswanson@comveyer.com",
+    "Gender": "female",
+    "DateOfBirth": "1985-01-11",
+    "Created": "2019-03-10",
+    "LastActive": "2020-05-02",
+    "Country": "Russia",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/women/52.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName":"Std155478",
+    "Name": "Julie",
+    "Surname": "Pace",
+    "StdNum":"155478",
+    "Email": "juliepace@comveyer.com",
+    "Gender": "female",
+    "DateOfBirth": "1975-06-23",
+    "Created": "2019-03-03",
+    "LastActive": "2020-06-20",
+    "Country": "Uganda",
+    
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/women/49.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName":"Std147525",
+    "Name": "Lola",
+    "Surname": "Albert",
+    "StdNum":"147525",
+    "Email": "lolaalbert@comveyer.com",
+    "Gender": "female",
+    "DateOfBirth": "1955-09-29",
+    "Created": "2020-02-25",
+    "LastActive": "2020-06-23",
+    "Country": "Christmas Island",
+    
+   
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/women/16.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName":"Std175432",
+    "Name": "Sara",
+    "Surname": "Gonzalez",
+    "StdNum":"175432",
+    "Email": "saragonzalez@comveyer.com",
+    "Gender": "female",
+    "DateOfBirth": "1995-07-16",
+    "Created": "2020-03-26",
+    "LastActive": "2020-05-16",
+    "Country": "Andorra",
+    
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/women/7.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName":"Std187553",
+    "Name": "Letitia",
+    "Surname": "Quinn",
+    "StdNum":"187553",
+    "Email": "letitiaquinn@comveyer.com",
+    "Gender": "female",
+    "DateOfBirth": "1950-09-28",
+    "Created": "2019-02-10",
+    "LastActive": "2020-05-12",
+    "Country": "Finland",
+  
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/women/21.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName":"Std176543",
+    "Name": "Moss",
+    "Surname": "Skinner",
+    "StdNum":"176543",
+    "Email": "mossskinner@comveyer.com",
+    "Gender": "male",
+    "DateOfBirth": "1994-01-04",
+    "Created": "2019-09-22",
+    "LastActive": "2020-06-26",
+    "Country": "Fiji",
+    
+  
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/64.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName":"Std131456",
+    "Name": "Brock",
+    "Surname": "May",
+    "StdNum":"131456",
+    "Email": "brockmay@comveyer.com",
+    "Gender": "male",
+    "DateOfBirth": "1956-08-18",
+    "Created": "2019-10-21",
+    "LastActive": "2020-06-27",
+    "Country": "Russian Federation",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/92.jpg",
+        "IsMain": true
+      }
+    ]
+    
+  },
+  {
+    "UserName":"Std194219",
+    "Name": "Melton",
+    "Surname": "Conley",
+    "StdNum":"194219",
+    "Email": "meltonconley@comveyer.com",
+    "Gender": "male",
+    "DateOfBirth": "1992-02-04",
+    "Created": "2019-12-14",
+    "LastActive": "2020-06-23",
+    "Country": "Cook Islands",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/83.jpg",
+        "IsMain": true
+      }
+    ]
+ }
+]

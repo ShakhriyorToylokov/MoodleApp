@@ -1,0 +1,14 @@
+[
+    {
+      "NameOfFaculty":"Software Engineering"
+    },
+    {
+        "NameOfFaculty":"Computer Engineering"
+    },
+    {
+        "NameOfFaculty":"Electrical Engineering"
+    },
+    {
+        "NameOfFaculty":"Civil Engineering"
+    }
+  ]

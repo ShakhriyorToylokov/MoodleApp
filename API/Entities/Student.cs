@@ -10,19 +10,16 @@ namespace API.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int StdNum { get; set; }
+        public string StdNum { get; set; }
         public string Email { get; set; }
         public string Country { get; set; }        
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime Created { get; set; }=DateTime.Now;
         public DateTime LastActive { get; set; }=DateTime.Now;
-        public Faculty Faculty { get; set; }
-        public int FacultyId { get; set; }
+        public ICollection<StudentPhoto> Photos { get; set; }        
         public ICollection<Course> Courses { get; set; }
-        public ICollection<Teacher> Teachers { get; set; }
-        public Photo Photo { get; set; }
-        public int GetAge(){
+        public int GetAge(){ 
             return DateOfBirth.CalculateAge();
         }
     }
