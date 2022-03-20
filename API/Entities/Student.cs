@@ -17,6 +17,7 @@ namespace API.Entities
         public DateTime DateOfBirth { get; set; }
         public DateTime Created { get; set; }=DateTime.Now;
         public DateTime LastActive { get; set; }=DateTime.Now;
+        public string Faculty { get; set; }
         public ICollection<StudentPhoto> Photos { get; set; }        
         public ICollection<Course> Courses { get; set; }
         public int GetAge(){ 

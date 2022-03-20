@@ -23,7 +23,7 @@ namespace API
             {
                 var context= services.GetRequiredService<DataContext>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedAdmins(context); // Create different photo entities for different user types
+                await Seed.SeedFaculty(context); 
             }
             catch (Exception ex)
             {

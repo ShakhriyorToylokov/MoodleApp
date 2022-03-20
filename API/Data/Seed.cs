@@ -57,5 +57,17 @@ namespace API.Data
             }
             await context.SaveChangesAsync();
         }
+        public static async Task SeedFaculty(DataContext context){
+            if(await context.Faculties.AnyAsync()) return;
+            var userData= await System.IO.File.ReadAllTextAsync("Data/FacultySeedData.json");
+            var faculties = JsonSerializer.Deserialize<List<Faculty>>(userData); 
+            foreach (var faculty in faculties)
+            {
+                using var hmac= new HMACSHA512();
+                faculty.FacultyName=faculty.FacultyName.ToLower();
+                context.Faculties.Add(faculty);
+            }
+            await context.SaveChangesAsync();
+        }
     }
 }

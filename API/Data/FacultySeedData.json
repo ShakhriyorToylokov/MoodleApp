@@ -1,14 +1,14 @@
 [
     {
-      "NameOfFaculty":"Software Engineering"
+      "FacultyName":"Software Engineering"
     },
     {
-        "NameOfFaculty":"Computer Engineering"
+        "FacultyName":"Computer Engineering"
     },
     {
-        "NameOfFaculty":"Electrical Engineering"
+        "FacultyName":"Electrical Engineering"
     },
     {
-        "NameOfFaculty":"Civil Engineering"
+        "FacultyName":"Civil Engineering"
     }
   ]
