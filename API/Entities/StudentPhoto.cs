@@ -12,7 +12,7 @@ namespace API.Entities
         public bool IsMain { get; set; }
         public string PublicId { get; set; }
         public Student Student { get; set; }
-        public int StudentId { get; set; } // try to create individual course photo for each student and teacher
+        public int StudentId { get; set; } 
        
     }
 }

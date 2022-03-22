@@ -3,34 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
+using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    
+    [Authorize]
     public class TeachersController : BaseApiController
     {
-        private readonly DataContext _context;
-        public TeachersController(DataContext context)
+        private readonly ITeacherRepository _userRepository;
+        private readonly IMapper _mapper;
+        public TeachersController(ITeacherRepository userRepository,IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetTeachers()
+        public async Task<ActionResult<IEnumerable<TeacherDto>>> GetTeachers()
         {
-            return await _context.Teachers.ToListAsync();    
+            var teachers= await _userRepository.GetMemberTeachersAsync();
+            return Ok(teachers);    
         }
 
-        [HttpGet("{id}")]
-        [Authorize]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<TeacherDto>> GetUser(string username)
         {
-            return await _context.Teachers.FindAsync(id);    
+            var teacher= await _userRepository.GetMemberTeacherAsync(username);
+            return teacher;    
         }
     }
 }

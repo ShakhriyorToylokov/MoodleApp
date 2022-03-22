@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace API.Data
 {
@@ -18,9 +19,14 @@ namespace API.Data
         public DbSet<Adminstrator> Admin { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
-  
-         protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.ConfigureWarnings(w=>w.Ignore(CoreEventId.RowLimitingOperationWithoutOrderByWarning));
+             // ** the warning is about Skip/Take when Include() Photo,Course , for getting single user
+        }
+         protected override void OnModelCreating(ModelBuilder modelBuilder){
         base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Course>()   
                 .HasKey(x=>x.Id);

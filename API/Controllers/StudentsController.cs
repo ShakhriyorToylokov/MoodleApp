@@ -3,33 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
+using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class StudentsController : BaseApiController
     {
-        private readonly DataContext _context;
-        public StudentsController(DataContext context)
+        private readonly IStudentRepository _userRepository;
+        private readonly IMapper _mapper;
+        public StudentsController(IStudentRepository userRepository,IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents()
         {
-            return await _context.Students.ToListAsync();    
+            var students= await _userRepository.GetMemberStudentsAsync();
+            return Ok(students);    
         }
 
-        [HttpGet("{id}")]
-        [Authorize]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<AppUser>> GetStudent(string username)
         {
-            return await _context.Students.FindAsync(id);    
+            var student  =  await _userRepository.GetMemberStudentAsync(username);
+            return Ok(student);    
         }
 
         

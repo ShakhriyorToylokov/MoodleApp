@@ -20,8 +20,8 @@ namespace API.Entities
         public string Faculty { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<TeacherPhoto> Photos { get; set; }
-        public int GetAge(){
-            return DateOfBirth.CalculateAge();
-        }
+        // public int GetAge(){
+        //     return DateOfBirth.CalculateAge();
+        // }
     }
 }
