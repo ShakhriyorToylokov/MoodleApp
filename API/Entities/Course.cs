@@ -13,7 +13,9 @@ namespace API.Entities
         public string Definition { get; set; }
         public DateTime LastAccessed { get; set; }  = DateTime.Now;
         public ICollection<Faculty> Faculties { get; set; }
-        public ICollection<Teacher> Teacher { get; set; }
+        public Teacher Teacher { get; set; } 
+        public int TeacherId { get; set; }
+        // is it possible to make this one to many, I tried but now worked
         public ICollection<Student> Students { get; set; }
 
     }

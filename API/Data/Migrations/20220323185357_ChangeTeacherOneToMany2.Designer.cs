@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220323185357_ChangeTeacherOneToMany2")]
+    partial class ChangeTeacherOneToMany2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,8 +110,8 @@ namespace API.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Faculty")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Gender")
                         .HasColumnType("TEXT");
@@ -136,6 +138,8 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
 
                     b.ToTable("Students");
                 });
@@ -183,8 +187,8 @@ namespace API.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Faculty")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Gender")
                         .HasColumnType("TEXT");
@@ -211,6 +215,8 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
 
                     b.ToTable("Teachers");
                 });
@@ -281,6 +287,17 @@ namespace API.Data.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("API.Entities.Student", b =>
+                {
+                    b.HasOne("API.Entities.Faculty", "Faculty")
+                        .WithMany("Students")
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
+                });
+
             modelBuilder.Entity("API.Entities.StudentPhoto", b =>
                 {
                     b.HasOne("API.Entities.Student", "Student")
@@ -290,6 +307,17 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("API.Entities.Teacher", b =>
+                {
+                    b.HasOne("API.Entities.Faculty", "Faculty")
+                        .WithMany("Teachers")
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Faculty");
                 });
 
             modelBuilder.Entity("API.Entities.TeacherPhoto", b =>
@@ -331,6 +359,13 @@ namespace API.Data.Migrations
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Entities.Faculty", b =>
+                {
+                    b.Navigation("Students");
+
+                    b.Navigation("Teachers");
                 });
 
             modelBuilder.Entity("API.Entities.Student", b =>

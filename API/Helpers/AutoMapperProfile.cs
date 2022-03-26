@@ -18,7 +18,8 @@ namespace API.Helpers
                 .ForMember(dest=>dest.Age, opt=>opt.MapFrom(src=>src.DateOfBirth.CalculateAge()));
             CreateMap<StudentPhoto,StudentPhotoDto>();
             CreateMap<Teacher,TeacherDto>()
-                .ForMember(dest=>dest.PhotoUrl,opt=>opt.MapFrom(src=>src.Photos.FirstOrDefault(x=>x.IsMain).Url));
+                .ForMember(dest=>dest.PhotoUrl,opt=>opt.MapFrom(src=>src.Photos.FirstOrDefault(x=>x.IsMain).Url))
+                .ForMember(dest=>dest.Age, opt=>opt.MapFrom(src=>src.DateOfBirth.CalculateAge()));
             CreateMap<TeacherPhoto,TeacherPhotoDto>();
             CreateMap<Course,CourseDto>();
             CreateMap<Faculty,FacultyDto>();

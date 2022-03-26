@@ -36,7 +36,11 @@ namespace API.Data
                     .HasForeignKey(pt => pt.StudentId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-            }); 
+            });
+
+            modelBuilder.Entity<Course>()
+                .HasOne(x=>x.Teacher)
+                .WithMany(y=>y.Courses).HasForeignKey(x=>x.TeacherId); 
                            
     }
 }

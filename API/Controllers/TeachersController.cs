@@ -34,7 +34,9 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<TeacherDto>> GetUser(string username)
         {
-            var teacher= await _userRepository.GetMemberTeacherAsync(username);
+            var teacherByUsername= await _userRepository.GetMemberTeacherByUsernameAsync(username);
+            var teacherByName= await _userRepository.GetMemberTeacherByNameAsync(username);
+            var teacher= (teacherByUsername!=null)? teacherByUsername: teacherByName;
             return teacher;    
         }
     }

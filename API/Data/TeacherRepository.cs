@@ -54,9 +54,15 @@ namespace API.Data
                 .ToListAsync();
         }
 
-        public async Task<TeacherDto> GetMemberTeacherAsync(string username)
+        public async Task<TeacherDto> GetMemberTeacherByUsernameAsync(string username)
         {
-            return await _context.Teachers.Where(x=>x.Name.ToLower() == username.ToLower())
+            return await _context.Teachers.Where(x=>x.UserName.ToLower() == username.ToLower())
+                .ProjectTo<TeacherDto>(_mapper.ConfigurationProvider).AsSingleQuery()
+                .SingleOrDefaultAsync();
+        }
+        public async Task<TeacherDto> GetMemberTeacherByNameAsync(string name)
+        {
+            return await _context.Teachers.Where(x=>x.Name.ToLower() == name.ToLower())
                 .ProjectTo<TeacherDto>(_mapper.ConfigurationProvider).AsSingleQuery()
                 .SingleOrDefaultAsync();
         }

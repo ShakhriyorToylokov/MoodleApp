@@ -18,14 +18,16 @@
                   <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/teachers" routerLinkActive="active">Instructors</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link " routerLink="/messages" routerLinkActive='active'>Messages</a>
                 </li>
+                <ng-container *ngIf="getUserType()==='Admin'">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/teachers" routerLinkActive="active">Instructors</a>
+                  </li>
+                </ng-container>
               </ng-container>
 
               <li class="nav-item">

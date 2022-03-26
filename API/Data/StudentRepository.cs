@@ -48,7 +48,13 @@ namespace API.Data
         
         public async Task<StudentDto> GetMemberStudentAsync(string username)
         {
-            return await _context.Students.Where(x=>x.Name.ToLower()==username.ToLower())
+            return await _context.Students.Where(x=>x.UserName.ToLower()==username.ToLower())
+                .ProjectTo<StudentDto>(_mapper.ConfigurationProvider).AsSingleQuery()
+                .SingleOrDefaultAsync();
+        }
+        public async Task<StudentDto> GetMemberStudentByNameAsync(string name)
+        {
+            return await _context.Students.Where(x=>x.Name.ToLower()==name.ToLower())
                 .ProjectTo<StudentDto>(_mapper.ConfigurationProvider).AsSingleQuery()
                 .SingleOrDefaultAsync();
         }

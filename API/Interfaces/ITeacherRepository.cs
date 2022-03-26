@@ -15,7 +15,9 @@ namespace API.Interfaces
         Task<Teacher> GetTeacherByUsernameAsync(string username);
         Task<bool>  SaveAllChangesAsync(Teacher teacher);
         Task<IEnumerable<TeacherDto>> GetMemberTeachersAsync();
-        Task<TeacherDto> GetMemberTeacherAsync(string username);
+        Task<TeacherDto> GetMemberTeacherByUsernameAsync(string username);
+        Task<TeacherDto> GetMemberTeacherByNameAsync(string name);
+
 
     }
 }
