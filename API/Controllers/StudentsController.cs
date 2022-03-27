@@ -32,7 +32,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}")]
-        public async Task<ActionResult<AppUser>> GetStudent(string username)
+        public async Task<ActionResult<StudentDto>> GetStudent(string username)
         {
             var studentUsername  =  await _userRepository.GetMemberStudentAsync(username);
             var studentName  =  await _userRepository.GetMemberStudentByNameAsync(username);

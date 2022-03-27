@@ -10,6 +10,10 @@ import { TeacherDetailsComponent } from '../teachers/teacher-details/teacher-det
 import { MessagesComponent } from '../messages/messages.component';
 import { CourseDetailsComponent } from '../courses/course-details/course-details.component';
 import { TestComponent } from '../test/test.component';
+import { StudentCardComponent } from '../students/student-card/student-card.component';
+import { TeacherCardComponent } from '../teachers/teacher-card/teacher-card.component';
+import { CourseCardComponent } from '../courses/course-card/course-card.component';
+import { RegisterComponent } from '../register/register.component';
 
 
 
@@ -22,7 +26,10 @@ import { TestComponent } from '../test/test.component';
     TeacherDetailsComponent,
     MessagesComponent,
     CourseDetailsComponent,
-    TestComponent
+    TestComponent,
+    StudentCardComponent,
+    TeacherCardComponent,
+    CourseCardComponent,
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import { Course } from 'src/app/_models/course';
 import { AccountService } from 'src/app/_services/account.service';
 import { User } from 'src/app/_models/user';
 import { TeachersService } from 'src/app/_services/teachers.service';
+import { CoursesService } from 'src/app/_services/courses.service';
 
 @Component({
   selector: 'app-courses-lists',
@@ -16,13 +17,11 @@ export class CoursesListsComponent implements OnInit {
   userType: string;
   courses: Course[];
   constructor(private studentService: StudentsService,private accountService: AccountService,
-               private teacherService: TeachersService) { }
+               private teacherService: TeachersService, private courseService: CoursesService) { }
 
   ngOnInit(): void {
     this.accountService.currentUser$?.subscribe(response=>{
-      console.log(response);
       this.username= response?.username;
-      console.log(this.username);
       
     });
     // var user= JSON.parse(localStorage.getItem('user'));
@@ -39,21 +38,19 @@ export class CoursesListsComponent implements OnInit {
     }
   }
   loadAllCourses(){
+      this.courseService.getAllCourses().subscribe(response=>{
+        this.courses=response;
+      })
       
   }
   loadTeachers(){
-    console.log(this.username);
-
     this.teacherService.getCourses(this.username).subscribe(response=>{
-      console.log(response);
       this.courses=response;
     })
   }
   loadStudents(){
-    console.log(this.username);
-
+    
     this.studentService.getCourses(this.username).subscribe(response=>{
-      console.log(response);
       this.courses=response;
     })
   }

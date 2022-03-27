@@ -13,11 +13,11 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers
 {
     [Authorize]
-    public class Courses : BaseApiController
+    public class CoursesController : BaseApiController
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public Courses(DataContext context, IMapper mapper)
+        public CoursesController(DataContext context, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;
@@ -30,5 +30,16 @@ namespace API.Controllers
             return Ok(courses);
         }
 
-    }
+        [HttpGet("{name}")]
+        public async Task<ActionResult<CourseDto>> GetCourse(string name)
+        {
+            var courseByName = await _context.Courses.ProjectTo<CourseDto>(_mapper.ConfigurationProvider)
+                .AsSingleQuery().SingleOrDefaultAsync(x=>x.NameOfCourse.ToLower()==name.ToLower());
+            
+            var courseByCourseCode = await _context.Courses.ProjectTo<CourseDto>(_mapper.ConfigurationProvider)
+                .AsSingleQuery().SingleOrDefaultAsync(x=>x.CourseCode.ToLower()==name.ToLower());
+            var course  = (courseByName!=null)?courseByName:courseByCourseCode;
+            return Ok(course);    
+        }
+}
 }
