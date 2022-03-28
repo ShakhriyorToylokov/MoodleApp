@@ -6,6 +6,7 @@ import { AccountService } from 'src/app/_services/account.service';
 import { User } from 'src/app/_models/user';
 import { TeachersService } from 'src/app/_services/teachers.service';
 import { CoursesService } from 'src/app/_services/courses.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses-lists',
@@ -20,18 +21,15 @@ export class CoursesListsComponent implements OnInit {
                private teacherService: TeachersService, private courseService: CoursesService) { }
 
   ngOnInit(): void {
-    this.accountService.currentUser$?.subscribe(response=>{
+    this.accountService.currentUser$.pipe(take(1)).subscribe(response=>{
       this.username= response?.username;
-      
     });
-    // var user= JSON.parse(localStorage.getItem('user'));
-    // this.username=user?.username;
     console.log(this.username);
     if(this.username.includes("std")){
-      this.loadStudents(); 
+      this.loadStudentsCourses(); 
     }
     else if(this.username.includes("ins")){
-      this.loadTeachers();
+      this.loadTeachersCourses();
     }
     else if(this.username.includes("@admin")){
       this.loadAllCourses();
@@ -39,16 +37,18 @@ export class CoursesListsComponent implements OnInit {
   }
   loadAllCourses(){
       this.courseService.getAllCourses().subscribe(response=>{
+        console.log(response);
+        
         this.courses=response;
       })
       
   }
-  loadTeachers(){
+  loadTeachersCourses(){
     this.teacherService.getCourses(this.username).subscribe(response=>{
       this.courses=response;
     })
   }
-  loadStudents(){
+  loadStudentsCourses(){
     
     this.studentService.getCourses(this.username).subscribe(response=>{
       this.courses=response;

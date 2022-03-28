@@ -13,6 +13,18 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { ErrorInterceptor } from './_inteceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { JwtInterceptor } from './_inteceptors/jwt.interceptor';
+import { CoursesListsComponent } from './lists/courses-lists/courses-lists.component';
+import { StudentDetailsComponent } from './students/student-details/student-details.component';
+import { TeacherDetailsComponent } from './teachers/teacher-details/teacher-details.component';
+import { StudentListsComponent } from './lists/student-lists/student-lists.component';
+import { TeachersListsComponent } from './lists/teachers-lists/teachers-lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
+import { TestComponent } from './test/test.component';
+import { StudentCardComponent } from './students/student-card/student-card.component';
+import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.component';
+import { CourseCardComponent } from './courses/course-card/course-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +34,17 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
+    CoursesListsComponent,
+    StudentDetailsComponent,
+    TeacherDetailsComponent,
+    StudentListsComponent,
+    TeachersListsComponent,
+    MessagesComponent,
+    CourseDetailsComponent,
+    TestComponent,
+    StudentCardComponent,
+    TeacherCardComponent,
+    CourseCardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +55,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     SharedModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ], 
   bootstrap: [AppComponent]
 })

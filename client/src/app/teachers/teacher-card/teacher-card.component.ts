@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Teacher } from 'src/app/_models/teacher';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-teacher-card',
@@ -8,9 +9,17 @@ import { Teacher } from 'src/app/_models/teacher';
 })
 export class TeacherCardComponent implements OnInit {
   @Input() teacher: Teacher
-  constructor() { }
+  userType: string;
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
   }
 
+  isAdmin(){
+    this.userType = this.accountService.getUserType();
+    if (this.userType.includes('@admin')) {
+      return true;
+   }
+   return false;
+  }
 }

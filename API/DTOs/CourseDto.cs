@@ -9,6 +9,7 @@ namespace API.DTOs
         public string NameOfCourse { get; set; }
         public string CourseCode { get; set; }
         public string Definition { get; set; }
+        public string photoUrl { get; set; }
         public DateTime LastAccessed { get; set; }
 
     }

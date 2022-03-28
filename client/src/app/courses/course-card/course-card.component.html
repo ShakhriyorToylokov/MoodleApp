@@ -1,7 +1,50 @@
 <div class="card mb-4">
     <div class="card-img-wrapper">
         <img src="https://prod-discovery.edx-cdn.org/media/course/image/52bf4539-6137-4968-9605-6c32414dcdc4-7e805a266b31.small.png"
-             alt="{{course.nameOfCourse}}" class="card-img-top">
+            alt="{{course.nameOfCourse}}" class="card-img-top">
+            <ul class="list-inline member-icons animate text-center">
+                <ng-container  *ngIf="UserType()==='Student'">
+                <li class="list-inline-item"><button routerLink="/courses/{{course.courseCode}}" class="btn btn-info">
+                    <i class="fa fa-dashboard">
+                    </i></button>
+                </li>
+                <li class="list-inline-item"><button class="btn btn-info">
+                    <i class="fa fa-thumbs-up">
+                    </i></button>
+                </li>
+                <li class="list-inline-item"><button class="btn btn-info">
+                    <i class="fa fa-file-text">
+                    </i></button>
+                </li>
+            </ng-container>
+            <ng-container  *ngIf="UserType()==='Teacher'">
+                <li class="list-inline-item"><button routerLink="/courses/{{course.courseCode}}" class="btn btn-info">
+                    <i class="fa fa-dashboard">
+                    </i></button>
+                </li>
+                <li class="list-inline-item"><button class="btn btn-info">
+                    <i class="fa fa-star">
+                    </i></button>
+                </li>
+                <li class="list-inline-item"><button class="btn btn-info">
+                    <i class="fa fa-pencil">
+                    </i></button>
+                </li>
+            </ng-container>
+                <ng-container *ngIf="UserType()==='Admin'">
+                <li class="list-inline-item"><button routerLink="/courses/{{course.courseCode}}" class="btn btn-info">
+                        <i class="fa fa-cog">
+                            </i></button>
+                </li>
+                <li class="list-inline-item"><button class="btn btn-info">
+                        <i class="fa fa-bookmark">
+                            </i></button>
+                </li> 
+                <li class="list-inline-item"><button class="btn btn-info">
+                    <i class="fa fa-trash"></i></button>
+                 </li> 
+            </ng-container>
+            </ul>
     </div>
     <div class="card-body p-1">
         <h6 class="card-title text-center mb-1"><i class="fa fa-user mr-2"></i>

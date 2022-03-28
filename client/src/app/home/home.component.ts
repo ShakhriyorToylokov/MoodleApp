@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
   }
 
   isAdmin(){
-    this.IsAdmin=this.accountService.getAdminUserType();
-    if (this.IsAdmin!==null) {
+    this.IsAdmin=this.accountService.getUserType();
+    if (this.IsAdmin.includes('@admin')) {
       return true;
     }
     return false;

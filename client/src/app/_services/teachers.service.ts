@@ -9,24 +9,19 @@ import { Teacher } from '../_models/teacher';
 })
 export class TeachersService {
   baseUrl= environment.apiUrl;
-  httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
   constructor(private http: HttpClient) { }
 
   getTeachers(){
-    return this.http.get<Teacher[]>(this.baseUrl+'teachers', this.httpOptions);
+    return this.http.get<Teacher[]>(this.baseUrl+'teachers');
   }
 
   getTeacher(username: string){
-    return this.http.get<Teacher>(this.baseUrl+'teachers/'+ username ,this.httpOptions);
+    return this.http.get<Teacher>(this.baseUrl+'teachers/'+ username);
   }
 
   
   getCourses(username: string){
-    return this.http.get<Teacher>(this.baseUrl+'teachers/'+ username,this.httpOptions).pipe(
+    return this.http.get<Teacher>(this.baseUrl+'teachers/'+ username).pipe(
       map(response=>{
         if (response?.courses) {
             return response.courses;
@@ -34,4 +29,6 @@ export class TeachersService {
       })
     );
   }
+
+  
 }

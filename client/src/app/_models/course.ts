@@ -4,5 +4,6 @@ export interface Course {
     nameOfCourse: string;
     courseCode: string;
     definition: string;
+    photoUrl: string;
     lastAccessed: Date;
 }

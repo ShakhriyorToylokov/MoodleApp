@@ -26,9 +26,9 @@ const routes: Routes = [
       {path:'register',component: RegisterComponent},
       {path:'courses',component: CoursesListsComponent},
       {path:'messages',component: MessagesComponent},
-      {path:'students/:id',component: StudentDetailsComponent},
-      {path:'teachers/:id',component: TeacherDetailsComponent},
-      {path:'courses/:id',component: CourseDetailsComponent}    
+      {path:'students/:username',component: StudentDetailsComponent},
+      {path:'teachers/:username',component: TeacherDetailsComponent},
+      {path:'courses/:coursecode',component: CourseDetailsComponent}    
     ]
   },
   {path:'errors',component: TestErrorsComponent},

@@ -11,6 +11,7 @@ namespace API.Entities
         public string NameOfCourse { get; set; }
         public string CourseCode { get; set; }
         public string Definition { get; set; }
+        public string photoUrl { get; set; }
         public DateTime LastAccessed { get; set; }  = DateTime.Now;
         public ICollection<Faculty> Faculties { get; set; }
         public Teacher Teacher { get; set; } 

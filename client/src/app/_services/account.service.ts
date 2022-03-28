@@ -25,13 +25,11 @@ export class AccountService {
       }) 
     );
   }
-  getAdminUserType(){
+  getUserType(){
     var userType : string=null;
     this.currentUser$.subscribe(response=>{
       if (response!==null) {
-        if (response.username==='@admin19991223'){
           userType=response.username;
-        }
       }
     });
     return userType;

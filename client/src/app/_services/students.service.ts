@@ -11,23 +11,20 @@ import { Student } from '../_models/student';
 })
 export class StudentsService {
   baseUrl= environment.apiUrl;
-  httpOptions = {
-    headers: new HttpHeaders({
-      Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-    })
-  }
   constructor(private http: HttpClient) { }
 
   getStudents(){
-    return this.http.get<Student[]>(this.baseUrl+'students', this.httpOptions);
+    return this.http.get<Student[]>(this.baseUrl+'students');
   }
 
   getStudent(username: string){
-    return this.http.get<Student>(this.baseUrl+'students/'+ username ,this.httpOptions);
+    console.log(username);
+    
+    return this.http.get<Student>(this.baseUrl+'students/'+ username);
   }
 
   getCourses(username: string){
-    return this.http.get<Student>(this.baseUrl+'students/'+ username,this.httpOptions).pipe(
+    return this.http.get<Student>(this.baseUrl+'students/'+ username).pipe(
       map(response=>{
         if (response?.courses) {
             return response.courses;
