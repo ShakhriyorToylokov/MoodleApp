@@ -1,1 +1,64 @@
-<h1 *ngIf="course">{{course.nameOfCourse}}</h1>
+<div *ngIf="course" class="row ">
+    <div class="col-3">
+      <div class="card ">
+          <img src="{{course.photoUrl || './assets/user.png'}}" alt="{{course.name}}" class="card-img-top img-thumbnail">
+        <div class="card-body">
+            <div>
+                <strong>Course Name:</strong>
+                <p>{{course.nameOfCourse}}</p>
+            </div>
+            <div>
+                <strong>Course Code:</strong>
+                <p>{{course.courseCode}}</p>
+            </div>
+            <div>
+                <strong>Definition:</strong>
+                <p><small>{{course.definition}}</small></p>
+            </div>
+            <!-- <div>
+                <strong>Student since:</strong>
+                <p>{{student.created}}</p>
+            </div> -->
+        </div>
+        <div class="card-footer " >
+            <div class="btn-group d-flex">
+                <button class="btn btn-danger" *ngIf="getUserType()==='Admin'"><i class="fa fa-trash mr-2">
+                </i>Delete </button>
+                <button class="btn btn-success" *ngIf="getUserType()==='Teacher'"><i class="fa fa-pencil mr-2">
+                </i>New Announcement</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-8">
+        <!-- this is course tabset for admin -->
+        <tabset class="member-tabset" > 
+            <hr>
+            <tab heading="About Course" >
+                <div id="containerIntro">
+                    <h6>Course Name:</h6>
+                    <p><small>{{course.nameOfCourse}}</small></p>
+                </div>
+                <div id="containerIntro">
+                    <h6>Course Code:</h6>
+                    <p><small>{{course.courseCode}}</small></p>
+                </div>
+                <div id="containerIntro">
+                    <h6>Definition: </h6> 
+                    <p><small>{{course.definition}}</small></p>
+                </div>
+            </tab>
+            <tab heading="Instructors"> 
+                <h4 class="mt-3">Instructors will come here</h4>
+            </tab>
+            <tab heading="Students"> 
+                <h4 class="mt-3">Students will go here</h4>
+            </tab>
+            <tab heading="Announcements"> 
+                <h4 class="mt-3">Announcements will go here</h4>
+            </tab>
+            <hr>
+        </tabset>
+    </div>
+
+</div>

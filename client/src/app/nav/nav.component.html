@@ -22,7 +22,7 @@
                   <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
                 </li>
               </ng-container>
-                <ng-container *ngIf="getUserType()==='Admin'">
+                <ng-container *ngIf="getUserType()==='Admin' || getUserType()==='Teacher'">
                   <li class="nav-item">
                     <a class="nav-link" routerLink="/teachers" routerLinkActive="active">Instructors</a>
                   </li> 
