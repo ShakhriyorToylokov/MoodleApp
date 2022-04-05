@@ -34,7 +34,7 @@ namespace API.Data
         public async Task<Teacher> GetTeacherByUsernameAsync(string username)
         {
             return await _context.Teachers.Include(x=>x.Courses).Include(x=>x.Photos).AsSplitQuery().
-                SingleOrDefaultAsync(x=>x.Name.ToLower() == username.ToLower());
+                SingleOrDefaultAsync(x=>x.UserName.ToLower() == username.ToLower());
         }
 
         public async Task<IEnumerable<Teacher>> GetTeachersAsync()
@@ -42,7 +42,7 @@ namespace API.Data
             return await _context.Teachers.Include(x=>x.Courses).Include(x=>x.Photos).AsSplitQuery().ToListAsync();
         }
 
-        public async Task<bool> SaveAllChangesAsync(Teacher teacher)
+        public async Task<bool> SaveAllChangesAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }

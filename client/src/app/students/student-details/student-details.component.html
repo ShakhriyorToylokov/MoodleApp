@@ -23,7 +23,7 @@
         <div class="card-footer">
             <div class="btn-group d-flex">
                 <button class="btn btn-success"><i class="fa fa-comment mr-2"></i>Message</button>
-                <button class="btn btn-danger"><i class="fa fa-trash mr-2"></i>Delete</button>
+                <button class="btn btn-danger" *ngIf="getUserType()==='Admin'"><i class="fa fa-trash mr-2"></i>Delete</button>
 
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +19,11 @@ export class StudentEditComponent implements OnInit {
   faculties: Faculty[];
   student: Student;
   user: User;
+  @HostListener('window:beforeunload',['$event']) unloadNotification($event:any){
+    if (this.editForm.dirty) {
+      $event.returnValue=true;
+    }
+  }
   constructor(private accountService: AccountService, private studentService: StudentsService,
               private route: ActivatedRoute,private toastr: ToastrService) { 
     accountService.currentUser$.pipe(take(1)).subscribe(response=>{
@@ -41,8 +46,12 @@ export class StudentEditComponent implements OnInit {
     });
   }
   updateStudent(){
-    console.log(this.student);
-    this.toastr.success("Updated Successfully!!!");
-    this.editForm.reset(this.student);
+    
+    this.studentService.updateStudent(this.student).subscribe(()=>{
+        console.log(this.student);
+        this.toastr.success("Updated Successfully!!!");
+        this.editForm.reset(this.student);
+    })
+    
   }
 }

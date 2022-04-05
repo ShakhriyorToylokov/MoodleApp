@@ -2,8 +2,12 @@
     <div class="card-img-wrapper">
         <img src="{{student.photoUrl}}" alt="{{student.name}}" class="card-img-top">
         <ul class="list-inline member-icons animate text-center">
-            <li class="list-inline-item"><button routerLink="/students/{{student.username}}/edit" class="btn btn-info">
+            <li class="list-inline-item" *ngIf="isAdmin()"><button routerLink="/students/{{student.username}}/edit" class="btn btn-info">
                 <i class="fa fa-pencil"> 
+                </i></button>
+            </li>
+            <li class="list-inline-item" *ngIf="!isAdmin()"><button routerLink="/students/{{student.username}}" class="btn btn-info">
+                <i class="fa fa-user"> 
                 </i></button>
             </li>
             <li class="list-inline-item"><button class="btn btn-info">
@@ -19,9 +23,10 @@
         </ul>
     </div>
     <div class="card-body p-1">
-        <h6 class="card-title text-center mb-1"><i class="fa fa-user mr-2"></i>
+       <a href="/students/{{student.username}}" class="link-dark"> <h6 class="card-title text-center mb-1"><i class="fa fa-user mr-2"></i>
             {{student.name}} {{student.surname}}
         </h6>
+        </a>
         <p class="card-text text-muted text-center">{{student.faculty}}</p>
     </div>
     

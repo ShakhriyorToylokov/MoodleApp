@@ -23,11 +23,14 @@ export class StudentsService {
   }
   getCourses(username: string){
     return this.http.get<Student>(this.baseUrl+'students/'+ username).pipe(
-      map(response=>{
+      map(response=>{ 
         if (response?.courses) {
             return response.courses;
         }
       })
     );
+  }
+  updateStudent(student: Student){
+    return this.http.put(this.baseUrl+'students',student);
   }
 }

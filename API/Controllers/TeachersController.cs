@@ -39,5 +39,17 @@ namespace API.Controllers
             var teacher= (teacherByUsername!=null)? teacherByUsername: teacherByName;
             return teacher;    
         }
+
+        
+        [HttpPut]
+        public async Task<ActionResult> UpdateStudent(TeacherUpdateDto teacherUpdateDto){
+          //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+          var username= teacherUpdateDto.Username;
+            var teacher= await _userRepository.GetTeacherByUsernameAsync(username);
+            _mapper.Map(teacherUpdateDto,teacher);
+            _userRepository.UpdateTeacher(teacher);
+            if(await _userRepository.SaveAllChangesAsync()) return NoContent();
+            return BadRequest("Failed to update teacher information!");  
+        }       
     }
 }

@@ -13,7 +13,7 @@ namespace API.Interfaces
         Task<IEnumerable<Teacher>> GetTeachersAsync();
         Task<Teacher> GetTeacherByIdAsync(int id);
         Task<Teacher> GetTeacherByUsernameAsync(string username);
-        Task<bool>  SaveAllChangesAsync(Teacher teacher);
+        Task<bool>  SaveAllChangesAsync();
         Task<IEnumerable<TeacherDto>> GetMemberTeachersAsync();
         Task<TeacherDto> GetMemberTeacherByUsernameAsync(string username);
         Task<TeacherDto> GetMemberTeacherByNameAsync(string name);

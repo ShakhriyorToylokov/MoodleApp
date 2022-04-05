@@ -29,6 +29,8 @@ import { StudentEditComponent } from './students/student-edit/student-edit.compo
 import { TeacherEditComponent } from './teachers/teacher-edit/teacher-edit.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { StudentSettingsComponent } from './userpreferences/student-settings/student-settings.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_inteceptors/loading.interceptor';
 
 
 @NgModule({
@@ -62,11 +64,14 @@ import { StudentSettingsComponent } from './userpreferences/student-settings/stu
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+
   ], 
   bootstrap: [AppComponent]
 })

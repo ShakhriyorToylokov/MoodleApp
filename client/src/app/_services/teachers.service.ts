@@ -30,5 +30,7 @@ export class TeachersService {
     );
   }
 
-  
+  updateTeacher(teacher: Teacher){
+    return this.http.put(this.baseUrl+'teachers',teacher);
+  }
 }
