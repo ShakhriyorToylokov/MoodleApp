@@ -19,10 +19,8 @@ export class StudentsService {
 
   getStudent(username: string){
     console.log(username);
-    
     return this.http.get<Student>(this.baseUrl+'students/'+ username);
   }
-
   getCourses(username: string){
     return this.http.get<Student>(this.baseUrl+'students/'+ username).pipe(
       map(response=>{

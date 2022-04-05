@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -11,8 +12,12 @@ import { TeachersListsComponent } from './lists/teachers-lists/teachers-lists.co
 import { MessagesComponent } from './messages/messages.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentDetailsComponent } from './students/student-details/student-details.component';
+import { StudentEditComponent } from './students/student-edit/student-edit.component';
 import { TeacherDetailsComponent } from './teachers/teacher-details/teacher-details.component';
+import { TeacherEditComponent } from './teachers/teacher-edit/teacher-edit.component';
+import { StudentSettingsComponent } from './userpreferences/student-settings/student-settings.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {path:'',component: HomeComponent},
@@ -28,7 +33,11 @@ const routes: Routes = [
       {path:'messages',component: MessagesComponent},
       {path:'students/:username',component: StudentDetailsComponent},
       {path:'teachers/:username',component: TeacherDetailsComponent},
-      {path:'courses/:coursecode',component: CourseDetailsComponent}    
+      {path:'courses/:coursecode',component: CourseDetailsComponent},
+      {path:'students/:username/edit',component: StudentEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'teachers/:username/edit',component: TeacherEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'admin/edit',component: AdminEditComponent},
+      {path:'student/edit',component: StudentSettingsComponent}
     ]
   },
   {path:'errors',component: TestErrorsComponent},

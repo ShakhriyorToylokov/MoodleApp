@@ -25,6 +25,12 @@ import { TestComponent } from './test/test.component';
 import { StudentCardComponent } from './students/student-card/student-card.component';
 import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.component';
 import { CourseCardComponent } from './courses/course-card/course-card.component';
+import { StudentEditComponent } from './students/student-edit/student-edit.component';
+import { TeacherEditComponent } from './teachers/teacher-edit/teacher-edit.component';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { StudentSettingsComponent } from './userpreferences/student-settings/student-settings.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +50,11 @@ import { CourseCardComponent } from './courses/course-card/course-card.component
     TestComponent,
     StudentCardComponent,
     TeacherCardComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    StudentEditComponent,
+    TeacherEditComponent,
+    AdminEditComponent,
+    StudentSettingsComponent
   ],
   imports: [
     BrowserModule,

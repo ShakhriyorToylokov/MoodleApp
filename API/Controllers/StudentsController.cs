@@ -40,6 +40,9 @@ namespace API.Controllers
             return Ok(student);    
         }
 
-        
+        // [HttpPut]
+        // public async Task<ActionResult> UpdateStudent(){
+
+        // }       
     }
 }

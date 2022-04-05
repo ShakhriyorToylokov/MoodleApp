@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+import { Student } from '../_models/student';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 
@@ -16,6 +17,7 @@ import { AccountService } from '../_services/account.service';
 export class NavComponent implements OnInit {
   model: any = {};
   currentUser$: Observable<User>;
+  student: Student;
   constructor(private accountService : AccountService,private router: Router,
       private toastr: ToastrService) { }
 
@@ -34,12 +36,12 @@ export class NavComponent implements OnInit {
     });
   }
   getUserType(){
-    
-    var username: string ;
+    var username:string;
     this.currentUser$.subscribe(response=>{
       username=response?.username;  
     })
     if (username?.includes('std')) {
+      
       return 'Student';
     }
     else if (username?.includes('@admin')) {

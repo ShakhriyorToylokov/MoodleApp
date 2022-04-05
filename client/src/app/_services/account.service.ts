@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map, retry } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
+import { Faculty } from '../_models/faculty';
 import { User } from '../_models/user';
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,7 @@ export class AccountService {
     });
     return userType;
   }
+
   setCurrentUser(user:User){
     this.currentUserSource.next(user);
   }
@@ -72,6 +74,9 @@ export class AccountService {
     );
   }
 
+  getFaculties(){
+    return this.http.get<Faculty[]>(this.baseUrl+'faculties');
+  }
   logout(){
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
