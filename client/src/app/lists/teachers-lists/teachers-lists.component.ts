@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Teacher } from 'src/app/_models/teacher';
 import { TeachersService } from 'src/app/_services/teachers.service';
 
@@ -9,16 +10,11 @@ import { TeachersService } from 'src/app/_services/teachers.service';
 })
 export class TeachersListsComponent implements OnInit {
 
-  teachers: Teacher[];
+  teachers$: Observable<Teacher[]> ;
   constructor(private teacherService: TeachersService) { }
 
   ngOnInit(): void {
-    this.loadTeachers();
+    this.teachers$=this.teacherService.getTeachers();
   }
 
-  loadTeachers(){
-    this.teacherService.getTeachers().subscribe(response=>{
-      this.teachers=response;
-    });
-  }
 }

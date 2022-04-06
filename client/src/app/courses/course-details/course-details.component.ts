@@ -10,7 +10,7 @@ import { CoursesService } from 'src/app/_services/courses.service';
   styleUrls: ['./course-details.component.css']
 })
 export class CourseDetailsComponent implements OnInit {
-  course: Course;
+  course:  Course;
   userType: string;
   constructor(private courseService: CoursesService, private route: ActivatedRoute,
               private accountService:AccountService) { }

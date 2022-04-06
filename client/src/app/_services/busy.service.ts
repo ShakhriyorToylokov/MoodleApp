@@ -11,7 +11,7 @@ export class BusyService {
   busy(){
     this.busyRequestCount++;
     this.spinnerService.show(undefined,{
-      type:'line-spin-clockwise-fade',
+      type:'square-spin',
       bdColor:'rgba(0, 0, 0, 0.05)',
       color: '#1c9abb'
     })

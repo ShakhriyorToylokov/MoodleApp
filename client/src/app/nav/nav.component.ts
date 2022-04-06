@@ -18,11 +18,15 @@ export class NavComponent implements OnInit {
   model: any = {};
   currentUser$: Observable<User>;
   student: Student;
+  user: User;
   constructor(private accountService : AccountService,private router: Router,
       private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.currentUser$=this.accountService.currentUser$;
+    this.currentUser$.subscribe(response=>{
+      this.user=response;
+    })
   }
   login(){
     

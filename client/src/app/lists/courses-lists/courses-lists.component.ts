@@ -7,6 +7,7 @@ import { User } from 'src/app/_models/user';
 import { TeachersService } from 'src/app/_services/teachers.service';
 import { CoursesService } from 'src/app/_services/courses.service';
 import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-lists',
@@ -16,7 +17,7 @@ import { take } from 'rxjs/operators';
 export class CoursesListsComponent implements OnInit {
   username: string="";
   userType: string;
-  courses: Course[];
+  courses$: Observable<Course[]> ;
   constructor(private studentService: StudentsService,private accountService: AccountService,
                private teacherService: TeachersService, private courseService: CoursesService) { }
 
@@ -36,22 +37,13 @@ export class CoursesListsComponent implements OnInit {
     }
   }
   loadAllCourses(){
-      this.courseService.getAllCourses().subscribe(response=>{
-        console.log(response);
-        
-        this.courses=response;
-      })
-      
+      this.courses$= this.courseService.getAllCourses();
   }
   loadTeachersCourses(){
-    this.teacherService.getCourses(this.username).subscribe(response=>{
-      this.courses=response;
-    })
+    this.courses$= this.teacherService.getCourses(this.username);
   }
   loadStudentsCourses(){
     
-    this.studentService.getCourses(this.username).subscribe(response=>{
-      this.courses=response;
-    })
+   this.courses$= this.studentService.getCourses(this.username);
   }
 }
