@@ -68,6 +68,6 @@ namespace API.Data
             _context.Entry(student).State=EntityState.Modified;
         }
 
- 
+        
     }
 }

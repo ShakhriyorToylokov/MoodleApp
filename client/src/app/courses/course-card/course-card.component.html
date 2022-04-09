@@ -26,13 +26,13 @@
                     <i class="fa fa-star">
                     </i></button>
                 </li>
-                <li class="list-inline-item"><button class="btn btn-info">
+                <li class="list-inline-item"><button routerLink="/courses/{{course.courseCode}}/edit" class="btn btn-info">
                     <i class="fa fa-pencil">
                     </i></button>
                 </li>
             </ng-container>
                 <ng-container *ngIf="UserType()==='Admin'">
-                <li class="list-inline-item"><button routerLink="/courses/{{course.courseCode}}" class="btn btn-info">
+                <li class="list-inline-item"><button routerLink="/courses/{{course.courseCode}}/edit" class="btn btn-info">
                         <i class="fa fa-cog">
                             </i></button>
                 </li>
@@ -47,9 +47,9 @@
             </ul>
     </div>
     <div class="card-body p-1">
-        <h6 class="card-title text-center mb-1"><i class="fa fa-user mr-2"></i>
+      <a routerLink="/courses/{{course.courseCode}}" class="link-dark">  <h6 class="card-title text-center mb-1"><i class="fa fa-user mr-2"></i>
             {{course.nameOfCourse}} 
-        </h6>
+        </h6></a>
         <p class="card-text text-muted text-center">{{course.courseCode}}</p>
     </div>
     

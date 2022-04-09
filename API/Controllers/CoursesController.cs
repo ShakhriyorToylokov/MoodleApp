@@ -41,5 +41,17 @@ namespace API.Controllers
             var course  = (courseByName!=null)?courseByName:courseByCourseCode;
             return Ok(course);    
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateCourse(CourseUpdateDto courseUpdateDto){
+          //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+          var courseCode= courseUpdateDto.CourseCode;
+            var course= await _context.Courses.SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+            _mapper.Map(courseUpdateDto,course);
+            _context.Entry(course).State=EntityState.Modified;
+
+            if((await _context.SaveChangesAsync()>0)) return NoContent();
+            return BadRequest("Failed to update course!");  
+        }       
 }
 }

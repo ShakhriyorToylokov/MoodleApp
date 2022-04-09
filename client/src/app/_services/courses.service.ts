@@ -38,4 +38,15 @@ export class CoursesService {
     return this.http.get<Course>(this.baseUrl+'courses/'+ courseCode);
 
   }
+
+  updateCourse(course: Course){
+    return this.http.put(this.baseUrl+'courses',course).pipe(
+      map(()=>{
+        const index= this.courses.indexOf(course);
+        console.log(this.courses);
+        
+        this.courses[index]=course;
+      })
+    );
+  }
 }

@@ -25,6 +25,8 @@ namespace API.Helpers
             CreateMap<Faculty,FacultyDto>();
             CreateMap<StudentUpdateDto,Student>();
             CreateMap<TeacherUpdateDto,Teacher>();
+            CreateMap<CourseUpdateDto,Course>();
+
 
         }
 

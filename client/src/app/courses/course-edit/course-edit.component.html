@@ -1,0 +1,72 @@
+
+<div *ngIf="course" class="row ">
+    <div class="col-4">
+        <h1>Course Profile</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>Information:</strong> You have made changes. Any unsaved changes will be lost
+        </div>
+    </div>
+    <div class="col-3">
+      <div class="card ">
+          <img src="{{course.photoUrl || 'https://prod-discovery.edx-cdn.org/media/course/image/52bf4539-6137-4968-9605-6c32414dcdc4-7e805a266b31.small.png'}}" 
+          alt="{{course.nameOfCourse}}" class="card-img-top img-thumbnail">
+          <div class="card-body">
+            <div>
+                <strong>Course Name:</strong>
+                <p>{{course.nameOfCourse}}</p>
+            </div>
+            <div>
+                <strong>Course Code:</strong>
+                <p>{{course.courseCode}}</p>
+            </div>
+            <div>
+                <strong>Definition:</strong>
+                <p><small>{{course.definition}}</small></p>
+            </div>
+            <!-- <div>
+                <strong>Student since:</strong>
+                <p>{{student.created}}</p>
+            </div> -->
+        </div>
+        <div class="card-footer">
+            <div class="btn-group d-flex">
+                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block"><i class="fa fa-floppy-o mr-2"></i>Save Changes</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-8">
+        <tabset class="member-tabset" >
+            <hr>
+            <tab heading="Course Details ">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateCourse()">
+                <div id="containerIntro">
+                <div>
+                    <ng-container *ngIf="getUserType()==='Admin'">
+                    <label for="name"><b>Course Name:</b></label>
+                    <input type="text" [(ngModel)]="course.nameOfCourse" name="nameOfCourse" class="form-control">
+                    <label for="surname"><b>Course Code:</b></label>
+                    <input type="text" name="courseCode" [(ngModel)]="course.courseCode" class="form-control">
+                </ng-container>
+                    <ng-container *ngIf="getUserType()==='Admin' || getUserType()==='Teacher'">
+                    <label for="faculty"><b>Definition:</b></label>
+                    <input type="text" name="definition" [(ngModel)]="course.definition" class="form-control">
+                     </ng-container>
+                </div>
+                </div>        
+            </form>
+            </tab>
+            <!-- <tab heading="Edit Courses"> 
+                <h4 class="mt-3">Courses</h4>
+                <b><p *ngFor="let course of student.courses" > {{course.nameOfCourse}} 
+                    <i class="fa fa-arrows-h"></i> {{course.courseCode}}</p></b>
+            </tab>
+            <tab heading="Edit Photos" class="text-center"> 
+                <h6>Photo edit will come here </h6>
+            </tab> -->
+            <hr>
+        </tabset>
+    </div>
+</div>

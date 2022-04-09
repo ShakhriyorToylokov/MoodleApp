@@ -31,6 +31,7 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { StudentSettingsComponent } from './userpreferences/student-settings/student-settings.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_inteceptors/loading.interceptor';
+import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { LoadingInterceptor } from './_inteceptors/loading.interceptor';
     StudentEditComponent,
     TeacherEditComponent,
     AdminEditComponent,
-    StudentSettingsComponent
+    StudentSettingsComponent,
+    CourseEditComponent
   ],
   imports: [
     BrowserModule,
