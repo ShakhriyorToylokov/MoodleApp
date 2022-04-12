@@ -6,4 +6,8 @@ export interface Course {
     definition: string;
     photoUrl: string;
     lastAccessed: Date;
+    announcements:Announcements[];
+}
+export interface Announcements {
+    announcement: string;
 }

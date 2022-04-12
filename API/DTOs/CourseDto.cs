@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using API.DTOs.Course;
 
 namespace API.DTOs
 {
@@ -11,6 +12,6 @@ namespace API.DTOs
         public string Definition { get; set; }
         public string photoUrl { get; set; }
         public DateTime LastAccessed { get; set; }
-
+        public ICollection<AnnouncementDto> Announcements { get; set; }
     }
 }

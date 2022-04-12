@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
+using API.DTOs.Course;
 using API.Entities;
+using API.Entities.CourseDetails;
 using API.Extensions;
 using AutoMapper;
 
@@ -26,6 +28,9 @@ namespace API.Helpers
             CreateMap<StudentUpdateDto,Student>();
             CreateMap<TeacherUpdateDto,Teacher>();
             CreateMap<CourseUpdateDto,Course>();
+            CreateMap<Announcements,AnnouncementDto>();
+            CreateMap<AnnouncementUpdateDto,Announcements>();
+
 
 
         }

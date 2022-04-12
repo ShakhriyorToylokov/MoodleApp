@@ -17,6 +17,7 @@ import { StudentEditComponent } from './students/student-edit/student-edit.compo
 import { TeacherDetailsComponent } from './teachers/teacher-details/teacher-details.component';
 import { TeacherEditComponent } from './teachers/teacher-edit/teacher-edit.component';
 import { StudentSettingsComponent } from './userpreferences/student-settings/student-settings.component';
+import { AdminActivateGuard } from './_guards/admin-activate.guard';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
@@ -35,9 +36,9 @@ const routes: Routes = [
       {path:'students/:username',component: StudentDetailsComponent},
       {path:'teachers/:username',component: TeacherDetailsComponent},
       {path:'courses/:coursecode',component: CourseDetailsComponent},
-      {path:'students/:username/edit',component: StudentEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
-      {path:'teachers/:username/edit',component: TeacherEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
-      {path:'courses/:coursecode/edit',component: CourseEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'students/:username/edit',component: StudentEditComponent,canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'teachers/:username/edit',component: TeacherEditComponent, canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[AdminActivateGuard] ,canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'admin/edit',component: AdminEditComponent},
       {path:'student/edit',component: StudentSettingsComponent}
     ]

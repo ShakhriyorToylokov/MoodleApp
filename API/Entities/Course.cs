@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using API.Entities.CourseDetails;
 
 namespace API.Entities
 {
@@ -13,6 +15,8 @@ namespace API.Entities
         public string Definition { get; set; }
         public string photoUrl { get; set; }
         public DateTime LastAccessed { get; set; }  = DateTime.Now;
+        public ICollection<Announcements> Announcements { get; set; }
+        
         public ICollection<Faculty> Faculties { get; set; }
         public Teacher Teacher { get; set; } 
         public int TeacherId { get; set; }

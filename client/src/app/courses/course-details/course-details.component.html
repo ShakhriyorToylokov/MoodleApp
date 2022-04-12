@@ -24,8 +24,8 @@
             <div class="btn-group d-flex">
                 <button class="btn btn-danger" *ngIf="getUserType()==='Admin'"><i class="fa fa-trash mr-2">
                 </i>Delete </button>
-                <button class="btn btn-success" *ngIf="getUserType()==='Teacher'"><i class="fa fa-pencil mr-2">
-                </i>New Announcement</button>
+                <button class="btn btn-success" routerLink="/courses/{{course.courseCode}}/edit" *ngIf="getUserType()==='Teacher'"><i class="fa fa-pencil mr-2">
+                </i>Edit Course</button>
             </div>
         </div>
     </div>
@@ -35,7 +35,8 @@
         <tabset class="member-tabset" > 
             <hr>
             <tab heading="Announcements"> 
-                <h4 class="mt-3">Announcements will go here</h4>
+                <small class="mt-3" *ngFor="let announcement of course.announcements" ><ng-container *ngIf="!(announcement.announcement==='')">
+                    {{announcement.announcement}}<br></ng-container> </small>
             </tab>
             <tab heading="Outline"> 
                 <h4 class="mt-3">Outline will go here</h4>
@@ -58,12 +59,14 @@
             <tab heading="Finals"> 
                 <h4 class="mt-3">Finals will go here</h4>
             </tab>
-            <tab heading="Instructors"> 
-                <h4 class="mt-3">Instructors will come here</h4>
-            </tab>
-            <tab heading="Students"> 
-                <h4 class="mt-3">Students will go here</h4>
-            </tab>
+            <ng-container *ngIf="getUserType==='Admin'">
+                <tab heading="Instructors"> 
+                    <h4 class="mt-3">Instructors will come here</h4>
+                </tab>
+                <tab heading="Students"> 
+                    <h4 class="mt-3">Students will go here</h4>
+                </tab>
+            </ng-container>
             <tab heading="About Course" >
                 <div id="containerIntro">
                     <h6>Course Name:</h6>

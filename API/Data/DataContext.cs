@@ -41,7 +41,7 @@ namespace API.Data
             modelBuilder.Entity<Course>()
                 .HasOne(x=>x.Teacher)
                 .WithMany(y=>y.Courses).HasForeignKey(x=>x.TeacherId); 
-                           
+                       
     }
 }
     }

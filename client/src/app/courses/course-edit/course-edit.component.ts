@@ -13,6 +13,9 @@ import { CoursesService } from 'src/app/_services/courses.service';
 })
 export class CourseEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
+  @ViewChild('editForm2') editForm2: NgForm;
+  @ViewChild('name') textarea;
+  announcement:string;
   course: Course;
   @HostListener('window:beforeunload',['$event']) unloadNotification($event:any){
     if (this.editForm.dirty) {
@@ -34,10 +37,17 @@ export class CourseEditComponent implements OnInit {
     )
   }
   updateCourse(){
+      this.course.announcements=[
+        {
+            "announcement": this.announcement
+        }];
     this.courseService.updateCourse(this.course).subscribe(()=>{
       console.log(this.course);
       this.toastr.success("Updated Successfully!!!");
       this.editForm.reset(this.course);
+      this.editForm2.reset(this.course);
+      console.log(this.course.announcements);
+      this.textarea.nativeElement.value = ' ';
     })
    
   }

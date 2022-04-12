@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220411155548_ChangedToStringArray5")]
+    partial class ChangedToStringArray5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +56,9 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Announcements")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("CourseCode")
                         .HasColumnType("TEXT");
 
@@ -77,25 +82,6 @@ namespace API.Data.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("API.Entities.CourseDetails.Announcements", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Announcement")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("API.Entities.Faculty", b =>
@@ -303,17 +289,6 @@ namespace API.Data.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("API.Entities.CourseDetails.Announcements", b =>
-                {
-                    b.HasOne("API.Entities.Course", "Course")
-                        .WithMany("Announcements")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("API.Entities.StudentPhoto", b =>
                 {
                     b.HasOne("API.Entities.Student", "Student")
@@ -364,11 +339,6 @@ namespace API.Data.Migrations
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("API.Entities.Course", b =>
-                {
-                    b.Navigation("Announcements");
                 });
 
             modelBuilder.Entity("API.Entities.Student", b =>
