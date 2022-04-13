@@ -35,13 +35,7 @@ export class CourseDetailsComponent implements OnInit {
         
         this.course=response;
         console.log(this.course);
-        
-      //  this.course.announcements=response.announcements.flat();
         console.log(this.course.announcements);
-        console.log(response.announcements);
-        
-        //watch error inerveptor lecture, problem with api is to convert JSON value
-
       }
     )
   }

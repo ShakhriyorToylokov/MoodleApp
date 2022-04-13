@@ -32,6 +32,8 @@ import { StudentSettingsComponent } from './userpreferences/student-settings/stu
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_inteceptors/loading.interceptor';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
+import { StudentphotoEditorComponent } from './students/studentphoto-editor/studentphoto-editor.component';
+import { TeacherphotoEditorComponent } from './teachers/teacherphoto-editor/teacherphoto-editor.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { CourseEditComponent } from './courses/course-edit/course-edit.component
     TeacherEditComponent,
     AdminEditComponent,
     StudentSettingsComponent,
-    CourseEditComponent
+    CourseEditComponent,
+    StudentphotoEditorComponent,
+    TeacherphotoEditorComponent
   ],
   imports: [
     BrowserModule,
