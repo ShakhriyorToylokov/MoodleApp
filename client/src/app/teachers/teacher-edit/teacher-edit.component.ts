@@ -42,7 +42,22 @@ export class TeacherEditComponent implements OnInit {
       
     });
   }
-
+  getUserType(){
+    var username:string;
+    this.accountService.currentUser$.subscribe(response=>{
+      username=response?.username;  
+    })
+    
+    if (username?.includes('std')) {
+      return 'Student';
+    }
+    else if (username?.includes('@admin')) {
+      return 'Admin';
+    }
+    else if (username?.includes('ins')) {
+      return 'Teacher';
+    }
+  }
   loadFaculties(){
     this.accountService.getFaculties().subscribe(response=>{
       

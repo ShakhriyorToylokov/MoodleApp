@@ -40,6 +40,22 @@ export class StudentEditComponent implements OnInit {
       this.faculties=response;
     })
   }
+  getUserType(){
+    var username:string;
+    this.accountService.currentUser$.subscribe(response=>{
+      username=response?.username;  
+    })
+    
+    if (username?.includes('std')) {
+      return 'Student';
+    }
+    else if (username?.includes('@admin')) {
+      return 'Admin';
+    }
+    else if (username?.includes('ins')) {
+      return 'Teacher';
+    }
+  }
   loadStudent(){
     this.studentService.getStudent(this.route.snapshot.paramMap.get('username')).subscribe(response=>{
       this.student=response;

@@ -40,8 +40,8 @@
               <div class="dropdown" dropdown *ngIf="(currentUser$ | async) as user">
                 <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{getUserType()}}</a>
                 <div class="dropdown-menu mt-4" *dropdownMenu >
-                  <a class="dropdown-item" routerLink="student/edit" *ngIf="getUserType()==='Student'">Edit Profile</a>
-                  <a class="dropdown-item" routerLink="teacher/edit" *ngIf="getUserType()==='Teacher'">Edit Profile</a>
+                  <a class="dropdown-item" routerLink="students/{{user.username}}/edit" *ngIf="getUserType()==='Student'">Edit Profile</a>
+                  <a class="dropdown-item" routerLink="teachers/{{user.username}}/edit" *ngIf="getUserType()==='Teacher'">Edit Profile</a>
                   <a class="dropdown-item" routerLink="admin/edit" *ngIf="getUserType()==='Admin'">Edit Profile</a>
 
                   <div class="dropdown-divider"></div>

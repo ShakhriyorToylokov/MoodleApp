@@ -43,6 +43,8 @@
                     <input type="text" [(ngModel)]="teacher.name" name="name" class="form-control">
                     <label for="surname"><b>Surname:</b></label>
                     <input type="text" name="surname" [(ngModel)]="teacher.surname" class="form-control">
+                <ng-container *ngIf="getUserType()==='Admin'">
+                  
                     <label for="faculty"><b>Faculty:</b></label>
                     <select class="form-control" [(ngModel)]="teacher.faculty" name="faculty">
                         <option >{{teacher.faculty | titlecase}}</option>
@@ -58,16 +60,18 @@
                     <input type="text" [(ngModel)]="teacher.country" name="country" class="form-control">
                     <label for="age"><b>Age:</b></label>
                     <input type="text" [(ngModel)]="teacher.age" name="age" class="form-control">
+                </ng-container>
+
                 </div>
             </div>    
             </form>    
             </tab>
-            <tab heading="Edit Courses"> 
+            <tab heading="Edit Courses" *ngIf="getUserType()==='Admin'"> 
                 <h4 class="mt-3">Courses</h4>
                 <b><p *ngFor="let course of teacher.courses" > {{course.nameOfCourse}} 
                     <i class="fa fa-arrows-h"></i> {{course.courseCode}}</p></b>
             </tab>
-            <tab heading="Edit Photos" class="text-center"> 
+            <tab heading="Edit Photos" class="text-center" *ngIf="getUserType()==='Teacher'"> 
                 <app-teacherphoto-editor [teacher]="teacher"></app-teacherphoto-editor>
             </tab>
             <hr>

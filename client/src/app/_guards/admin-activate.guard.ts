@@ -15,7 +15,7 @@ export class AdminActivateGuard implements CanActivate {
   canActivate(): Observable<boolean >  {
     return this.accountService.currentUser$.pipe(
       map(user=>{
-        if (user.username.includes('@admin')|| user.username.includes('ins'))  return true;
+        if (user.username.includes('@admin')|| user.username.includes('ins') || user.username.includes('std'))  return true;
         this.toastr.error('You cannot navigate to this page!');
         this.route.navigateByUrl('/');
       })

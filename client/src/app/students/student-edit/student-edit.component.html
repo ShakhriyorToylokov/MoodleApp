@@ -1,6 +1,5 @@
 <div *ngIf="student" class="row ">
     <div class="col-4">
-        <h1>Student Profile</h1>
     </div>
     <div class="col-8">
         <div class="alert alert-info" *ngIf="editForm.dirty">
@@ -31,17 +30,18 @@
         </div>
     </div>
     </div>
-    <div class="col-8">
-        <tabset class="member-tabset" >
-            <hr>
-            <tab heading="Student Details ">
+    <div class="col-8 ">
+        <tabset class="member-tabset " >
+            <tab heading="Student Details " class="mt-3">
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateStudent()">
                 <div id="containerIntro">
-                <div >
+                    
+                    <div >
                     <label for="name"><b> Name:</b></label>
                     <input type="text" [(ngModel)]="student.name" name="name" class="form-control">
                     <label for="surname"><b>Surname:</b></label>
                     <input type="text" name="surname" [(ngModel)]="student.surname" class="form-control">
+                    <ng-container *ngIf="getUserType()==='Admin'">
                     <label for="faculty"><b>Faculty:</b></label>
                     <select class="form-control" [(ngModel)]="student.faculty" name="faculty">
                         <option >{{student.faculty | titlecase}}</option>
@@ -57,16 +57,19 @@
                     <input type="text" [(ngModel)]="student.country" name="country" class="form-control">
                     <label for="age"><b>Age:</b></label>
                     <input type="text" [(ngModel)]="student.age" name="age" class="form-control">
+                    
+        </ng-container>
+
                 </div>
                 </div>        
             </form>
             </tab>
-            <tab heading="Edit Courses"> 
+            <tab heading="Edit Courses" class="mt-3" *ngIf="getUserType()==='Admin'"> 
                 <h4 class="mt-3">Courses</h4>
                 <b><p *ngFor="let course of student.courses" > {{course.nameOfCourse}} 
                     <i class="fa fa-arrows-h"></i> {{course.courseCode}}</p></b>
             </tab>
-            <tab heading="Edit Photos" class="text-center"> 
+            <tab heading="Edit Photos" class="text-center mt-3" *ngIf="getUserType()==='Student'"> 
                 <app-studentphoto-editor [student]="student"></app-studentphoto-editor>
             </tab>
             <hr>
