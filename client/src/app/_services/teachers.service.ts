@@ -44,6 +44,7 @@ export class TeachersService {
     );
   }
 
+  
   updateTeacher(teacher: Teacher){
     return this.http.put(this.baseUrl+'teachers',teacher).pipe(
       map(()=>{
@@ -51,5 +52,12 @@ export class TeachersService {
         this.teachers[index]=teacher;
       })
     );
+  }
+  setMainPhoto(photoId:number){
+    return this.http.put(this.baseUrl+'teachers/set-main-photo/'+photoId,{});
+  }
+  
+  deletePhoto(photoId:number){
+    return this.http.delete(this.baseUrl+'teachers/delete-photo/'+photoId);
   }
 }

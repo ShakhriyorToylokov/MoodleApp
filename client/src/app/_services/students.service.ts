@@ -47,6 +47,9 @@ export class StudentsService {
       })
     );
   }
+  setMainPhoto(photoId:number){
+    return this.http.put(this.baseUrl+'students/set-main-photo/'+photoId,{});
+  }
   updateStudent(student: Student){
     return this.http.put(this.baseUrl+'students',student).pipe(
       map(()=>{
@@ -56,5 +59,8 @@ export class StudentsService {
         this.students[index]=student;
       })
     );
+  }
+  deletePhoto(photoId:number){
+    return this.http.delete(this.baseUrl+'students/delete-photo/'+photoId);
   }
 }

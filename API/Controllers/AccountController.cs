@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,7 +130,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<UserDto>> LoginAsStudent(LoginDto loginDto)
         {
-            var user = await _context.Students.SingleOrDefaultAsync(x=>x.UserName==loginDto.Username.ToLower()); 
+            var user = await _context.Students.Include(x=>x.Photos).SingleOrDefaultAsync(x=>x.UserName==loginDto.Username.ToLower()); 
             if(user == null) return Unauthorized("Invalid Username!");
             using var hmac= new HMACSHA512(user.PasswordSalt);
             var computedHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
@@ -143,7 +144,8 @@ namespace API.Controllers
             }
             return new UserDto{
                 Username=user.UserName,
-                Token= _tokenService.CreateToken(user)
+                Token= _tokenService.CreateToken(user),
+                PhotoUrl= user.Photos.FirstOrDefault(x=>x.IsMain)?.Url
             };
         }
 
@@ -173,7 +175,8 @@ namespace API.Controllers
 
         public async Task<ActionResult<UserDto>> LoginAsTeacher(LoginDto loginDto)
         {
-            var user = await _context.Teachers.SingleOrDefaultAsync(x=>x.UserName==loginDto.Username.ToLower()); 
+            var user = await _context.Teachers.Include(p=>p.Photos).
+                SingleOrDefaultAsync(x=>x.UserName==loginDto.Username.ToLower()); 
             if(user == null) return Unauthorized("Invalid Username!");
             using var hmac= new HMACSHA512(user.PasswordSalt);
             var computedHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
@@ -187,7 +190,8 @@ namespace API.Controllers
             }
             return new UserDto{
                 Username=user.UserName,
-                Token= _tokenService.CreateToken(user)
+                Token= _tokenService.CreateToken(user),
+                PhotoUrl= user.Photos.FirstOrDefault(x=>x.IsMain)?.Url
             };
         }
         private async Task<bool> StudentExists(string username){

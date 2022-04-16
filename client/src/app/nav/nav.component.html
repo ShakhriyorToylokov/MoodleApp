@@ -38,7 +38,8 @@
               </ul>
 
               <div class="dropdown" dropdown *ngIf="(currentUser$ | async) as user">
-                <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{getUserType()}}</a>
+                <img src="{{user.photoUrl || './assets/student.png'}}" alt="{{user.username}}">
+                <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{getUserType()}}</a>
                 <div class="dropdown-menu mt-4" *dropdownMenu >
                   <a class="dropdown-item" routerLink="students/{{user.username}}/edit" *ngIf="getUserType()==='Student'">Edit Profile</a>
                   <a class="dropdown-item" routerLink="teachers/{{user.username}}/edit" *ngIf="getUserType()==='Teacher'">Edit Profile</a>
