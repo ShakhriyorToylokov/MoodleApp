@@ -34,6 +34,7 @@ import { LoadingInterceptor } from './_inteceptors/loading.interceptor';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { StudentphotoEditorComponent } from './students/studentphoto-editor/studentphoto-editor.component';
 import { TeacherphotoEditorComponent } from './teachers/teacherphoto-editor/teacherphoto-editor.component';
+import { FileUploaderComponent } from './courses/file-uploader/file-uploader.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { TeacherphotoEditorComponent } from './teachers/teacherphoto-editor/teac
     StudentSettingsComponent,
     CourseEditComponent,
     StudentphotoEditorComponent,
-    TeacherphotoEditorComponent
+    TeacherphotoEditorComponent,
+    FileUploaderComponent
   ],
   imports: [
     BrowserModule,

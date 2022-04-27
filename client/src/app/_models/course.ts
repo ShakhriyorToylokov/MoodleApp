@@ -7,7 +7,14 @@ export interface Course {
     photoUrl: string;
     lastAccessed: Date;
     announcements:Announcements[];
+    courseFiles: CourseFiles[];
 }
+
 export interface Announcements {
     announcement: string;
+}
+export interface CourseFiles {
+    id: number;
+    url: string;
+    fileName: string;
 }

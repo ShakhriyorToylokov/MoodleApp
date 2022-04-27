@@ -1,24 +1,28 @@
 <div class="row">
-    <div class="col-2" *ngFor="let photo of teacher.photos">
-       <a href="{{photo.url}}"> <img src="{{photo.url}}" alt="Student Photo" class="img-thumbnail p-1"></a>
+    <div class="col-2" *ngFor="let file of course.courseFiles">
+        <ng-container *ngIf="fileType(file)==='pdf'" class="mr-3">
+            <br>
+         <a href="{{file.url}}" ><img class="filetype" src="assets/pdf_icon.png" alt="Pdf Icon"> {{file.fileName}}</a>
+    </ng-container>
+    <ng-container *ngIf="fileType(file)==='docx'" class="mr-3">
+        <br>
+     <a href="{{file.url}}" ><img class="filetype" src="assets/word_icon.png" alt="Word Icon"> {{file.fileName}}</a>
+    </ng-container>
+    <ng-container *ngIf="fileType(file)==='txt'" class="mr-3">
+        <br>
+     <a href="{{file.url}}" ><img class="filetype" src="assets/txt_icon.png" alt="Word Icon"> {{file.fileName}}</a>
+    </ng-container>
         <div class="text-center">
-            <button class="btn btn-sm btn-outline-success"
-                [disabled]="photo.isMain"
-                (click)="setMainPhoto(photo)"
-                [ngClass]='photo.isMain ? "btn btn-success":"btn btn-outline-success"' class="btn btn-sm"
-                >Main</button>
-            <button class="btn btn-sm btn-danger" [disabled]="photo.isMain" (click)="deletePhoto(photo)"><i class="fa fa-trash"></i></button>
-
         </div>
     </div>
+    
 </div>
 
-<!-- Now add photo uploader to teacher account as well -->
 <div class="row mt-3">
  
     <div class="col-md-3">
 
-        <h3>Add Photos</h3>
+        <h3>Add Files</h3>
 
         <div ng2FileDrop
              [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"

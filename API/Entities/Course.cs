@@ -22,6 +22,6 @@ namespace API.Entities
         public int TeacherId { get; set; }
         // is it possible to make this one to many, I tried but now worked
         public ICollection<Student> Students { get; set; }
-
+        public ICollection<CourseUploadFile> CourseFiles { get; set; }
     }
 }

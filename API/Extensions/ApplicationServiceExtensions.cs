@@ -19,11 +19,12 @@ namespace API.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService,TokenService>();
             services.AddScoped<IPhotoService,PhotoService>();
-            services.AddScoped<IStudentRepository,StudentRepository>();
+            services.AddScoped<IFileService,FileService>();
+            services.AddScoped<IStudentRepository,StudentRepository>(); 
             services.AddScoped<ITeacherRepository,TeacherRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             services.AddDbContext<DataContext>(options=>{
-                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                options.UseSqlite(config.GetConnectionString("DefaultConnection")); 
             });
             return services;
         }

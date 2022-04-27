@@ -30,6 +30,7 @@ namespace API.Helpers
             CreateMap<CourseUpdateDto,Course>();
             CreateMap<Announcements,AnnouncementDto>();
             CreateMap<AnnouncementUpdateDto,Announcements>();
+            CreateMap<CourseUploadFile,CourseUploadFileDto>();
 
 
 

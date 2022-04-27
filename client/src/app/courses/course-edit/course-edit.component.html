@@ -70,7 +70,9 @@
 
                 </form>
             </tab>
-
+            <tab heading="Edit Files" class="text-center mt-3" *ngIf="getUserType()==='Admin' || getUserType()==='Teacher'"> 
+                <app-file-uploader [course]="course"></app-file-uploader>
+            </tab>
             <hr>
         </tabset>
     </div>

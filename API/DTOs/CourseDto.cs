@@ -13,5 +13,7 @@ namespace API.DTOs
         public string photoUrl { get; set; }
         public DateTime LastAccessed { get; set; }
         public ICollection<AnnouncementDto> Announcements { get; set; }
+        public ICollection<CourseUploadFileDto> CourseFiles { get; set; }
+
     }
 }

@@ -1,0 +1,29 @@
+img.img-thumbnail{
+    height: 100px;
+    min-width: 100px !important;
+    margin-bottom: 2px;
+}
+
+.nv-file-over{
+    border: dotted 3px blue;
+}
+
+input[type=file]{
+    color: transparent;
+}
+.filetype{
+    max-height: 50px;
+}
+
+a{
+    font-size: 15px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: inline;
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+    color: blue;
+    
+}
