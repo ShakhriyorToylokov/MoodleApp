@@ -1,0 +1,48 @@
+.filetype{
+    max-height: 30px;
+    margin-bottom: 2%;
+    margin-left: 50%;
+}
+a{
+    font-size: 15px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: inline;
+    text-decoration: none;
+    color: black;
+}
+
+a h6{
+    margin-left: 20%;
+}
+a h6:hover{
+    color: blue;
+}
+a:hover{
+    text-decoration: none;
+    color: blue;
+    
+}
+a {
+    display: flex;
+    vertical-align: top; /* Adjust if multi-line text */
+    margin: 8px;
+    padding: 1px;
+    width: 120px;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+}
+a img {
+    display: block;
+    margin: auto;
+    border: 0;
+}
+a span {
+    
+    display: block;
+}
+.deletebutton{
+    position: relative;
+    top: -57px;
+    right: -200px;
+}

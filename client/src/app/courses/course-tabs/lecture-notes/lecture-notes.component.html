@@ -1,0 +1,30 @@
+<div *ngIf="course">
+    <div class="col-2 " style="margin-top: -4%;"  *ngFor="let file of course.courseFiles">
+        <ng-container *ngIf="fileType(file)==='pdf'" class="mr-3">
+            <br>
+         <a href="{{file.url}}" ><img class="filetype" src="assets/pdf_icon.png" alt="Pdf Icon"> <h6>{{file.fileName}}</h6></a>
+        </ng-container>
+        <ng-container *ngIf="fileType(file)==='docx'" class=" mr-3">
+            <br>
+        <a href="{{file.url}}" ><img class="filetype" src="assets/word_icon.png" alt="Word Icon"><span> {{file.fileName}}</span></a>
+        </ng-container>
+        <ng-container *ngIf="fileType(file)==='txt'" class="mr-3">
+            <br>
+        <a href="{{file.url}}" ><img class="filetype" src="assets/txt_icon.png" alt="Txt Icon"> <h6>{{file.fileName}}</h6></a>
+        </ng-container>
+        <ng-container *ngIf="fileType(file)==='pptx'" class="mr-3">
+            <br>
+            <a href="{{file.url}}" ><img class="filetype" src="assets/pptx_icon.png" alt="PPTX Icon"><h6 > {{file.fileName}}</h6></a>
+        </ng-container>
+        <ng-container *ngIf="fileType(file)==='xlsx'" class="mr-3">
+            <br>
+            <a href="{{file.url}}" ><img class="filetype" src="assets/xlsx_icon.jpg" alt="XLSX Icon"> <h6 style="margin-left: 20%;"> {{file.fileName}}</h6>
+            </a>
+            
+        </ng-container>
+        <div class="text-center" *ngIf="getUserType()==='Teacher'">
+            <button class="btn btn-sm btn-danger mb-2 deletebutton" (click)="deleteFile(file)"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
+    
+</div>

@@ -49,4 +49,8 @@ export class CoursesService {
       })
     );
   }
+
+  deleteFile(fileId:number,courseCode: string){
+    return this.http.delete(this.baseUrl+'courses/delete-file/'+fileId+'?courseCode='+courseCode);
+  }
 }

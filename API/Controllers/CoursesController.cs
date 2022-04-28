@@ -64,7 +64,6 @@ namespace API.Controllers
         
         [HttpPost("add-file")]
         public async Task<ActionResult<CourseUploadFileDto>> AddFile(string courseCode,IFormFile file){
-            var courseName= courseCode;
             var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).AsSplitQuery()
                                             .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
             
@@ -86,7 +85,24 @@ namespace API.Controllers
 
             return BadRequest("Problem occured while adding a file!");
         }
+        [HttpDelete("delete-file/{fileId}")]
+        public async Task<ActionResult> DeleteFile(string courseCode,int fileId){
+       
+            var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+           
+            var file= course.CourseFiles.FirstOrDefault(x=>x.Id==fileId);
+            if(file==null) return NotFound();
+            if(file.PublicId!=null){
+                var result= await _fileService.DeleteFileAsync(file.PublicId);
+                if(result.Error!=null) return BadRequest(result.Error.Message);
 
+            }
+            course.CourseFiles.Remove(file);
+            if(await _context.SaveChangesAsync()>0) return Ok();
+
+            return BadRequest("Failed to delete a file!");
+        }
        
 }
 }

@@ -37,7 +37,7 @@ export class FileUploaderComponent implements OnInit {
       url: this.baseUrl+'courses/add-file?courseCode='+this.course.courseCode,
       authToken:'Bearer '+this.user.token,
       isHTML5:true,
-      allowedFileType:['image','pdf','doc','pptx','txt'],
+      allowedFileType:['image','pdf','doc','ppt','txt','xls'],
       removeAfterUpload: true,
       autoUpload:false,
       maxFileSize:10*1024*1024
@@ -60,6 +60,13 @@ export class FileUploaderComponent implements OnInit {
       
     }
   }
+
+  deleteFile(file:CourseFiles){
+    this.courseService.deleteFile(file.id,this.course.courseCode).subscribe(()=>{
+      this.course.courseFiles=this.course.courseFiles.filter(x=>x.id!==file.id);
+    });
+  }
+  // add delete functionality
   fileType(file: CourseFiles){
     if(file.fileName.includes('.pdf'))
       return 'pdf';
@@ -70,6 +77,9 @@ export class FileUploaderComponent implements OnInit {
       return 'txt';
       else if(file.fileName.includes('.pptx'))
       return 'pptx';
+      
+      else if(file.fileName.includes('.xlsx'))
+      return 'xlsx';
     return 'undefined'
   }
 }

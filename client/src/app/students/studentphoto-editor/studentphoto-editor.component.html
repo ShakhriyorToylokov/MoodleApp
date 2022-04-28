@@ -28,11 +28,11 @@
         </div>
  
         
-        Multiple
-        <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+        <label for="file-upload" class="custom-file-upload">
+            Attach from device <i class="fa fa-paperclip"></i>
+        </label>
+        <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
 
-        Single
-        <input type="file" ng2FileSelect [uploader]="uploader" />
     </div>
 
     <div class="col-md-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">

@@ -35,6 +35,7 @@ import { CourseEditComponent } from './courses/course-edit/course-edit.component
 import { StudentphotoEditorComponent } from './students/studentphoto-editor/studentphoto-editor.component';
 import { TeacherphotoEditorComponent } from './teachers/teacherphoto-editor/teacherphoto-editor.component';
 import { FileUploaderComponent } from './courses/file-uploader/file-uploader.component';
+import { LectureNotesComponent } from './courses/course-tabs/lecture-notes/lecture-notes.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { FileUploaderComponent } from './courses/file-uploader/file-uploader.com
     CourseEditComponent,
     StudentphotoEditorComponent,
     TeacherphotoEditorComponent,
-    FileUploaderComponent
+    FileUploaderComponent,
+    LectureNotesComponent
   ],
   imports: [
     BrowserModule,

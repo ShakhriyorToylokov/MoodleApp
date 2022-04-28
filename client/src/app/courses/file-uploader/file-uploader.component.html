@@ -1,18 +1,27 @@
 <div class="row">
-    <div class="col-2" *ngFor="let file of course.courseFiles">
+    <div class="col-2 " style="margin-top: -4%;"  *ngFor="let file of course.courseFiles">
         <ng-container *ngIf="fileType(file)==='pdf'" class="mr-3">
             <br>
          <a href="{{file.url}}" ><img class="filetype" src="assets/pdf_icon.png" alt="Pdf Icon"> {{file.fileName}}</a>
     </ng-container>
-    <ng-container *ngIf="fileType(file)==='docx'" class="mr-3">
+    <ng-container *ngIf="fileType(file)==='docx'" class=" mr-3">
         <br>
-     <a href="{{file.url}}" ><img class="filetype" src="assets/word_icon.png" alt="Word Icon"> {{file.fileName}}</a>
+     <a href="{{file.url}}" ><img class="filetype" src="assets/word_icon.png" alt="Word Icon"><span> {{file.fileName}}</span></a>
     </ng-container>
     <ng-container *ngIf="fileType(file)==='txt'" class="mr-3">
         <br>
-     <a href="{{file.url}}" ><img class="filetype" src="assets/txt_icon.png" alt="Word Icon"> {{file.fileName}}</a>
+     <a href="{{file.url}}" ><img class="filetype" src="assets/txt_icon.png" alt="Txt Icon"> {{file.fileName}}</a>
+    </ng-container>
+    <ng-container *ngIf="fileType(file)==='pptx'" class="mr-3">
+        <br>
+         <a href="{{file.url}}" ><img class="filetype" src="assets/pptx_icon.png" alt="PPTX Icon"> {{file.fileName}}</a>
+    </ng-container>
+    <ng-container *ngIf="fileType(file)==='xlsx'" class="mr-3">
+        <br>
+         <a href="{{file.url}}" ><img class="filetype" src="assets/xlsx_icon.jpg" alt="XLSX Icon"> {{file.fileName}}</a>
     </ng-container>
         <div class="text-center">
+            <button class="btn btn-sm btn-danger button mb-2" (click)="deleteFile(file)"><i class="fa fa-trash"></i></button>
         </div>
     </div>
     
@@ -33,12 +42,12 @@
             Drop photos here
         </div>
  
-        
-        Multiple
-        <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+        <label for="file-upload" class="custom-file-upload">
+            Attach from device <i class="fa fa-paperclip"></i>
+        </label>
+        <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
 
-        Single
-        <input type="file" ng2FileSelect [uploader]="uploader" />
+      
     </div>
 
     <div class="col-md-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">
