@@ -4,7 +4,7 @@
         <h1>Course Profile</h1>
     </div>
     <div class="col-8">
-        <div class="alert alert-info" *ngIf="editForm.dirty || editForm2.dirty">
+        <div class="alert alert-info" *ngIf="editForm.dirty ">
             <strong>Information:</strong> You have made changes. Any unsaved changes will be lost
         </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="col-8">
         <tabset class="member-tabset" >
             <hr>
-            <tab heading="Course Details ">
+            <tab heading="Course Details " >
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateCourse()">
                 <div id="containerIntro">
                 <div>
@@ -59,19 +59,14 @@
                 </div>        
             </form>
             </tab>
-            <tab  heading="Announcements"> 
-                <form #editForm2="ngForm" id="editForm2" (ngSubmit)="updateCourse()">
-
-                <ng-container  *ngIf="getUserType()==='Admin' || getUserType()==='Teacher'">
-                    <label for="announcements"><b>Announcements:</b></label>
-                    <textarea form="editForm" [(ngModel)]="announcement" class="form-control" #name required name="announcements"  cols="30" rows="10"></textarea>
-                    </ng-container>
-                <button [disabled]=" !editForm2.dirty" #button required form="editForm" class="btn btn-success btn-block"><i class="fa fa-commenting mr-2"></i>Announce</button>
-
-                </form>
+            <tab  heading="Announcements" *ngIf="getUserType()==='Teacher'"> 
+                <app-lecture-announcements [course]="course" [usertype]="getUserType()"></app-lecture-announcements>
             </tab>
-            <tab heading="Edit Files" class="text-center mt-3" *ngIf="getUserType()==='Admin' || getUserType()==='Teacher'"> 
+            <tab heading="Edit Files" class="text-center mt-3" *ngIf="getUserType()==='Teacher'"> 
                 <app-file-uploader [course]="course"></app-file-uploader>
+            </tab>
+            <tab heading="Edit Videos" class="text-center mt-3" *ngIf="getUserType()==='Teacher'"> 
+                <app-video-upload [course]="course"></app-video-upload>
             </tab>
             <hr>
         </tabset>

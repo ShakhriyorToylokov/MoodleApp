@@ -103,6 +103,68 @@ namespace API.Controllers
 
             return BadRequest("Failed to delete a file!");
         }
+        [HttpPost("add-video")]
+        public async Task<ActionResult<LectureVideosDto>> AddVideo(string courseCode,string videoUrl,string name){
+            var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).Include(x=>x.LectureVideos).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+            
+            var video = new LectureVideos{ 
+                Url=videoUrl,
+                NameOfVideo=name
+            };
+            course.LectureVideos.Add(video);
+            if(await _context.SaveChangesAsync()>0){ 
+
+                return CreatedAtRoute("GetCourse", new {name=course.CourseCode},
+                                        _mapper.Map<LectureVideosDto>(video));
+            } 
+
+            return BadRequest("Problem occured while uploading video!");
+        }
+        [HttpPost("add-announcement")]
+        public async Task<ActionResult<LectureVideosDto>> AddAnnouncemnet(string courseCode,string announcement){
+            var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).Include(x=>x.LectureVideos).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+            
+            var announcementText = new Announcements{ 
+                Announcement=announcement
+            };
+            course.Announcements.Add(announcementText);
+            if(await _context.SaveChangesAsync()>0){ 
+
+                return CreatedAtRoute("GetCourse", new {name=course.CourseCode},
+                                        _mapper.Map<AnnouncementDto>(announcementText));
+            } 
+
+            return BadRequest("Problem occured while uploading announcement!");
+        }
+        [HttpDelete("delete-video/{videoId}")]
+        public async Task<ActionResult> DeleteVideo(string courseCode,int videoId){
        
+            var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).Include(x=>x.LectureVideos).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+           
+            var video= course.LectureVideos.FirstOrDefault(x=>x.Id==videoId);
+            if(video==null) return NotFound();
+            
+            course.LectureVideos.Remove(video);
+            if(await _context.SaveChangesAsync()>0) return Ok();
+
+            return BadRequest("Failed to delete a video!");
+        }
+        [HttpDelete("delete-announcement/{announcementId}")]
+        public async Task<ActionResult> DeleteAnnouncement(string courseCode,int announcementId){
+       
+            var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).Include(x=>x.LectureVideos).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+           
+            var announcement= course.Announcements.FirstOrDefault(x=>x.Id==announcementId);
+            if(announcement==null) return NotFound();
+            
+            course.Announcements.Remove(announcement);
+            if(await _context.SaveChangesAsync()>0) return Ok();
+
+            return BadRequest("Failed to delete a announcement!");
+        }
 }
 }

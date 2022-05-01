@@ -1,17 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Course } from '../_models/course';
+import { Announcements, Course } from '../_models/course';
 import { Student } from '../_models/student';
 import { Teacher } from '../_models/teacher';
 
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-//   })
-// }
+
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +46,24 @@ export class CoursesService {
     );
   }
 
+  uploadVideo(courseCode: string,videoUrl: string, name: string){
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(this.baseUrl+"courses/add-video?courseCode="+courseCode+
+                            "&videoUrl="+videoUrl+"&name="+name,headers);
+  }
+  uploadAnnouncement(courseCode:string, announcement: string){
+    console.log(courseCode,announcement);
+    
+    return this.http.post(this.baseUrl+'courses/add-announcement?courseCode='+courseCode+'&announcement='+announcement,{});
+  }
   deleteFile(fileId:number,courseCode: string){
     return this.http.delete(this.baseUrl+'courses/delete-file/'+fileId+'?courseCode='+courseCode);
+  }
+  
+  deleteVideo(videoId:number,courseCode: string){
+    return this.http.delete(this.baseUrl+'courses/delete-video/'+videoId+'?courseCode='+courseCode);
+  }
+  deleteAnnouncement(announcementId:number,courseCode: string){
+    return this.http.delete(this.baseUrl+'courses/delete-announcement/'+announcementId+'?courseCode='+courseCode);
   }
 }

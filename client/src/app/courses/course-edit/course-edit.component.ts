@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Course } from 'src/app/_models/course';
+import { Course, LectureVideos } from 'src/app/_models/course';
 import { AccountService } from 'src/app/_services/account.service';
 import { CoursesService } from 'src/app/_services/courses.service';
 
@@ -14,6 +14,7 @@ import { CoursesService } from 'src/app/_services/courses.service';
 export class CourseEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
   @ViewChild('editForm2') editForm2: NgForm;
+  @ViewChild('editForm3') editForm3: NgForm;
   @ViewChild('name') textarea;
   announcement:string;
   course: Course;
@@ -27,6 +28,7 @@ export class CourseEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCourse();
+  
   }
 
   loadCourse(){
@@ -37,17 +39,14 @@ export class CourseEditComponent implements OnInit {
     )
   }
   updateCourse(){
-      this.course.announcements=[
-        {
-            "announcement": this.announcement
-        }];
+      // this.course.announcements=[
+      //   {
+      //       "announcement": this.announcement
+      //   }];
     this.courseService.updateCourse(this.course).subscribe(()=>{
-      console.log(this.course);
       this.toastr.success("Updated Successfully!!!");
       this.editForm.reset(this.course);
-      this.editForm2.reset(this.course);
-      console.log(this.course.announcements);
-      this.textarea.nativeElement.value = ' ';
+      // this.textarea.nativeElement.value = ' ';
     })
    
   }

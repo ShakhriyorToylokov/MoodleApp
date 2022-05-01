@@ -1,0 +1,10 @@
+<form #editForm="ngForm" id="editForm" (ngSubmit)="uploadAnnouncement()">
+
+    <ng-container  *ngIf="usertype==='Teacher'">
+        <label for="announcements"><b>Announcements:</b></label>
+        <textarea form="editForm" [(ngModel)]="announcementText" class="form-control" #name required name="announcements"  cols="30" rows="10"></textarea>
+        
+    <button [disabled]=" !editForm.dirty" class="btn btn-success btn-block mt-3"><i class="fa fa-commenting-o mr-2"></i>Announce</button>
+
+</ng-container>
+</form>

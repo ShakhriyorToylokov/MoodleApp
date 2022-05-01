@@ -8,13 +8,20 @@ export interface Course {
     lastAccessed: Date;
     announcements:Announcements[];
     courseFiles: CourseFiles[];
+    lectureVideos: LectureVideos[];
 }
 
 export interface Announcements {
+    id:number;
     announcement: string;
 }
 export interface CourseFiles {
     id: number;
     url: string;
     fileName: string;
+}
+export interface LectureVideos {
+    id: number;
+    url: string;
+    nameOfVideo: string;
 }

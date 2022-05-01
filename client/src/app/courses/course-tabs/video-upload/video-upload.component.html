@@ -1,0 +1,13 @@
+
+<form #editForm="ngForm" id="editForm" (ngSubmit)="uploadVideo()">
+
+    <ng-container  >
+        <label for="videoUrl"><b>Video Link:</b></label>
+        <input type="text" [(ngModel)]="videoUrl" name="videoUrl" class="form-control" placeholder="Paste video link">    
+        <label for="videoName" class="mt-3"><b>Name of Video:</b></label>
+        <input type="text" [(ngModel)]="videoName" name="videoName" class="form-control" placeholder="Enter a name for the video">    
+        
+    </ng-container>
+    <button [disabled]=" !editForm.dirty" class="btn btn-success btn-block mt-3"><i class="fa fa-floppy-o mr-2"></i>Save</button>
+
+    </form>

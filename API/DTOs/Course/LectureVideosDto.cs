@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace API.DTOs.Course
 {
-    public class AnnouncementDto
+    public class LectureVideosDto
     {
         public int Id { get; set; }
-        public string Announcement { get; set; }
+        public string Url { get; set; }
+        public string NameOfVideo { get; set; }
     }
 }

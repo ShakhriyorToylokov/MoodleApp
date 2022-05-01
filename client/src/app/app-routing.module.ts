@@ -20,6 +20,7 @@ import { StudentSettingsComponent } from './userpreferences/student-settings/stu
 import { AdminActivateGuard } from './_guards/admin-activate.guard';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
+import { TeacherActivateGuard } from './_guards/teacher-activate.guard';
 
 const routes: Routes = [
   {path:'',component: HomeComponent},
@@ -38,7 +39,7 @@ const routes: Routes = [
       {path:'courses/:coursecode',component: CourseDetailsComponent},
       {path:'students/:username/edit',component: StudentEditComponent,canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'teachers/:username/edit',component: TeacherEditComponent, canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
-      {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[AdminActivateGuard] ,canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[TeacherActivateGuard] ,canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'admin/edit',component: AdminEditComponent},
       {path:'student/:username/edit',component: StudentSettingsComponent}
     ]

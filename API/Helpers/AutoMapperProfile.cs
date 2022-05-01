@@ -31,8 +31,8 @@ namespace API.Helpers
             CreateMap<Announcements,AnnouncementDto>();
             CreateMap<AnnouncementUpdateDto,Announcements>();
             CreateMap<CourseUploadFile,CourseUploadFileDto>();
-
-
+            CreateMap<LectureVideos,LectureVideosDto>();
+            
 
         }
 

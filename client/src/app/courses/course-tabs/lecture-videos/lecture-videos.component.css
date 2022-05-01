@@ -1,0 +1,37 @@
+.filetype{
+    max-height: 30px;
+    margin-bottom: 2%;
+    margin-left: 50%;
+}
+
+a h6{
+    margin-left: 20%;
+}
+a h6:hover{
+    color: blue;
+}
+a {
+    display: flex;
+    vertical-align: top; /* Adjust if multi-line text */
+    width: 120px;
+    color: #333;
+    text-align:right;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+
+}
+a img {
+    display: block;
+    margin: auto;
+    border: 0;
+}
+a span {
+    
+    display: block;
+}
+.deletebutton{
+    position: relative;
+    top: -45px;
+    right: -200px;
+}

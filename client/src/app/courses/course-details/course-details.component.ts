@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Course } from 'src/app/_models/course';
+import { ToastrService } from 'ngx-toastr';
+import { Announcements, Course } from 'src/app/_models/course';
 import { AccountService } from 'src/app/_services/account.service';
 import { CoursesService } from 'src/app/_services/courses.service';
 
@@ -13,7 +14,7 @@ export class CourseDetailsComponent implements OnInit {
   course:  Course;
   userType: string;
   constructor(private courseService: CoursesService, private route: ActivatedRoute,
-              private accountService:AccountService) { }
+              private accountService:AccountService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadCourse();
@@ -34,9 +35,14 @@ export class CourseDetailsComponent implements OnInit {
       response=>{
         
         this.course=response;
-        console.log(this.course);
-        console.log(this.course.announcements);
       }
     )
+  }
+  deleteAnnouncement(announcement:Announcements){
+    this.courseService.deleteAnnouncement(announcement.id,this.course.courseCode).subscribe(()=>{
+      this.toastr.info('Deleted Successfully!!!')
+      this.course.announcements=this.course.announcements.filter(x=>x.id!==announcement.id);
+      
+    });
   }
 }

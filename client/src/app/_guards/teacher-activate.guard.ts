@@ -8,18 +8,18 @@ import { AccountService } from '../_services/account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminActivateGuard implements CanActivate {
+export class TeacherActivateGuard implements CanActivate {
   constructor(private accountService: AccountService, private toastr: ToastrService,
-              private route: Router){}
+    private route: Router){}
 
-  canActivate(): Observable<boolean >  {
-    return this.accountService.currentUser$.pipe(
-      map(user=>{
-        if (user.username.includes('@admin'))  return true;
-        this.toastr.error('You cannot navigate to this page!');
-        this.route.navigateByUrl('/');
-      })
-    );
+canActivate(): Observable<boolean >  {
+return this.accountService.currentUser$.pipe(
+  map(user=>{
+      if (user.username.includes('ins'))  return true;
+      this.toastr.error('You cannot navigate to this page!');
+      this.route.navigateByUrl('/');
+  })
+  );
   }
-  
+
 }

@@ -36,8 +36,17 @@
             <hr>
             <tab heading="Announcements"> 
                 <h6 *ngIf="course.announcements.length===0">No announcements yet!</h6>
-                <small class="mt-3" *ngFor="let announcement of course.announcements" ><ng-container *ngIf="!(announcement.announcement==='')">
-                    {{announcement.announcement}}<br></ng-container> </small>
+                <small class="mt-3" *ngFor="let announcement of course.announcements" >
+                    <p style="font-size: 15px">
+                    <ng-container *ngIf="!(announcement.announcement==='') || !(announcement.announcement===null)">
+                    {{announcement.announcement}}<br>
+                    <div class="text-center" *ngIf="getUserType()==='Teacher'">
+                        <button class="btn btn-sm btn-danger mb-2 deletebutton" (click)="deleteAnnouncement(announcement)"><i class="fa fa-trash"></i></button>
+                    </div>
+                </ng-container>
+            </p>
+                </small>
+                  
             </tab>
             <tab heading="Outline"> 
                 <h4 class="mt-3">Outline will go here</h4>
@@ -46,7 +55,7 @@
                 <app-lecture-notes></app-lecture-notes>
             </tab>
             <tab heading="Lecture Videos"> 
-                <h4 class="mt-3">Lecture Videos will go here</h4>
+                <app-lecture-videos [course]="course" [usertype]="getUserType()"></app-lecture-videos>
             </tab>
             <tab heading="Additional Materials"> 
                 <h4 class="mt-3">Additional Materials will go here</h4>

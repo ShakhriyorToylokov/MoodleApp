@@ -24,3 +24,11 @@
     max-height: 50px;
     margin-bottom: 2%;
 }
+.deletebutton{
+    position: relative;
+    top: -25px;
+    right: -200px;
+}
+small p{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}

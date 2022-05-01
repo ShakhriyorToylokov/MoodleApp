@@ -25,7 +25,6 @@ export class CoursesListsComponent implements OnInit {
     this.accountService.currentUser$.pipe(take(1)).subscribe(response=>{
       this.username= response?.username;
     });
-    console.log(this.username);
     if(this.username.includes("std")){
       this.loadStudentsCourses(); 
     }
