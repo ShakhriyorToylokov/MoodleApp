@@ -52,6 +52,7 @@ namespace API.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateCourse(CourseUpdateDto courseUpdateDto){
           //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+          // u can work on to update announcements now
           var courseCode= courseUpdateDto.CourseCode;
             var course= await _context.Courses.SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
             _mapper.Map(courseUpdateDto,course);
@@ -138,6 +139,18 @@ namespace API.Controllers
 
             return BadRequest("Problem occured while uploading announcement!");
         }
+
+        [HttpPut("update-announcement")]
+        public async Task<ActionResult> UpdateAnnouncement(AnnouncementUpdateDto announcementUpdate){
+
+            var announcement= await _context.Announcements.SingleOrDefaultAsync(x=>x.Id==announcementUpdate.Id);
+            _mapper.Map(announcementUpdate,announcement);
+            _context.Entry(announcement).State=EntityState.Modified;
+
+            if((await _context.SaveChangesAsync()>0)) return NoContent();
+            return BadRequest("Failed to update annuncement!");  
+        }       
+
         [HttpDelete("delete-video/{videoId}")]
         public async Task<ActionResult> DeleteVideo(string courseCode,int videoId){
        

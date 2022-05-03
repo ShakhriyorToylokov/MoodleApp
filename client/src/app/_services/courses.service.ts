@@ -65,5 +65,9 @@ export class CoursesService {
   }
   deleteAnnouncement(announcementId:number,courseCode: string){
     return this.http.delete(this.baseUrl+'courses/delete-announcement/'+announcementId+'?courseCode='+courseCode);
+  } 
+
+  updateAnnouncement(annoucement: Announcements){
+    return this.http.put(this.baseUrl+'courses/update-announcement',annoucement);
   }
 }

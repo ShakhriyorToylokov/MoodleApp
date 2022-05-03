@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Announcements, Course } from 'src/app/_models/course';
@@ -13,6 +14,9 @@ import { CoursesService } from 'src/app/_services/courses.service';
 export class CourseDetailsComponent implements OnInit {
   course:  Course;
   userType: string;
+  @ViewChild("editForm") editForm: NgForm; 
+  @ViewChild('name') textarea;
+
   constructor(private courseService: CoursesService, private route: ActivatedRoute,
               private accountService:AccountService,private toastr: ToastrService) { }
 
@@ -45,4 +49,18 @@ export class CourseDetailsComponent implements OnInit {
       
     });
   }
+  focusInput(annoucement:Announcements){
+      document.getElementById("inputText").focus();
+  }
+  updateAnnouncement(annoucement:Announcements){
+  
+    var text=annoucement.announcement
+    this.courseService.updateAnnouncement(annoucement).subscribe(()=>{
+      this.toastr.success("Updated Successfully!")
+      this.editForm.reset();
+      this.textarea.nativeElement.value = text;
+
+    })
+    
+}
 }

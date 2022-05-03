@@ -7,6 +7,7 @@ namespace API.DTOs.Course
 {
     public class AnnouncementUpdateDto
     {        
+        public int Id { get; set; }
         public string Announcement { get; set; }
     }
 }

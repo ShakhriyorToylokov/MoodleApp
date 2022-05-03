@@ -15,10 +15,6 @@
                 <strong>Definition:</strong>
                 <p><small>{{course.definition}}</small></p>
             </div>
-            <!-- <div>
-                <strong>Student since:</strong>
-                <p>{{student.created}}</p>
-            </div> -->
         </div>
         <div class="card-footer " >
             <div class="btn-group d-flex">
@@ -37,14 +33,28 @@
             <tab heading="Announcements"> 
                 <h6 *ngIf="course.announcements.length===0">No announcements yet!</h6>
                 <small class="mt-3" *ngFor="let announcement of course.announcements" >
-                    <p style="font-size: 15px">
-                    <ng-container *ngIf="!(announcement.announcement==='') || !(announcement.announcement===null)">
-                    {{announcement.announcement}}<br>
+                    <form #editForm="ngForm" id="editForm" (ngSubmit)="updateAnnouncement(announcement)">
+
+                        <ng-container  *ngIf="getUserType()==='Teacher'" >
+                            <textarea form="editForm"  class="input" id="inputText"  [(ngModel)]="announcement.announcement" #name required name="announcements" cols="2" rows="3"> </textarea>
+                            <button [disabled]="!editForm.dirty" class="btn btn-sm btn-success savebutton" type="submit"><i class="fa fa-check"></i></button>
+
+                    </ng-container>
+                    </form>
+                    <button *ngIf="getUserType()==='Teacher'" 
+                    class="btn btn-sm btn-primary mb-2 focusbutton" (click)="focusInput(announcement)"><i class="fa fa-pencil"></i></button>
+
+                    <div *ngIf="getUserType()==='Student' || getUserType()==='Admin'">
+                        <p style="font-size: 15px">
+                            <ng-container *ngIf="!(announcement.announcement==='') || !(announcement.announcement===null)">
+                            {{announcement.announcement}}<br>
+                            </ng-container>
+                        </p>
+
+                    </div>
                     <div class="text-center" *ngIf="getUserType()==='Teacher'">
                         <button class="btn btn-sm btn-danger mb-2 deletebutton" (click)="deleteAnnouncement(announcement)"><i class="fa fa-trash"></i></button>
                     </div>
-                </ng-container>
-            </p>
                 </small>
                   
             </tab>

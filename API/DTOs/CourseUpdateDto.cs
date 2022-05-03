@@ -11,7 +11,7 @@ namespace API.DTOs
         public string NameOfCourse { get; set; }
         public string CourseCode { get; set; }
         public string Definition { get; set; }
-        public ICollection<AnnouncementUpdateDto> Announcements { get; set; }
+       // public ICollection<AnnouncementUpdateDto> Announcements { get; set; }
        
     }
 }
