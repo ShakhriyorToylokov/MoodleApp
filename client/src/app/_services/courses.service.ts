@@ -48,13 +48,14 @@ export class CoursesService {
 
   uploadVideo(courseCode: string,videoUrl: string, name: string){
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(this.baseUrl+"courses/add-video?courseCode="+courseCode+
-                            "&videoUrl="+videoUrl+"&name="+name,headers);
+    // return this.http.post(this.baseUrl+"courses/add-video?courseCode="+courseCode+
+    //                         "&videoUrl="+videoUrl+"&name="+name,headers);
+    return this.http.post(this.baseUrl+'courses/add-video',{courseCode,videoUrl,name})
   }
   uploadAnnouncement(courseCode:string, announcement: string){
     console.log(courseCode,announcement);
     
-    return this.http.post(this.baseUrl+'courses/add-announcement?courseCode='+courseCode+'&announcement='+announcement,{});
+    return this.http.post(this.baseUrl+'courses/add-announcement',{courseCode,announcement});
   }
   deleteFile(fileId:number,courseCode: string){
     return this.http.delete(this.baseUrl+'courses/delete-file/'+fileId+'?courseCode='+courseCode);
@@ -69,5 +70,9 @@ export class CoursesService {
 
   updateAnnouncement(annoucement: Announcements){
     return this.http.put(this.baseUrl+'courses/update-announcement',annoucement);
+  }
+
+  setOutlineFile(courseCode:string,fileId:number){
+    return this.http.put(this.baseUrl+'courses/set-outline-file/'+fileId+'?courseCode='+courseCode,{});
   }
 }

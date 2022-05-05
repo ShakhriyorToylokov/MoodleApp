@@ -21,6 +21,10 @@
          <a href="{{file.url}}" ><img class="filetype" src="assets/xlsx_icon.jpg" alt="XLSX Icon"> {{file.fileName}}</a>
     </ng-container>
         <div class="text-center">
+            <button class="btn btn-sm btn-outline-success" 
+            [disabled]="file.isOutline"
+            [ngClass]='file.isOutline ? "btn-success active":"btn-outline-success"'
+            (click)="setOutlineFile(file)" class="btn btn-sm " style="margin-top: -8px;">Outline</button>
             <button class="btn btn-sm btn-danger button mb-2" (click)="deleteFile(file)"><i class="fa fa-trash"></i></button>
         </div>
     </div>

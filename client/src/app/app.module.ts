@@ -39,6 +39,8 @@ import { LectureNotesComponent } from './courses/course-tabs/lecture-notes/lectu
 import { LectureVideosComponent } from './courses/course-tabs/lecture-videos/lecture-videos.component';
 import { VideoUploadComponent } from './courses/course-tabs/video-upload/video-upload.component';
 import { LectureAnnouncementsComponent } from './courses/course-tabs/lecture-announcements/lecture-announcements.component';
+import { RegisterManuallyComponent } from './register-options/register-manually/register-manually.component';
+import { RegisterByFileComponent } from './register-options/register-by-file/register-by-file.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { LectureAnnouncementsComponent } from './courses/course-tabs/lecture-ann
     LectureNotesComponent,
     LectureVideosComponent,
     VideoUploadComponent,
-    LectureAnnouncementsComponent
+    LectureAnnouncementsComponent,
+    RegisterManuallyComponent,
+    RegisterByFileComponent
   ],
   imports: [
     BrowserModule,

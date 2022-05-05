@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course, CourseFiles } from 'src/app/_models/course';
 import { AccountService } from 'src/app/_services/account.service';
@@ -12,11 +12,14 @@ import { CoursesService } from 'src/app/_services/courses.service';
 export class LectureNotesComponent implements OnInit {
   course:  Course;
   userType: string ;
+  isOutline:boolean;
   constructor(private courseService: CoursesService, private route: ActivatedRoute,
               private accountService:AccountService) { }
 
   ngOnInit(): void {
     this.loadCourse();
+    console.log(this.isOutline);
+    
   }
 
   getUserType(){
@@ -44,17 +47,17 @@ export class LectureNotesComponent implements OnInit {
   }
   fileType(file: CourseFiles){
     if(file.fileName.includes('.pdf'))
-      return 'pdf';
+      return 'assets/pdf_icon.png';
     else if(file.fileName.includes('.docx'))
-      return 'docx';
+      return 'assets/word_icon.png';
     
       else if(file.fileName.includes('.txt'))
-      return 'txt';
+      return 'assets/txt_icon.png';
       else if(file.fileName.includes('.pptx'))
-      return 'pptx';
+      return 'assets/pptx_icon.png';
       
       else if(file.fileName.includes('.xlsx'))
-      return 'xlsx';
+      return 'assets/xlsx_icon.jpg';
     return 'undefined'
   }
 }

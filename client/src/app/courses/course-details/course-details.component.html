@@ -37,7 +37,7 @@
 
                         <ng-container  *ngIf="getUserType()==='Teacher'" >
                             <textarea form="editForm"  class="input" id="inputText"  [(ngModel)]="announcement.announcement" #name required name="announcements" cols="2" rows="3"> </textarea>
-                            <button [disabled]="!editForm.dirty" class="btn btn-sm btn-success savebutton" type="submit"><i class="fa fa-check"></i></button>
+                            <button [disabled]="!(editForm.dirty)" id="savebtn" class="btn btn-sm btn-success savebutton" type="submit"><i class="fa fa-check"></i></button>
 
                     </ng-container>
                     </form>
@@ -59,7 +59,19 @@
                   
             </tab>
             <tab heading="Outline"> 
-                <h4 class="mt-3">Outline will go here</h4>
+                <div class="mt-2" style="margin-top: -4%;"  *ngFor="let file of course.courseFiles">
+                    <ng-container *ngIf="file.isOutline" class="mr-3">
+                        <br>
+                         <a href="{{file.url}}" ><img class="filetype" src="{{fileType(file)}}" alt="Icon"> Outline</a>
+
+                        <div class="text-center" *ngIf="getUserType()==='Teacher'">
+                            <button class="btn btn-sm btn-danger  deleteoutlinebutton" (click)="deleteFile(file)"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </ng-container>
+                
+            </div>
+            <!-- <app-lecture-notes [course]="course" [usertype]="getUserType()" [isOutline]="true"></app-lecture-notes> -->
+
             </tab>
             <tab heading="Lecture Notes"> 
                 <app-lecture-notes></app-lecture-notes>

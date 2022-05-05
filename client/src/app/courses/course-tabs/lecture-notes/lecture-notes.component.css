@@ -11,6 +11,7 @@ a{
     color: black;
 }
 
+
 a h6{
     margin-left: 20%;
 }
@@ -43,6 +44,6 @@ a span {
 }
 .deletebutton{
     position: relative;
-    top: -57px;
+    top: -47px;
     right: -200px;
 }

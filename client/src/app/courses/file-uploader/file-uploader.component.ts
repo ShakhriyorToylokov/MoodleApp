@@ -60,13 +60,19 @@ export class FileUploaderComponent implements OnInit {
       
     }
   }
-
+  setOutlineFile(file:CourseFiles){
+    this.courseService.setOutlineFile(this.course.courseCode,file.id).subscribe(()=>{
+      this.course.courseFiles.forEach(f => {
+        if(f.isOutline) f.isOutline=false;
+        if(f.id===file.id) f.isOutline=true;
+      });
+    })
+  }
   deleteFile(file:CourseFiles){
     this.courseService.deleteFile(file.id,this.course.courseCode).subscribe(()=>{
       this.course.courseFiles=this.course.courseFiles.filter(x=>x.id!==file.id);
     });
   }
-  // add delete functionality
   fileType(file: CourseFiles){
     if(file.fileName.includes('.pdf'))
       return 'pdf';

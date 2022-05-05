@@ -30,6 +30,12 @@
     right: -305px;
     margin-left: 15px;
 }
+.deleteoutlinebutton{
+    position: relative;
+    top: -55px;
+    right: 200px;
+    margin-left: 15px;
+}
 .focusbutton{
     position: relative;
     top: 29px;
@@ -45,7 +51,15 @@
 small p{
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-
+a{
+    font-size: 17px;
+    display: inline;
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: blue;
+}
 .input {
     width: 85%;
     padding: 9px 20px;

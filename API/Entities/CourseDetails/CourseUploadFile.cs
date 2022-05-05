@@ -12,6 +12,8 @@ namespace API.Entities.CourseDetails
         public string Url { get; set; }
         public string PublicId { get; set; }
         public string FileName { get; set; }
+        public bool IsOutline { get; set; }
+
         public Course Course { get; set; }
         public int CourseId { get; set; } 
  

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
 using API.DTOs.Course;
+using API.DTOs.Parameters;
 using API.Entities.CourseDetails;
 using API.Interfaces;
 using AutoMapper;
@@ -51,8 +52,6 @@ namespace API.Controllers
 
         [HttpPut]
         public async Task<ActionResult> UpdateCourse(CourseUpdateDto courseUpdateDto){
-          //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-          // u can work on to update announcements now
           var courseCode= courseUpdateDto.CourseCode;
             var course= await _context.Courses.SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
             _mapper.Map(courseUpdateDto,course);
@@ -104,14 +103,30 @@ namespace API.Controllers
 
             return BadRequest("Failed to delete a file!");
         }
+        
+        [HttpPut("set-outline-file/{fileId}")]
+        public async Task<ActionResult> SetOutlineFile(string courseCode, int fileId)
+        {
+            var course= await _context.Courses.Include(x=>x.CourseFiles).AsSplitQuery()
+                                .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+           //this field is not working 
+            var file= course.CourseFiles.FirstOrDefault(x=>x.Id==fileId);
+            if(file.IsOutline) return BadRequest("This is already an outline file");
+            var currentMain= course.CourseFiles.FirstOrDefault(x=>x.IsOutline);
+            if(currentMain!=null) currentMain.IsOutline=false;
+            file.IsOutline=true;
+
+            if(await _context.SaveChangesAsync()>0) return NoContent();
+            return  BadRequest("Failed to set outine file");
+        }
         [HttpPost("add-video")]
-        public async Task<ActionResult<LectureVideosDto>> AddVideo(string courseCode,string videoUrl,string name){
+        public async Task<ActionResult<LectureVideosDto>> AddVideo(AddVideoParams videoParams){
             var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).Include(x=>x.LectureVideos).AsSplitQuery()
-                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== videoParams.CourseCode.ToLower());
             
             var video = new LectureVideos{ 
-                Url=videoUrl,
-                NameOfVideo=name
+                Url=videoParams.VideoUrl,
+                NameOfVideo=videoParams.Name
             };
             course.LectureVideos.Add(video);
             if(await _context.SaveChangesAsync()>0){ 
@@ -123,12 +138,12 @@ namespace API.Controllers
             return BadRequest("Problem occured while uploading video!");
         }
         [HttpPost("add-announcement")]
-        public async Task<ActionResult<LectureVideosDto>> AddAnnouncemnet(string courseCode,string announcement){
+        public async Task<ActionResult<LectureVideosDto>> AddAnnouncemnet(UploadAnnouncementParams announcementParams){
             var course= await _context.Courses.Include(x=>x.Announcements).Include(x=>x.CourseFiles).Include(x=>x.LectureVideos).AsSplitQuery()
-                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== courseCode.ToLower());
+                                            .SingleOrDefaultAsync(x=>x.CourseCode.ToLower()== announcementParams.CourseCode.ToLower());
             
             var announcementText = new Announcements{ 
-                Announcement=announcement
+                Announcement=announcementParams.Announcement
             };
             course.Announcements.Add(announcementText);
             if(await _context.SaveChangesAsync()>0){ 
@@ -136,7 +151,7 @@ namespace API.Controllers
                 return CreatedAtRoute("GetCourse", new {name=course.CourseCode},
                                         _mapper.Map<AnnouncementDto>(announcementText));
             } 
-
+// now work on how to send object from the client request by createding dto or parameters classes
             return BadRequest("Problem occured while uploading announcement!");
         }
 

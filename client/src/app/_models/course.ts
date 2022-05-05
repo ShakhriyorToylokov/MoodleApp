@@ -19,6 +19,7 @@ export interface CourseFiles {
     id: number;
     url: string;
     fileName: string;
+    isOutline: boolean;
 }
 export interface LectureVideos {
     id: number;
