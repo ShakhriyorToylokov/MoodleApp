@@ -11,6 +11,7 @@ import { CoursesListsComponent } from './lists/courses-lists/courses-lists.compo
 import { StudentListsComponent } from './lists/student-lists/student-lists.component';
 import { TeachersListsComponent } from './lists/teachers-lists/teachers-lists.component';
 import { MessagesComponent } from './messages/messages.component';
+import { RegisterManuallyComponent } from './register-options/register-manually/register-manually.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentDetailsComponent } from './students/student-details/student-details.component';
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
@@ -31,13 +32,14 @@ const routes: Routes = [
     children:[
       {path:'students',component: StudentListsComponent},
       {path:'teachers',component: TeachersListsComponent},
-      {path:'register',component: RegisterComponent},
+      {path:'register-manually',component: RegisterManuallyComponent,canActivate:[AdminActivateGuard]},
+      {path:'register',component: RegisterComponent,canActivate:[AdminActivateGuard]},
       {path:'courses',component: CoursesListsComponent},
       {path:'messages',component: MessagesComponent},
       {path:'students/:username',component: StudentDetailsComponent},
       {path:'teachers/:username',component: TeacherDetailsComponent},
       {path:'courses/:coursecode',component: CourseDetailsComponent},
-      {path:'students/:username/edit',component: StudentEditComponent,canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'students/:username/edit',component: StudentEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'teachers/:username/edit',component: TeacherEditComponent, canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[TeacherActivateGuard], canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'admin/edit',component: AdminEditComponent},

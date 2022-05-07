@@ -20,6 +20,7 @@ namespace API.Extensions
             services.AddScoped<ITokenService,TokenService>();
             services.AddScoped<IPhotoService,PhotoService>();
             services.AddScoped<IFileService,FileService>();
+            services.AddScoped<ISeedService,Seed>();
             services.AddScoped<IStudentRepository,StudentRepository>(); 
             services.AddScoped<ITeacherRepository,TeacherRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);

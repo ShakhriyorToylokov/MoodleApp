@@ -1,132 +1,38 @@
 [
     {
-      "UserName":"Ins254846",
-      "Name": "Mullen",
-      "Surname": "Bruce",
-      "InsNum":"254846",
-      "Email": "mullenbruce@comveyer.com",
-      "Gender": "female",
+      "UserName":"Ins154864",
+      "Name": "Steve",
+      "Surname": "Maruce",
+      "InsNum":"154864",
+      "Email": "stevemaruce@comveyer.com",
+      "Gender": "male",
       "DateOfBirth": "1995-07-16",
       "Created": "2019-03-26",
       "LastActive": "2020-05-16",
-      "Country": "Andorra",
+      "Country": "Belgium",
+      "Faculty": "Electrical Engineering",
       "Photos": [
         {
-          "Url": "https://randomuser.me/api/portraits/men/37.jpg",
-          "IsMain": true
+          "Url": "https://randomuser.me/api/portraits/men/32.jpg"
         }
-      ],
-      "Courses": [
-        {
-            "NameOfCourse": "Construction Management",
-            "CourseCode": "CE415",
-        "Definition" : "Course for Civil Engineering students"
-          }
       ]
     },
     {
-      "UserName":"Ins155667",
-      "Name": "Cem",
-      "Surname": "Kalyoncu",
-      "InsNum": "155667",
-      "Email": "CemKalyoncu@comveyer.com",
-      "Gender": "male",
+      "UserName":"Ins741562",
+      "Name": "Ketty",
+      "Surname": "Lily",
+      "InsNum": "741562",
+      "Email": "KettyLily@comveyer.com",
+      "Gender": "female",
       "DateOfBirth": "1983-09-28",
       "Created": "2019-02-10",
       "LastActive": "2020-05-12",
-      "Country": "Cyprus",
+      "Country": "Australia",
+      "Faculty": "Software Engineering" ,
       "Photos": [
         {
-          "Url": "data:image/jpeg;base64,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",
-          "IsMain": true
+          "Url":"https://randomuser.me/api/portraits/women/32.jpg"
         }
-      ],
-     "Courses": [
-        {
-          "NameOfCourse": "System Programming",
-          "CourseCode": "COMP339",
-          "Definition" : "Course for Electrical, Software and Computer Engineering students "
-        }
-      ]
-    },
-    {
-      "UserName":"Ins145782",
-      "Name": "Ferhun",
-      "Surname": "Yorgancioglu",
-      "InsNum":"145782",
-      "Email": "ferhunyorganciogly@gmail.com",
-      "Gender": "male",
-      "DateOfBirth": "1994-01-04",
-      "Created": "2019-09-22",
-      "LastActive": "2020-06-26",
-      "Country": "Turkey",
-      "Photos": [
-        {
-          "Url": "https://media-exp1.licdn.com/dms/image/C4E03AQH1lK47p9zx6A/profile-displayphoto-shrink_100_100/0/1562913040917?e=1648080000&v=beta&t=UdxMhRZLEPGHqR3axjC6urWVjwA37gL8N_BH-WjcOTY",
-          "IsMain": true
-        }
-      ],
-     "Courses": [
-        {
-          "NameOfCourse": "Database Management Systems",
-          "CourseCode": "COMP337",
-          "Definition" : "Course for Computer and Software Engineering students "
-        }
-      ]
-    },
-    {
-      "UserName":"Ins137854",
-      "Name": "Soydan",
-      "Surname": "Redif",
-      "InsNum":"137854",
-      "Email": "soydanredif@gmail.com",
-      "Gender": "male",
-      "DateOfBirth": "1956-08-18",
-      "Created": "2019-10-21",
-      "LastActive": "2020-06-27",
-      "Country": "England",
-      "Photos": [
-        {
-          "Url": "https://i1.rgstatic.net/ii/profile.image/1023630389551111-1621063911521_Q128/Soydan-Redif.jpg",
-          "IsMain": true
-        }
-      ],
-      "Courses": [
-        {
-          "NameOfCourse": "Signal and Systems",
-          "CourseCode": "COMP343",
-          "Definition" : "Course for Electricaland Computer Engineering students "
-        }
-      ]
-    },
-    {
-      "UserName":"Ins254875",
-      "Name": "Ezgi",
-      "Surname": "Ulker",
-      "InsNum":"254875",
-      "Email": "ezgiulker@comveyer.com",
-      "Gender": "female",
-      "DateOfBirth": "1992-02-04",
-      "Created": "2019-12-14",
-      "LastActive": "2020-06-23",
-      "Country": "Cyprus",
-      "Photos": [
-        {
-          "Url": "https://i1.rgstatic.net/ii/profile.image/390932227739649-1470216914740_Q512/Ezgi-Deniz-Uelker.jpg",
-          "IsMain": true
-        }
-      ],
-      "Courses": [
-        {
-          "NameOfCourse": "Analysis and Algorithms",
-          "CourseCode": "COMP335",
-         "Definition" : "Course for Electrical, Software and Computer Engineering students "
-        },
-        {
-          "NameOfCourse": "Computer Networks",
-          "CourseCode": "COMP342",
-          "Definition" : "Course for Software and Computer Engineering students "
-          }
       ]
     }
   ]

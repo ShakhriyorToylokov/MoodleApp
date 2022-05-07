@@ -75,17 +75,17 @@ export class FileUploaderComponent implements OnInit {
   }
   fileType(file: CourseFiles){
     if(file.fileName.includes('.pdf'))
-      return 'pdf';
+      return 'assets/pdf_icon.png';
     else if(file.fileName.includes('.docx'))
-      return 'docx';
+      return 'assets/word_icon.png';
     
       else if(file.fileName.includes('.txt'))
-      return 'txt';
+      return 'assets/txt_icon.png';
       else if(file.fileName.includes('.pptx'))
-      return 'pptx';
+      return 'assets/pptx_icon.png';
       
       else if(file.fileName.includes('.xlsx'))
-      return 'xlsx';
+      return 'assets/xlsx_icon.jpg';
     return 'undefined'
   }
 }

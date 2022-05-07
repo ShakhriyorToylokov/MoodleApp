@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-2" *ngFor="let photo of student.photos">
-        <img src="{{photo.url}}" alt="Student Photo" class="img-thumbnail p-1">
+        <img src="{{photo.url }}" alt="Student Photo" class="img-thumbnail p-1">
         <div class="text-center">
             <button class="btn btn-sm btn-outline-success" 
                 [disabled]="photo.isMain"
                 [ngClass]='photo.isMain ? "btn-success active":"btn-outline-success"'
                 (click)="setMainPhoto(photo)" class="btn btn-sm">Main</button>
-            <button class="btn btn-sm btn-danger"[disabled]="photo.isMain" (click)="deletePhoto(photo)"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-sm btn-danger" (click)="deletePhoto(photo)"><i class="fa fa-trash"></i></button>
 
         </div>
     </div>

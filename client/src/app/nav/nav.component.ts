@@ -27,6 +27,8 @@ export class NavComponent implements OnInit {
     this.currentUser$.subscribe(response=>{
       this.user=response;
     })
+    console.log(this.user);
+    
   }
   login(){
     

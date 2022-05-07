@@ -7,6 +7,8 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +18,17 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly ITokenService _tokenService;
+        private readonly IFileService _fileService;
+        private readonly IMapper _mapper;
+        private readonly ISeedService _seedService;
 
         private readonly DataContext _context;
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(DataContext context, ITokenService tokenService,
+                                IFileService fileService,IMapper mapper,ISeedService seedService)
         {
+            _seedService = seedService;
+            _mapper = mapper;
+            _fileService = fileService;
             _tokenService = tokenService;
             _context = context;
         }
@@ -194,6 +203,69 @@ namespace API.Controllers
                 PhotoUrl= user.Photos.FirstOrDefault(x=>x.IsMain)?.Url
             };
         }
+
+        [HttpPost("register-by-file/{userType}")]
+        public async Task<ActionResult<RegisterFileDto>> RegisterByFile(IFormFile file,string userType){
+            
+            try
+            {
+                if (userType=="Student")
+                {
+                    await _seedService.SeedStudents(_context, file);                    
+                }
+                else if (userType=="Teacher")
+                {
+                    await _seedService.SeedTeachers(_context, file);                    
+                }
+                else
+                {
+                    return BadRequest("Not a proper user type to register!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            } 
+            var result = file.FileName.Contains(".pdf")? await _fileService.AddPDFFileAsync(file):
+                                                         await _fileService.AddFileAsync(file);                
+            var admin = await _context.Admin.Include(x=>x.RegisterFiles).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.AdminType=="Main");
+             
+            if(result.Error!=null) return BadRequest(result.Error.Message);
+            var uploadingFile = new RegisterFile{ 
+                Url=result.SecureUrl.AbsoluteUri, 
+                PublicId= result.PublicId,
+                FileName= file.FileName  
+            };
+            admin.RegisterFiles.Add(uploadingFile);
+            if(await _context.SaveChangesAsync()>0){ 
+
+                
+                 return  _mapper.Map<RegisterFileDto>(uploadingFile);
+            } 
+
+            return BadRequest("Problem occured while adding a file!");
+        }
+        [HttpDelete("delete-file/{fileId}")]
+        public async Task<ActionResult> DeleteFile(int fileId){
+         
+            var admin = await _context.Admin.Include(x=>x.RegisterFiles).AsSplitQuery()
+                                            .SingleOrDefaultAsync(x=>x.AdminType=="Main");
+          
+           
+            var file= admin.RegisterFiles.FirstOrDefault(x=>x.Id==fileId);
+            if(file==null) return NotFound();
+            if(file.PublicId!=null){
+                var result= await _fileService.DeleteFileAsync(file.PublicId);
+                if(result.Error!=null) return BadRequest(result.Error.Message);
+
+            }
+            admin.RegisterFiles.Remove(file);
+            if(await _context.SaveChangesAsync()>0) return Ok();
+
+            return BadRequest("Failed to delete a file!");
+        }
+ 
         private async Task<bool> StudentExists(string username){
             if(await _context.Students.AnyAsync(x=>x.UserName==username.ToLower())){
                 return true;

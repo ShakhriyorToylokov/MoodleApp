@@ -21,6 +21,7 @@ namespace API.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Announcements> Announcements { get; set; }
+        public DbSet<RegisterFile> RegisterFiles { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

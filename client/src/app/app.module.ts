@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './_modules/shared.module';
@@ -41,6 +41,8 @@ import { VideoUploadComponent } from './courses/course-tabs/video-upload/video-u
 import { LectureAnnouncementsComponent } from './courses/course-tabs/lecture-announcements/lecture-announcements.component';
 import { RegisterManuallyComponent } from './register-options/register-manually/register-manually.component';
 import { RegisterByFileComponent } from './register-options/register-by-file/register-by-file.component';
+import { RegisterByFileStudentComponent } from './register-options/register-by-file-student/register-by-file-student.component';
+import { RegisterByFileTeacherComponent } from './register-options/register-by-file-teacher/register-by-file-teacher.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { RegisterByFileComponent } from './register-options/register-by-file/reg
     VideoUploadComponent,
     LectureAnnouncementsComponent,
     RegisterManuallyComponent,
-    RegisterByFileComponent
+    RegisterByFileComponent,
+    RegisterByFileStudentComponent,
+    RegisterByFileTeacherComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,8 @@ import { RegisterByFileComponent } from './register-options/register-by-file/reg
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

@@ -32,7 +32,8 @@ namespace API.Helpers
             CreateMap<AnnouncementUpdateDto,Announcements>();
             CreateMap<CourseUploadFile,CourseUploadFileDto>();
             CreateMap<LectureVideos,LectureVideosDto>();
-            
+            CreateMap<RegisterFile,RegisterFileDto>();
+            CreateMap<Adminstrator,AdminDto>();
 
         }
 

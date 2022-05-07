@@ -31,7 +31,6 @@ export class StudentsService {
 
   getStudent(username: string){
     const student= this.students.find(x=>x.username===username);
-    console.log(student);
     
     if(student!==undefined) return of(student);
     return this.http.get<Student>(this.baseUrl+'students/'+ username);

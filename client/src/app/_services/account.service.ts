@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs';
 import { map, retry } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { Faculty } from '../_models/faculty';
+import { Admin, RegisterFiles } from '../_models/registerFile';
 import { User } from '../_models/user';
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,13 @@ export class AccountService {
     });
     return userType;
   }
+  getAdmin(username: string){
+    return this.http.get<Admin>(this.baseUrl+'admins/'+username);
+  }
 
+  deleteRegisterFile(fileId:number){
+    return this.http.delete(this.baseUrl+'account/delete-file/'+fileId);
+  }
   setCurrentUser(user:User){
     localStorage.setItem('user',JSON.stringify(user));
     this.currentUserSource.next(user);

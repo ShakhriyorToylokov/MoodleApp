@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
-import { Course, CourseFiles } from 'src/app/_models/course';
+import { CourseFiles } from 'src/app/_models/course';
 import { Admin, RegisterFiles } from 'src/app/_models/registerFile';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
@@ -11,16 +10,17 @@ import { CoursesService } from 'src/app/_services/courses.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-register-by-file',
-  templateUrl: './register-by-file.component.html',
-  styleUrls: ['./register-by-file.component.css'],
+  selector: 'app-register-by-file-teacher',
+  templateUrl: './register-by-file-teacher.component.html',
+  styleUrls: ['./register-by-file-teacher.component.css']
 })
-export class RegisterByFileComponent implements OnInit {
+export class RegisterByFileTeacherComponent implements OnInit {
   file: RegisterFiles;
   uploader:FileUploader;
   hasBaseDropZoneOver:false;
   baseUrl=environment.apiUrl;
   user:User;
+  userType='Teacher';
   @Input() admin: Admin;
     constructor(private accountService:AccountService,private courseService: CoursesService,
               private toast: ToastrService) {
@@ -38,9 +38,8 @@ export class RegisterByFileComponent implements OnInit {
     this.hasBaseDropZoneOver=event;
   }
   initilizeUploader(){
-    //usertype is undefined make form maybe to make ngform
     this.uploader=new FileUploader({
-      url: this.baseUrl+'account/register-by-file?usertype=Student',
+      url: this.baseUrl+'account/register-by-file/Teacher',
       authToken:'Bearer '+this.user.token,
       isHTML5:true,
       removeAfterUpload: true,
@@ -53,12 +52,8 @@ export class RegisterByFileComponent implements OnInit {
     }
     this.uploader.onSuccessItem=(item,response,status,headers)=>{
       if (response) {
-        console.log(response);
         this.toast.success('Registered Successfully!')   
         const file = JSON.parse(response);
-        console.log(file.fileName);
-        console.log( this.admin.registerFiles);
-        
         this.admin.registerFiles?.push(file);
 
       }
@@ -72,7 +67,6 @@ export class RegisterByFileComponent implements OnInit {
   deleteFile(file:CourseFiles){
     this.accountService.deleteRegisterFile(file.id).subscribe(()=>{
       this.admin.registerFiles=this.admin.registerFiles.filter(x=>x.id!==file.id);
-      //functionalities are added now work on how to send the files to Seed.cs and register by files
     });
   }
   fileType(file: RegisterFiles){

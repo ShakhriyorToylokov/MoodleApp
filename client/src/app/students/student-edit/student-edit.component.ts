@@ -59,6 +59,8 @@ export class StudentEditComponent implements OnInit {
   loadStudent(){
     this.studentService.getStudent(this.route.snapshot.paramMap.get('username')).subscribe(response=>{
       this.student=response;
+      
+    
     });
   }
   updateStudent(){

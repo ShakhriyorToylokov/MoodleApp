@@ -67,9 +67,9 @@ namespace API.Controllers
                 PublicId= result.PublicId
             };
 
-            if(user.Photos.Count==0){
-                photo.IsMain=true;
-            }
+            // if(user.Photos.Count==0){
+            //     photo.IsMain=true;
+            // }
             user.Photos.Add(photo);
             if(await _userRepository.SaveAllChangesAsync()){
 
@@ -104,7 +104,7 @@ namespace API.Controllers
           
             var photo= student.Photos.FirstOrDefault(x=>x.Id==photoId);
             if(photo==null) return NotFound();
-            if(photo.IsMain) return BadRequest("You cannot delete your main photo"); 
+           // if(photo.IsMain) return BadRequest("You cannot delete your main photo"); 
             if(photo.PublicId!=null){
                 var result= await _photoService.DeletePhotoAsync(photo.PublicId);
                 if(result.Error!=null) return BadRequest(result.Error.Message);
