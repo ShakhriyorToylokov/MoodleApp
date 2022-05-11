@@ -34,6 +34,9 @@ namespace API.Helpers
             CreateMap<LectureVideos,LectureVideosDto>();
             CreateMap<RegisterFile,RegisterFileDto>();
             CreateMap<Adminstrator,AdminDto>();
+            CreateMap<RegisterDto,Student>();
+            CreateMap<RegisterDto,Teacher>();
+
 
         }
 

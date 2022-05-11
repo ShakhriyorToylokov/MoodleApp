@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class=" card-img-wrapper">
-        <img src="{{teacher.photoUrl}}" alt="{{teacher.name}}" class="card-img-top">
+        <img src="{{teacher.photoUrl || getDefaultPhoto()}}" alt="{{teacher.name}}" class="card-img-top">
         <ul class="list-inline member-icons animate text-center">
             <li class="list-inline-item" *ngIf="isAdmin()"><button routerLink="/teachers/{{teacher.username}}/edit" class="btn btn-info">
                 <i class="fa fa-pencil">

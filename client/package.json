@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-extensions/select-country": "^5.1.0",
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
@@ -24,9 +25,11 @@
     "font-awesome": "^4.7.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^7.1.2",
+    "ngx-country-select": "^2.0.6",
     "ngx-spinner": "^12.0.0",
     "ngx-toastr": "^14.2.2",
     "rxjs": "~6.6.0",
+    "svg-country-flags": "^1.2.10",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

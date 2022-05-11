@@ -22,4 +22,10 @@ export class TeacherCardComponent implements OnInit {
    }
    return false;
   }
+  getDefaultPhoto(){
+    if(this.teacher.gender==='female'){
+      return './assets/student_female.png'
+    }
+        return './assets/student.png';
+  }
 }

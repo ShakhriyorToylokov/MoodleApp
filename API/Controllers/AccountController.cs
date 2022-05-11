@@ -7,6 +7,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using Aspose.Cells;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -75,13 +76,11 @@ namespace API.Controllers
         {
 
             if(await StudentExists(registerDto.Username)) return BadRequest("Username is taken!");
+            var student = _mapper.Map<Student>(registerDto);
             using var hmac = new HMACSHA512();
-            
-            var student = new Student{
-                UserName=registerDto.Username.ToLower(),
-                PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt=hmac.Key
-            }; 
+            student.UserName=registerDto.Username.ToLower();
+            student.PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            student.PasswordSalt=hmac.Key;
             
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
@@ -119,14 +118,13 @@ namespace API.Controllers
         {
 
             if(await TeacherExists(registerDto.Username)) return BadRequest("Username is taken!");
+            var teacher = _mapper.Map<Teacher>(registerDto);
+           
             using var hmac = new HMACSHA512();
-            
-            var teacher = new Teacher{
-                UserName=registerDto.Username.ToLower(),
-                PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt=hmac.Key
-            }; 
-            
+        
+            teacher.UserName=registerDto.Username.ToLower();
+            teacher.PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            teacher.PasswordSalt=hmac.Key;
             _context.Teachers.Add(teacher);
             await _context.SaveChangesAsync();
             return new UserDto{

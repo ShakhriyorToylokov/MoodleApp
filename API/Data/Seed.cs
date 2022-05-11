@@ -75,13 +75,7 @@ namespace API.Data
 
         public async Task SeedStudents(DataContext context, IFormFile file)
         {
-                // long length = file.Length;
-                // using var fileStream= file.OpenReadStream();
-                // byte[] bytes = new byte[length];
-                // fileStream.Read(bytes, 0, (int)file.Length);
-//maybe try to copy the file that has been send to data folder then get the path from there
-                var filename= ReadAsStringAsync(file).Result.ToString();
-          //  var userData= await System.IO.File.ReadAllTextAsync("");
+            var filename= ReadAsStringAsync(file).Result.ToString();
             var students = JsonSerializer.Deserialize<List<Student>>(filename); 
             foreach (var student in students)
             {
@@ -103,21 +97,9 @@ namespace API.Data
             return result.ToString();
         }
 
-  public String ToEncodedString(Stream stream, Encoding enc = null)
-    {
-        enc = enc ?? Encoding.UTF8;
-
-        byte[] bytes = new byte[stream.Length];
-        stream.Position = 0;
-        stream.Read(bytes, 0, (int)stream.Length);
-        string data = enc.GetString(bytes);
-
-        return enc.GetString(bytes);
-    }
         public async Task SeedTeachers(DataContext context, IFormFile file)
         {
             var filename= ReadAsStringAsync(file).Result.ToString();
-            var userData= await System.IO.File.ReadAllTextAsync("Data/TeacherSeedData.json");
             var teachers = JsonSerializer.Deserialize<List<Teacher>>(filename); 
             foreach (var teacher in teachers)
             {

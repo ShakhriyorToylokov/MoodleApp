@@ -22,4 +22,12 @@ export class StudentCardComponent implements OnInit {
    }
    return false;
   }
+
+  
+  getDefaultPhoto(){
+    if(this.student.gender==='female'){
+      return './assets/student_female.png'
+    }
+        return './assets/student.png';
+  }
 }

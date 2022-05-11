@@ -41,7 +41,10 @@ export class StudentphotoEditorComponent implements OnInit {
   deletePhoto(photo:StdPhoto){
     this.studentService.deletePhoto(photo.id).subscribe(()=>{
       this.student.photos=this.student.photos.filter(x=>x.id!==photo.id);
-      
+      if (this.student.photos.length===0) {
+      this.student.photoUrl=null;
+      this.user.photoUrl=null; 
+      }
       if(this.student.photos.length===0){
         this.student.photoUrl=null;
       }
@@ -66,8 +69,7 @@ export class StudentphotoEditorComponent implements OnInit {
     }
     this.uploader.onSuccessItem=(item,response,status,headers)=>{
       if (response) {
-        console.log(response);
-        
+    
         const photo = JSON.parse(response);
         this.student.photos.push(photo);
       }

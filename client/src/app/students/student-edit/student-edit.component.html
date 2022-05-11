@@ -41,6 +41,8 @@
                     <input type="text" [(ngModel)]="student.name" name="name" class="form-control">
                     <label for="surname"><b>Surname:</b></label>
                     <input type="text" name="surname" [(ngModel)]="student.surname" class="form-control">
+                    <label for="email"><b>Email:</b></label>
+                    <input type="text" [(ngModel)]="student.email" name="email" class="form-control">
                     <ng-container *ngIf="getUserType()==='Admin'">
                     <label for="faculty"><b>Faculty:</b></label>
                     <select class="form-control" [(ngModel)]="student.faculty" name="faculty">
@@ -51,8 +53,7 @@
                     </select>
                     <label for="stdNum"><b>Student number:</b></label>
                     <input type="text" [(ngModel)]="student.stdNum" name="stdNum" class="form-control">
-                    <label for="email"><b>Email:</b></label>
-                    <input type="text" [(ngModel)]="student.email" name="email" class="form-control">
+                    
                     <label for="country"><b>Country:</b></label>
                     <input type="text" [(ngModel)]="student.country" name="country" class="form-control">
                     <label for="age"><b>Age:</b></label>

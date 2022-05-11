@@ -43,6 +43,10 @@ import { RegisterManuallyComponent } from './register-options/register-manually/
 import { RegisterByFileComponent } from './register-options/register-by-file/register-by-file.component';
 import { RegisterByFileStudentComponent } from './register-options/register-by-file-student/register-by-file-student.component';
 import { RegisterByFileTeacherComponent } from './register-options/register-by-file-teacher/register-by-file-teacher.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { CountryInputComponent } from './_forms/country-input/country-input.component';
 
 
 @NgModule({
@@ -80,7 +84,10 @@ import { RegisterByFileTeacherComponent } from './register-options/register-by-f
     RegisterManuallyComponent,
     RegisterByFileComponent,
     RegisterByFileStudentComponent,
-    RegisterByFileTeacherComponent
+    RegisterByFileTeacherComponent,
+    TextInputComponent,
+    DateInputComponent,
+    CountryInputComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +97,8 @@ import { RegisterByFileTeacherComponent } from './register-options/register-by-f
     FormsModule,
     SharedModule,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectCountryModule.forRoot('en')
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
