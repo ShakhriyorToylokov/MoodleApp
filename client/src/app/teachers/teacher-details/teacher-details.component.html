@@ -1,7 +1,7 @@
 <div *ngIf="teacher" class="row ">
     <div class="col-3">
       <div class="card ">
-          <img src="{{teacher.photoUrl || './assets/user.png'}}" alt="{{teacher.name}}" class="card-img-top img-thumbnail">
+          <img src="{{teacher.photoUrl || getDefaultPhoto()}}" alt="{{teacher.name}}" class="card-img-top img-thumbnail">
         <div class="card-body">
             <div>
                 <strong>Full Name:</strong>

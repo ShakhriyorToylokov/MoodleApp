@@ -45,8 +45,8 @@ import { RegisterByFileStudentComponent } from './register-options/register-by-f
 import { RegisterByFileTeacherComponent } from './register-options/register-by-file-teacher/register-by-file-teacher.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
-import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { CountryInputComponent } from './_forms/country-input/country-input.component';
+import { AddNewCourseComponent } from './register-options/add-new-course/add-new-course.component';
 
 
 @NgModule({
@@ -87,7 +87,8 @@ import { CountryInputComponent } from './_forms/country-input/country-input.comp
     RegisterByFileTeacherComponent,
     TextInputComponent,
     DateInputComponent,
-    CountryInputComponent
+    CountryInputComponent,
+    AddNewCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -97,8 +98,7 @@ import { CountryInputComponent } from './_forms/country-input/country-input.comp
     FormsModule,
     SharedModule,
     NgxSpinnerModule,
-    ReactiveFormsModule,
-    MatSelectCountryModule.forRoot('en')
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

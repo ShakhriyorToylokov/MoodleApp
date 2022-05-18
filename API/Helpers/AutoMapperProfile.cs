@@ -36,7 +36,7 @@ namespace API.Helpers
             CreateMap<Adminstrator,AdminDto>();
             CreateMap<RegisterDto,Student>();
             CreateMap<RegisterDto,Teacher>();
-
+            CreateMap<RegisterCourseDto,Course>();
 
         }
 

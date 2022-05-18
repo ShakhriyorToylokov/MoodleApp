@@ -43,13 +43,9 @@ export class RegisterManuallyComponent implements OnInit {
       country: [''],
       dateOfBirth: ['',[Validators.required]],
       faculty: ['',[Validators.required]],
-      password: ['',[Validators.required,Validators.minLength(6),Validators.maxLength(15)]],
-      confirmPassword: ['',[Validators.required,this.matchValues('password')]]
+      password: ['',[Validators.required,Validators.minLength(6),Validators.maxLength(15)]]
     })
     
-    this.registerForm.controls.password.valueChanges.subscribe(()=>{
-      this.registerForm.controls.confirmPassword.updateValueAndValidity();
-    })
     this.registerForm.controls.Idnum.valueChanges.subscribe(()=>{
       this.registerForm.controls.username.updateValueAndValidity();
     })
@@ -108,5 +104,9 @@ export class RegisterManuallyComponent implements OnInit {
 
   cancel(){
     this.cancelRegister.emit(false);
+  }
+  getUserNametype(){
+    var Idnum=this.registerForm.controls.Idnum.value;
+    return Idnum;
   }
 }

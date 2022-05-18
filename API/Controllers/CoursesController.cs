@@ -7,6 +7,7 @@ using API.Data;
 using API.DTOs;
 using API.DTOs.Course;
 using API.DTOs.Parameters;
+using API.Entities;
 using API.Entities.CourseDetails;
 using API.Interfaces;
 using AutoMapper;
@@ -48,6 +49,24 @@ namespace API.Controllers
                 .AsSingleQuery().SingleOrDefaultAsync(x=>x.CourseCode.ToLower()==name.ToLower());
             var course  = (courseByName!=null)?courseByName:courseByCourseCode;
             return Ok(course);    
+        }
+        [HttpPost("register-course")]
+        public async Task<ActionResult<CourseDto>> RegisterCourse(RegisterCourseDto registerDto)
+        {
+            
+            if(await CourseExists(registerDto.CourseCode,registerDto.NameOfCourse)) return BadRequest("Course Code or Course Name is taken!");
+            var teacher= await _context.Teachers.SingleOrDefaultAsync(x=>x.Name.ToLower()==registerDto.TeacherName.ToLower());
+            registerDto.TeacherId=teacher.Id;
+            var course = _mapper.Map<Course>(registerDto);
+            
+            _context.Courses.Add(course);
+            await _context.SaveChangesAsync();
+            
+            return new CourseDto{
+                NameOfCourse=registerDto.NameOfCourse,
+                CourseCode=registerDto.CourseCode,
+                Definition=registerDto.Definition
+            };
         }
 
         [HttpPut]
@@ -193,6 +212,13 @@ namespace API.Controllers
             if(await _context.SaveChangesAsync()>0) return Ok();
 
             return BadRequest("Failed to delete a announcement!");
+        }
+
+        private async Task<bool> CourseExists(string courseCode,string courseName){
+            if((await _context.Courses.AnyAsync(x=>x.CourseCode.ToLower()==courseCode.ToLower())) || (await _context.Courses.AnyAsync(x=>x.NameOfCourse.ToLower()==courseName.ToLower()))){
+                return true;
+            }
+            return false;
         }
 }
 }

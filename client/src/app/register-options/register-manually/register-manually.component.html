@@ -6,9 +6,12 @@
     <app-text-input [formControl]="registerForm.controls['name']" [label]='"Name"'></app-text-input>
     <app-text-input [formControl]="registerForm.controls['surname']" [label]='"Surname"'></app-text-input>
     <app-text-input [formControl]="registerForm.controls['Idnum']" [label]='"Id Number"'></app-text-input>
-    <app-text-input [formControl]="registerForm.controls['username']" [label]='"Username"' [userType]="findUserType()"></app-text-input>
-    <app-text-input [formControl]="registerForm.controls['password']" [label]='"Password"' [type]='"password"'></app-text-input>
-    <app-text-input [formControl]="registerForm.controls['confirmPassword']" [label]='"Confirm Password"' [type]="'password'"></app-text-input>
+    <select class="form-control mb-3" formControlName="username" name="username"> 
+        <option value="" class="defaultoption" disabled selected>Select Usertype</option>
+        <option >std{{getUserNametype()}}</option>
+        <option  >ins{{getUserNametype()}}</option>
+    </select> 
+    <app-text-input [formControl]="registerForm.controls['password']" [label]='"Password"' [type]='"text"'></app-text-input>
     <app-text-input [formControl]="registerForm.controls['email']" [label]='"Email"'></app-text-input>
     <app-text-input [formControl]="registerForm.controls['country']" [label]='"Country"'></app-text-input>
     <app-date-input [formControl]="registerForm.controls['dateOfBirth']"  [label]='"Date of Birth"' [maxDate]="maxDate"></app-date-input>
@@ -16,7 +19,7 @@
         <option value="" class="defaultoption" disabled selected>Select Gender</option>
         <option value="male">Male</option>
         <option value="female" >Female</option>
-    </select> 
+    </select>
     <select class="form-control mb-3" formControlName="faculty" name="faculty"> 
         <option value="" class="defaultoption" disabled selected>Select Faculty</option>
         <option *ngFor="let faculty of faculties">

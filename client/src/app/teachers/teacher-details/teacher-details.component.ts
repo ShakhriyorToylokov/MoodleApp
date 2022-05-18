@@ -63,4 +63,10 @@ export class TeacherDetailsComponent implements OnInit {
 
     return imageUrls;
   }
+  getDefaultPhoto(){
+    if(this.teacher.gender==='female'){
+      return './assets/student_female.png'
+    }
+        return './assets/student.png';
+  }
 }

@@ -40,7 +40,7 @@ const routes: Routes = [
       {path:'teachers/:username',component: TeacherDetailsComponent},
       {path:'courses/:coursecode',component: CourseDetailsComponent},
       {path:'students/:username/edit',component: StudentEditComponent, canDeactivate:[PreventUnsavedChangesGuard]},
-      {path:'teachers/:username/edit',component: TeacherEditComponent, canActivate:[AdminActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
+      {path:'teachers/:username/edit',component: TeacherEditComponent, canActivate:[TeacherActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[TeacherActivateGuard], canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'admin/edit',component: AdminEditComponent},
       {path:'student/:username/edit',component: StudentSettingsComponent}

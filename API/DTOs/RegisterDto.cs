@@ -18,8 +18,7 @@ namespace API.DTOs
         public string Name { get; set; }
         [Required]
         public string Surname { get; set; }
-        public string StdNum { get; set; }
-        public string InsNum { get; set; }
+        public string IdNum { get; set; }
         public string Email { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }

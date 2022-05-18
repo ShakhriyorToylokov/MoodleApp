@@ -77,6 +77,7 @@ namespace API.Controllers
 
             if(await StudentExists(registerDto.Username)) return BadRequest("Username is taken!");
             var student = _mapper.Map<Student>(registerDto);
+            student.StdNum=registerDto.IdNum;
             using var hmac = new HMACSHA512();
             student.UserName=registerDto.Username.ToLower();
             student.PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
@@ -119,7 +120,7 @@ namespace API.Controllers
 
             if(await TeacherExists(registerDto.Username)) return BadRequest("Username is taken!");
             var teacher = _mapper.Map<Teacher>(registerDto);
-           
+            teacher.InsNum=registerDto.IdNum;
             using var hmac = new HMACSHA512();
         
             teacher.UserName=registerDto.Username.ToLower();

@@ -1,0 +1,41 @@
+<div class="container row justify-content-center ">
+    <div class="col-4"> 
+      <form [formGroup]="registerForm"  (ngSubmit)="register()" autocomplete="off">
+    <h2 class="text-center text-primary " style="margin-top: 20%;">Sign Up</h2>
+    <hr>
+    <app-text-input [formControl]="registerForm.controls['nameOfCourse']" [label]='"Name of Course"'></app-text-input>
+    <app-text-input [formControl]="registerForm.controls['courseCode']" [label]='"Course Code"'></app-text-input>
+    <app-text-input [formControl]="registerForm.controls['definition']" [label]='"Definition"'></app-text-input>
+    <select class="form-control mb-3" formControlName="teacherName" name="teacherName"> 
+        <option value="" class="defaultoption" disabled selected>Select Teacher</option>
+        <option *ngFor="let teacher of teachers">
+            {{teacher.name }}
+        </option>
+    </select> 
+<!-- 
+    <select class="form-control mb-3" formControlName="faculty" name="faculty"> 
+        <option value="" class="defaultoption" disabled selected>Select Faculty</option>
+        <option *ngFor="let faculty of faculties">
+            {{faculty.facultyName | titlecase}}
+        </option>
+    </select>  -->
+
+    
+<div class="row mt-5" *ngIf="validationErrors.length>0">
+    <ul *ngFor="let error of validationErrors">
+        <li class="text-danger"> {{error}}</li>
+    </ul>
+</div>
+    
+    <div class="form-group text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success mr-2 " type="submit" >Register</button>
+        <button class="btn btn-default mr-2" routerLink="/"    >Cancel</button>  
+                    <!--(click)="cancel()"-->
+    </div>
+</form>
+</div>
+</div>
+
+
+
+

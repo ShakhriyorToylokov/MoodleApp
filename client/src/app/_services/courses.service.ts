@@ -34,7 +34,9 @@ export class CoursesService {
     return this.http.get<Course>(this.baseUrl+'courses/'+ courseCode);
 
   }
-
+  registerCourse(model:any){
+    return this.http.post(this.baseUrl+'courses/register-course',model);
+  }
   updateCourse(course: Course){
     return this.http.put(this.baseUrl+'courses',course).pipe(
       map(()=>{
