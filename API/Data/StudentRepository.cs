@@ -65,6 +65,7 @@ namespace API.Data
 
         public void UpdateStudent(Student student)
         {
+            
             _context.Entry(student).State=EntityState.Modified;
         }
 

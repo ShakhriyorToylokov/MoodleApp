@@ -50,10 +50,11 @@ export class StudentsService {
     return this.http.put(this.baseUrl+'students/set-main-photo/'+photoId,{});
   }
   updateStudent(student: Student){
-    return this.http.put(this.baseUrl+'students',student).pipe(
+    console.log(student);
+    return this.http.put(this.baseUrl+'students/course-update',student).pipe(
       map(()=>{
         const index= this.students.indexOf(student);
-        console.log(this.students);
+        console.log(this.students); 
         
         this.students[index]=student;
       })

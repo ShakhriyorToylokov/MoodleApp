@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { StudentAssignCourseComponent } from './assign-courses/student-assign-course/student-assign-course.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -43,7 +44,8 @@ const routes: Routes = [
       {path:'teachers/:username/edit',component: TeacherEditComponent, canActivate:[TeacherActivateGuard] , canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[TeacherActivateGuard], canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'admin/edit',component: AdminEditComponent},
-      {path:'student/:username/edit',component: StudentSettingsComponent}
+      {path:'student/:username/edit',component: StudentSettingsComponent},
+      {path:'students/:username/edit/assign-course',component: StudentAssignCourseComponent}
     ]
   },
   {path:'errors',component: TestErrorsComponent},

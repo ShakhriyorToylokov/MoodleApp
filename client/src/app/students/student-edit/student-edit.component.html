@@ -66,9 +66,16 @@
             </form>
             </tab>
             <tab heading="Edit Courses" class="mt-3" *ngIf="getUserType()==='Admin'"> 
-                <h4 class="mt-3">Courses</h4>
-                <b><p *ngFor="let course of student.courses" > {{course.nameOfCourse}} 
+                <ng-container *ngIf="student.courses.length>0">
+                    <h4 class="mt-3">Courses</h4>
+                     <b><p *ngFor="let course of student.courses" > {{course.nameOfCourse}} 
                     <i class="fa fa-arrows-h"></i> {{course.courseCode}}</p></b>
+                </ng-container>
+                <ng-container *ngIf="student.courses.length===0">
+                    <h6>The student has no any courses yet!</h6>
+                    <p>Press the button below to assign courses</p>
+                    <button class="btn btn-outline-primary mt-3 " routerLink="assign-course">New Courses</button>
+                </ng-container>
             </tab>
             <tab heading="Edit Photos" class="text-center mt-3" *ngIf="getUserType()==='Student'"> 
                 <app-studentphoto-editor [student]="student"></app-studentphoto-editor>

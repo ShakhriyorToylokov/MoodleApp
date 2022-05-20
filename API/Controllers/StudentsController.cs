@@ -44,20 +44,49 @@ namespace API.Controllers
             var student =  (studentUsername!=null)? studentUsername : studentName;
             return Ok(student);    
         }
-
+        
         [HttpPut]
         public async Task<ActionResult> UpdateStudent(StudentUpdateDto studentUpdateDto){
-          //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+          
           var username= studentUpdateDto.Username;
             var student= await _userRepository.GetStudentByUsernameAsync(username);
-            _mapper.Map(studentUpdateDto,student);
+            var updatedstd= _mapper.Map(studentUpdateDto,student);
             _userRepository.UpdateStudent(student);
             if(await _userRepository.SaveAllChangesAsync()) return NoContent();
             return BadRequest("Failed to update student!");  
-        }       
-
+        }        
+        [HttpPut("course-update")]
+        public async Task<ActionResult> UpdateStudentCourse(StudentUpdateDto studentUpdateDto){
+          
+          var username= studentUpdateDto.Username; 
+            var student= await _userRepository.GetStudentByUsernameAsync(username);
+            // userCourses is changing
+            for (int i = 0; i < student.Courses.Count; i++)
+            {
+                for (int j = 0; j < studentUpdateDto.Courses.Count; j++)
+                {
+                    if (student.Courses.ElementAt(i).Id==studentUpdateDto.Courses.ElementAt(j).Id)
+                    {
+                      var samecourse = student.Courses.ElementAt(i);
+                      student.Courses.Remove(samecourse);  
+                    } 
+                }
+            }
+            var updatedCourses= _mapper.Map(studentUpdateDto.Courses,student.Courses);
+           try
+           {
+            _userRepository.UpdateStudent(student);
+           }
+           catch (System.Exception)
+           {
+               return BadRequest("Failed to add Course");
+           } 
+            if(await _userRepository.SaveAllChangesAsync()) return NoContent();
+            return BadRequest("Failed to update student course!");  
+        }
+       
         [HttpPost("add-photo")]
-        public async Task<ActionResult<StudentPhotoDto>> AddPhoto(IFormFile file){
+        public async Task<ActionResult<StudentPhotoDto>> AddPhoto(IFormFile file){ 
             var username= User.GetUsername();
             var user = await _userRepository.GetStudentByUsernameAsync(username);
             var result = await _photoService.AddPhotoAsync(file);

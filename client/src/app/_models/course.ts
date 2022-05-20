@@ -1,3 +1,4 @@
+import {  TeacherPhoto } from "./teacher";
 
 export interface Course {
     id: number;
@@ -5,12 +6,27 @@ export interface Course {
     courseCode: string;
     definition: string;
     photoUrl: string;
-    lastAccessed: Date;
     announcements:Announcements[];
     courseFiles: CourseFiles[];
     lectureVideos: LectureVideos[];
+    teacher:TeacherDto;
 }
-
+export interface TeacherDto{
+    id: number;
+    username: string;
+    name: string;
+    surname: string;
+    insNum: string;
+    photoUrl: string;
+    email: string;
+    country: string;
+    gender: string;
+    age: number;
+    created: Date;
+    lastActive: Date;
+    faculty: string;
+    photos: TeacherPhoto[];
+}
 export interface Announcements {
     id:number;
     announcement: string;

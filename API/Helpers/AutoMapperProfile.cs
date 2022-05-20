@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.DTOs.Course;
+using API.DTOs.Parameters;
 using API.Entities;
 using API.Entities.CourseDetails;
 using API.Extensions;
@@ -23,21 +24,27 @@ namespace API.Helpers
                 .ForMember(dest=>dest.PhotoUrl,opt=>opt.MapFrom(src=>src.Photos.FirstOrDefault(x=>x.IsMain).Url))
                 .ForMember(dest=>dest.Age, opt=>opt.MapFrom(src=>src.DateOfBirth.CalculateAge()));
             CreateMap<TeacherPhoto,TeacherPhotoDto>();
+            CreateMap<TeacherPhotoDto,TeacherPhoto>();
             CreateMap<Course,CourseDto>();
             CreateMap<Faculty,FacultyDto>();
             CreateMap<StudentUpdateDto,Student>();
             CreateMap<TeacherUpdateDto,Teacher>();
+            CreateMap<Teacher,CourseTeacherReturnDto>();
+            CreateMap<CourseTeacherReturnDto,Teacher>();
             CreateMap<CourseUpdateDto,Course>();
             CreateMap<Announcements,AnnouncementDto>();
+            CreateMap<AnnouncementDto,Announcements>();
             CreateMap<AnnouncementUpdateDto,Announcements>();
             CreateMap<CourseUploadFile,CourseUploadFileDto>();
+            CreateMap<CourseUploadFileDto,CourseUploadFile>();
             CreateMap<LectureVideos,LectureVideosDto>();
+            CreateMap<LectureVideosDto,LectureVideos>();
             CreateMap<RegisterFile,RegisterFileDto>();
             CreateMap<Adminstrator,AdminDto>();
             CreateMap<RegisterDto,Student>();
             CreateMap<RegisterDto,Teacher>();
             CreateMap<RegisterCourseDto,Course>();
-
+            CreateMap<CourseDto,Course>();
         }
 
     }

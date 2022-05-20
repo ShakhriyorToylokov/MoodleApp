@@ -47,6 +47,8 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { CountryInputComponent } from './_forms/country-input/country-input.component';
 import { AddNewCourseComponent } from './register-options/add-new-course/add-new-course.component';
+import { StudentAssignCourseComponent } from './assign-courses/student-assign-course/student-assign-course.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import { AddNewCourseComponent } from './register-options/add-new-course/add-new
     TextInputComponent,
     DateInputComponent,
     CountryInputComponent,
-    AddNewCourseComponent
+    AddNewCourseComponent,
+    StudentAssignCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +101,8 @@ import { AddNewCourseComponent } from './register-options/add-new-course/add-new
     FormsModule,
     SharedModule,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
