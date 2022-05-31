@@ -49,6 +49,8 @@ import { CountryInputComponent } from './_forms/country-input/country-input.comp
 import { AddNewCourseComponent } from './register-options/add-new-course/add-new-course.component';
 import { StudentAssignCourseComponent } from './assign-courses/student-assign-course/student-assign-course.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { HomeworkUploadComponent } from './courses/homework-upload/homework-upload.component';
+import { HomeworkPageComponent } from './courses/homework-page/homework-page.component';
 
 
 @NgModule({
@@ -91,7 +93,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     DateInputComponent,
     CountryInputComponent,
     AddNewCourseComponent,
-    StudentAssignCourseComponent
+    StudentAssignCourseComponent,
+    HomeworkUploadComponent,
+    HomeworkPageComponent
   ],
   imports: [
     BrowserModule,

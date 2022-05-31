@@ -52,3 +52,15 @@ Thumbs.db
 #Build results
 [Bb]in/
 [Oo]bj/
+.vs/moodle-for-faculty-of-engineering-2/FileContentIndex/6b2df97a-a000-42d1-af75-7cbaa7d592b3.vsidx
+.vs/moodle-for-faculty-of-engineering-2/FileContentIndex/70ab3638-ba3f-4ca4-ba74-c3a13bdcd71c.vsidx
+.vs/VSWorkspaceState.json
+.vs/moodle-for-faculty-of-engineering-2/FileContentIndex/6499da54-2a3f-4600-9e54-68d11d280da0.vsidx
+.vs/moodle-for-faculty-of-engineering-2/FileContentIndex/924d4641-657b-42b9-99e5-5b9c9773cc20.vsidx
+.vs/moodle-for-faculty-of-engineering-2/FileContentIndex/read.lock
+.gitignore
+.vs/slnx.sqlite
+.gitignore
+.vs/moodle-for-faculty-of-engineering-2/v17/.suo
+API/moodleapp.db
+API/Data/Migrations

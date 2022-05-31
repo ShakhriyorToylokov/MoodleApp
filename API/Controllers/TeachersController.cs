@@ -46,7 +46,7 @@ namespace API.Controllers
 
         
         [HttpPut]
-        public async Task<ActionResult> UpdateStudent(TeacherUpdateDto teacherUpdateDto){
+        public async Task<ActionResult> UpdateTeacher(TeacherUpdateDto teacherUpdateDto){
           //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
           var username= teacherUpdateDto.Username;
             var teacher= await _userRepository.GetTeacherByUsernameAsync(username);

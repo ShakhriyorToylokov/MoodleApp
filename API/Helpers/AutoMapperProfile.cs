@@ -45,6 +45,9 @@ namespace API.Helpers
             CreateMap<RegisterDto,Teacher>();
             CreateMap<RegisterCourseDto,Course>();
             CreateMap<CourseDto,Course>();
+            CreateMap<StudentHomework,HomeworkDto>();
+            CreateMap<HomeworkDto,StudentHomework>();
+            CreateMap<CourseUploadFile,Homework>();
         }
 
     }

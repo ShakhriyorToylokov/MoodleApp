@@ -126,6 +126,34 @@ namespace API.Data.Migrations
                     b.ToTable("CourseUploadFile");
                 });
 
+            modelBuilder.Entity("API.Entities.CourseDetails.Homework", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsOutline")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Homework");
+                });
+
             modelBuilder.Entity("API.Entities.CourseDetails.LectureVideos", b =>
                 {
                     b.Property<int>("Id")
@@ -146,6 +174,31 @@ namespace API.Data.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("LectureVideos");
+                });
+
+            modelBuilder.Entity("API.Entities.CourseDetails.StudentHomework", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentHomework");
                 });
 
             modelBuilder.Entity("API.Entities.Faculty", b =>
@@ -400,6 +453,17 @@ namespace API.Data.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("API.Entities.CourseDetails.Homework", b =>
+                {
+                    b.HasOne("API.Entities.Course", "Course")
+                        .WithMany("Homeworks")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("API.Entities.CourseDetails.LectureVideos", b =>
                 {
                     b.HasOne("API.Entities.Course", "Course")
@@ -409,6 +473,17 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("API.Entities.CourseDetails.StudentHomework", b =>
+                {
+                    b.HasOne("API.Entities.Student", "Student")
+                        .WithMany("Homeworks")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("API.Entities.RegisterFile", b =>
@@ -485,11 +560,15 @@ namespace API.Data.Migrations
 
                     b.Navigation("CourseFiles");
 
+                    b.Navigation("Homeworks");
+
                     b.Navigation("LectureVideos");
                 });
 
             modelBuilder.Entity("API.Entities.Student", b =>
                 {
+                    b.Navigation("Homeworks");
+
                     b.Navigation("Photos");
                 });
 

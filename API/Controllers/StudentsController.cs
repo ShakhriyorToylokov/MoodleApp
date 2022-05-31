@@ -5,7 +5,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
+using API.DTOs.Course;
 using API.Entities;
+using API.Entities.CourseDetails;
 using API.Extensions;
 using API.Interfaces;
 using AutoMapper;
@@ -22,8 +24,12 @@ namespace API.Controllers
         private readonly IStudentRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        public StudentsController(IStudentRepository userRepository,IMapper mapper,IPhotoService photoService)
+        
+        private readonly IFileService _fileService;
+        public StudentsController(IStudentRepository userRepository,IMapper mapper
+                                 ,IPhotoService photoService,IFileService fileService)
         {
+            _fileService = fileService;
             _photoService = photoService;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -77,14 +83,38 @@ namespace API.Controllers
            {
             _userRepository.UpdateStudent(student);
            }
-           catch (System.Exception)
-           {
+           catch (System.Exception ex)
+           {    
+               Console.WriteLine(ex.Message);
                return BadRequest("Failed to add Course");
            } 
             if(await _userRepository.SaveAllChangesAsync()) return NoContent();
             return BadRequest("Failed to update student course!");  
         }
-       
+        [HttpPost("add-homework")]
+        public async Task<ActionResult<HomeworkDto>> AddHomework(IFormFile file,string nameofHomework){ 
+            var username= User.GetUsername();
+            var user = await _userRepository.GetStudentByUsernameAsync(username);
+            var result = file.FileName.Contains(".pdf")? await _fileService.AddPDFFileAsync(file):
+                                                         await _fileService.AddFileAsync(file);                
+            if(result.Error!=null) return BadRequest(result.Error.Message);
+            var homework = new StudentHomework{ 
+                Url=result.SecureUrl.AbsoluteUri,
+                PublicId= result.PublicId,
+                FileName=file.FileName
+            };
+            if (homework!=null)
+            {
+           //  user.Homeworks.Add(homework);    
+            }
+            if(await _userRepository.SaveAllChangesAsync()){
+
+                return CreatedAtRoute("GetStudent", new {username=user.UserName},
+                                        _mapper.Map<HomeworkDto>(homework));
+            } 
+
+            return BadRequest("Problem occured while adding a homework!");
+              } 
         [HttpPost("add-photo")]
         public async Task<ActionResult<StudentPhotoDto>> AddPhoto(IFormFile file){ 
             var username= User.GetUsername();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs.Course;
 using API.Entities;
 
 namespace API.DTOs
@@ -23,5 +24,7 @@ namespace API.DTOs
         public string Faculty { get; set; }
         public ICollection<StudentPhotoDto> Photos { get; set; }        
         public ICollection<CourseDto> Courses { get; set; }
+        public ICollection<HomeworkDto> Homeworks { get; set; }
+
     }
 }
