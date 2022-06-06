@@ -18,5 +18,7 @@ namespace API.DTOs
         public ICollection<AnnouncementDto> Announcements { get; set; }
         public ICollection<CourseUploadFileDto> CourseFiles { get; set; }
         public ICollection<LectureVideosDto> LectureVideos { get; set; }
+        public ICollection<QuizFileDto> QuizFiles { get; set; }
+
     }
 }

@@ -25,6 +25,6 @@ namespace API.Entities
         public ICollection<CourseUploadFile> CourseFiles { get; set; } 
         public ICollection<LectureVideos> LectureVideos { get; set; }
         public ICollection<Homework> Homeworks { get; set; }
-
+        public ICollection<QuizFiles> QuizFiles { get; set; }
     }
 }

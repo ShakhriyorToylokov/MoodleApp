@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace API.Data
 {
@@ -72,7 +73,13 @@ namespace API.Data
             }
             await context.SaveChangesAsync();
         }
-
+        public async Task SeedQuiz(DataContext context, IFormFile file)
+        {
+            var path= "C:/Users/Dell/Downloads/GR_project/moodle-for-faculty-of-engineering-2/client/src/assets/questions.json";
+            var fileString= ReadAsStringAsync(file).Result.ToString();
+           File.WriteAllText(path, fileString);
+           await context.SaveChangesAsync();
+        }
         public async Task SeedStudents(DataContext context, IFormFile file)
         {
             var filename= ReadAsStringAsync(file).Result.ToString();
@@ -87,7 +94,7 @@ namespace API.Data
             }
             await context.SaveChangesAsync();
         }
-       public async Task<string> ReadAsStringAsync(IFormFile file)
+       public static async Task<string> ReadAsStringAsync(IFormFile file)
         {
             var result = new StringBuilder();
             using (var reader = new StreamReader(file.OpenReadStream())){

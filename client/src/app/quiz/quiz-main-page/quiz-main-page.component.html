@@ -1,0 +1,17 @@
+<div *ngIf="quizFiles">
+<div class="container bg-light py-5">
+    <h4 class="display-6  fw-bold">Welcome to Quiz</h4>
+        <p class="col-md-12 fs-4"><small> The quiz contains total 10 questions.Each question holds 10 Points</small></p>
+        <p class="col-md-12 fs-4"><small> {{quizFiles.quizDefintion}}</small></p>
+        
+        <h4>Rules:</h4>
+        <ol>
+            <li>Correct questions give you 10 points</li>
+            <li>Incorrect questions give you -10 points</li>
+            <li>You will have 60 sec to answer each question</li>
+            <li>Refreshing the page will reset the quiz</li>
+        </ol>
+        <button class="btn btn-primary btn-lg" routerLink="quiz">Start the Quiz!!</button>
+</div>
+
+</div>

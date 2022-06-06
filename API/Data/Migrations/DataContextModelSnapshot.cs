@@ -176,6 +176,37 @@ namespace API.Data.Migrations
                     b.ToTable("LectureVideos");
                 });
 
+            modelBuilder.Entity("API.Entities.CourseDetails.QuizFiles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("QuizDefintion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Time")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("QuizFiles");
+                });
+
             modelBuilder.Entity("API.Entities.CourseDetails.StudentHomework", b =>
                 {
                     b.Property<int>("Id")
@@ -475,6 +506,17 @@ namespace API.Data.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("API.Entities.CourseDetails.QuizFiles", b =>
+                {
+                    b.HasOne("API.Entities.Course", "Course")
+                        .WithMany("QuizFiles")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("API.Entities.CourseDetails.StudentHomework", b =>
                 {
                     b.HasOne("API.Entities.Student", "Student")
@@ -563,6 +605,8 @@ namespace API.Data.Migrations
                     b.Navigation("Homeworks");
 
                     b.Navigation("LectureVideos");
+
+                    b.Navigation("QuizFiles");
                 });
 
             modelBuilder.Entity("API.Entities.Student", b =>

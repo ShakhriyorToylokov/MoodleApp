@@ -68,6 +68,9 @@
             <tab heading="Edit Videos" class="text-center mt-3" *ngIf="getUserType()==='Teacher'"> 
                 <app-video-upload [course]="course"></app-video-upload>
             </tab>
+            <tab heading="Edit Quiz" class="text-center mt-3" *ngIf="getUserType()==='Teacher'"> 
+                <app-quiz-set [course]="course"></app-quiz-set>
+            </tab>
             <hr>
         </tabset>
     </div>

@@ -51,6 +51,11 @@ import { StudentAssignCourseComponent } from './assign-courses/student-assign-co
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HomeworkUploadComponent } from './courses/homework-upload/homework-upload.component';
 import { HomeworkPageComponent } from './courses/homework-page/homework-page.component';
+import { QuizMainPageComponent } from './quiz/quiz-main-page/quiz-main-page.component';
+import { QuizPageComponent } from './quiz/quiz-page/quiz-page.component';
+import { ChangeBgDirective } from './quiz/change-bg.directive';
+import { QuizUploaderComponent } from './quiz/quiz-uploader/quiz-uploader.component';
+import { QuizSetComponent } from './quiz/quiz-set/quiz-set.component';
 
 
 @NgModule({
@@ -95,7 +100,12 @@ import { HomeworkPageComponent } from './courses/homework-page/homework-page.com
     AddNewCourseComponent,
     StudentAssignCourseComponent,
     HomeworkUploadComponent,
-    HomeworkPageComponent
+    HomeworkPageComponent,
+    QuizMainPageComponent,
+    QuizPageComponent,
+    ChangeBgDirective,
+    QuizUploaderComponent,
+    QuizSetComponent
   ],
   imports: [
     BrowserModule,

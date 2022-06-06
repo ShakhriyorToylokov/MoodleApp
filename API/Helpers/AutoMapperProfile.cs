@@ -48,6 +48,8 @@ namespace API.Helpers
             CreateMap<StudentHomework,HomeworkDto>();
             CreateMap<HomeworkDto,StudentHomework>();
             CreateMap<CourseUploadFile,Homework>();
+            CreateMap<QuizFiles,QuizFileDto>();
+
         }
 
     }

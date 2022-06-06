@@ -12,6 +12,9 @@ import { CoursesListsComponent } from './lists/courses-lists/courses-lists.compo
 import { StudentListsComponent } from './lists/student-lists/student-lists.component';
 import { TeachersListsComponent } from './lists/teachers-lists/teachers-lists.component';
 import { MessagesComponent } from './messages/messages.component';
+import { QuizMainPageComponent } from './quiz/quiz-main-page/quiz-main-page.component';
+import { QuizPageComponent } from './quiz/quiz-page/quiz-page.component';
+import { QuizUploaderComponent } from './quiz/quiz-uploader/quiz-uploader.component';
 import { RegisterManuallyComponent } from './register-options/register-manually/register-manually.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentDetailsComponent } from './students/student-details/student-details.component';
@@ -45,7 +48,10 @@ const routes: Routes = [
       {path:'courses/:coursecode/edit',component: CourseEditComponent, canActivate:[TeacherActivateGuard], canDeactivate:[PreventUnsavedChangesGuard]},
       {path:'admin/edit',component: AdminEditComponent},
       {path:'student/:username/edit',component: StudentSettingsComponent},
-      {path:'students/:username/edit/assign-course',component: StudentAssignCourseComponent}
+      {path:'students/:username/edit/assign-course',component: StudentAssignCourseComponent},
+      {path:'courses/:coursecode/quiz',component: QuizPageComponent},
+      {path:'courses/:coursecode/quiz/:time/:definition',component: QuizUploaderComponent}
+
     ]
   },
   {path:'errors',component: TestErrorsComponent},

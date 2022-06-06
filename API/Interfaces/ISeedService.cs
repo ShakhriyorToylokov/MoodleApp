@@ -11,6 +11,8 @@ namespace API.Interfaces
     {
         Task SeedStudents(DataContext context,IFormFile file);
         Task SeedTeachers(DataContext context,IFormFile file);
+        Task SeedQuiz(DataContext context,IFormFile file);
+
         // Task SeedAdmins(DataContext context,IFormFile file);
         // Task SeedFaculty(DataContext context,IFormFile file);
     }

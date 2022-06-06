@@ -8,6 +8,7 @@ export interface Course {
     photoUrl: string;
     announcements:Announcements[];
     courseFiles: CourseFiles[];
+    quizFiles: QuizFiles[];
     lectureVideos: LectureVideos[];
     teacher:TeacherDto;
 }
@@ -36,6 +37,13 @@ export interface CourseFiles {
     url: string;
     fileName: string;
     isOutline: boolean;
+}
+export interface QuizFiles {
+    id: number;
+    url: string;
+    fileName: string;
+    time:number;
+    quizDefinition:string;
 }
 export interface LectureVideos {
     id: number;
