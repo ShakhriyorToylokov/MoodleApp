@@ -6,6 +6,8 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/
 export class ChangeBgDirective {
   @Input() isCorrect:Boolean=false;
   @Input() isCleared: Boolean=false;
+  @Input() isUserCorrect: Boolean=true;
+
   selectedElem:any;
   constructor(private el:ElementRef,private render:Renderer2) { }
 
@@ -15,6 +17,7 @@ export class ChangeBgDirective {
       this.render.setStyle(this.el.nativeElement,'color','#fff');
       this.render.setStyle(this.el.nativeElement,'border','2px solid grey');
     }
+    
   }
-
+ 
 }

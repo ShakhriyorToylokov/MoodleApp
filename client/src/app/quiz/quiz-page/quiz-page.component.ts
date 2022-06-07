@@ -13,6 +13,7 @@ import { QuizService } from 'src/app/_services/quiz.service';
 })
 export class QuizPageComponent implements OnInit {
   questionsList:any=[];
+  answersList:any=[];
   course: Course;
   currentQuestion:number=0;
   points:number=0;
@@ -28,6 +29,7 @@ export class QuizPageComponent implements OnInit {
   isChoosen:boolean=true;
   isCanceled:boolean=false;
   lastElem:number;
+  reviewBtn=false;
   constructor(private questionsService:QuizService,private courseService: CoursesService,
               private route:ActivatedRoute) { }
 
@@ -49,9 +51,11 @@ export class QuizPageComponent implements OnInit {
       }
     )
   }
+  reviewQuiz(){
+    this.reviewBtn=true;
+  }
   getAllQuestions(){
     this.questionsService.getQuestionsJson().subscribe(res=>{
-      console.log(res.questions);
       this.questionsList=res.questions;
     });
   }
@@ -68,7 +72,9 @@ export class QuizPageComponent implements OnInit {
   }
 
   answer(currentQno:number,option:any){
-
+    this.answersList[currentQno-1]=option.text;
+    console.log(this.answersList);
+    
     this.isChoosen=false;
     if (currentQno===this.questionsList.length) {
       
@@ -79,16 +85,28 @@ export class QuizPageComponent implements OnInit {
       this.correctAnswer++;
      
     }else{
-        this.incorrectAnswer++;
-        this.points-=10;     
+        this.incorrectAnswer++; 
     }
+  }
+  getUserAnswer(currentQno:number,text:string):boolean{
+    var answer=this.answersList[currentQno-1];
+    if (this.answersList[currentQno-1].toString()===text.toString()) {
+      console.log(this.answersList[currentQno-1],text);
+      return true;
+    }
+    return false;
+  }
+  getAnswer(currentQno:number):string{
+    var answer=this.answersList[currentQno-1];
+   return answer;
   }
   submitted(){
     setTimeout(() => {
     this.isQuizCompleted=false;
     this.isSubmitted=true;
     this.stopCounter();  
-    }, 1000);
+    }, 600);
+    this.currentQuestion=0;
   }
   startCounter(){
     this.interval$=interval(1000).subscribe(val=>{
@@ -123,7 +141,9 @@ export class QuizPageComponent implements OnInit {
     this.counter=this.course.quizFiles[this.lastElem].time * 60;
     this.currentQuestion=0;
     this.progress='0';
+    this.answersList=[];
   }
+  //write to review quiz solve the issue option is not popping up
   clearChoice(){
     console.log(this.isCanceled);
     

@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="!reviewBtn">
     <div class="card" >
         <div class="d-flex justify-content-between p-3" *ngIf="isSubmitted">
             <div class="image">
@@ -48,7 +48,7 @@
               
           </ng-container>
           
-          <div *ngIf="isQuizCompleted" >
+          <div *ngIf="isQuizCompleted && !reviewBtn" >
             <button class="btn btn-lg btn-info " style="width: 200px; margin-left: 280px;"(click)="submitted()">Submit</button>
           </div>
             <ng-container *ngIf="isSubmitted && course" >
@@ -63,6 +63,39 @@
                     </div>
                 </div>
                 <button class="btn btn-primary" style="width: 200px; margin-left: 280px;" routerLink="/courses/{{course.courseCode}}">Back to Course Page</button>
-              </ng-container>
+                <button class="btn btn-outline-success mt-3" style="width: 200px; margin-left: 280px;" (click)="reviewQuiz()">Review Quiz</button>
+                
+            </ng-container>
+              
     </div>
+</div>
+
+<div *ngIf="reviewBtn">
+    <div class="question">
+        <div class="card">
+            <h3>{{questionsList[currentQuestion]?.questionText}}</h3>
+        </div>
+    </div>
+    <div class="options">
+        <ol *ngFor="let option of questionsList[currentQuestion]?.options">
+            <li >
+                <ng-container *ngIf="getAnswer(currentQuestion+1)===option.text && !option.correct">
+                    <div appReviewQuiz style="background-color: red;" class="card">{{option.text}}</div>
+                </ng-container>
+                <ng-container *ngIf="option.correct">
+                    <div appReviewQuiz style="background-color: rgb(28, 189, 28);" class="card">{{option.text}}</div>
+                </ng-container>
+                <ng-container *ngIf="getAnswer(currentQuestion+1)!==option.text && !option.correct">
+                    <div appReviewQuiz style="background-color: white;" class="card">{{option.text}}</div>
+                </ng-container>
+            </li>
+        </ol>
+        <h6 style="text-align: center; margin-left: 20px;"><b>{{questionsList[currentQuestion]?.explanation}}</b></h6>
+    </div>
+    <div class="d-flex justify-content-between" >
+        <button class="btn" [disabled]="currentQuestion===0" (click)="previousQuestion()"><i class="fa text-primary fa-chevron-left fa-3x" aria-hidden="true"></i></button>
+        <button class="btn btn-outline-primary" style="width: 200px;" routerLink="/courses/{{course.courseCode}}">Back to Course</button>
+        <button class="btn" [disabled]="currentQuestion===questionsList.length-1" (click)="nextQuestion()"><i class="fa text-primary fa-chevron-right fa-3x" aria-hidden="true"></i></button>
+    </div>
+    
 </div>

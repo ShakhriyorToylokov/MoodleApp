@@ -160,6 +160,24 @@
                 }
             ],
             "explanation": "this.propertyName is the way to access a specific property within a class"
+        },
+        {
+            "questionText": "Which of the following best describes the object-oriented programming concept of polymorphism?",
+            "options": [{
+                    "text": "Hiding internal mechanisms and data structures behind a defined interface",                   
+                    "correct": true
+                },
+                {
+                    "text": "Hiding many of the details about an object and showing only the most relevant information."
+                },
+                {
+                    "text": "New classes are created from existing classes and take on the general characteristics of those classes"
+                },
+                {
+                    "text": "The properties of an object can change with the context."
+                }
+            ],
+            "explanation": "Polymorphism is not only hiding it is also combining together all data types and functions in one interface or class "
         }
     ]
 }

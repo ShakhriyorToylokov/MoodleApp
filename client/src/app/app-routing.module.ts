@@ -49,8 +49,7 @@ const routes: Routes = [
       {path:'admin/edit',component: AdminEditComponent},
       {path:'student/:username/edit',component: StudentSettingsComponent},
       {path:'students/:username/edit/assign-course',component: StudentAssignCourseComponent},
-      {path:'courses/:coursecode/quiz',component: QuizPageComponent},
-      {path:'courses/:coursecode/quiz/:time/:definition',component: QuizUploaderComponent}
+      {path:'courses/:coursecode/quiz',component: QuizPageComponent}
 
     ]
   },

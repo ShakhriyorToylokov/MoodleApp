@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course, QuizFiles } from 'src/app/_models/course';
 import { CoursesService } from 'src/app/_services/courses.service';
+import { QuizService } from 'src/app/_services/quiz.service';
 
 @Component({
   selector: 'app-quiz-main-page',
@@ -9,10 +10,13 @@ import { CoursesService } from 'src/app/_services/courses.service';
   styleUrls: ['./quiz-main-page.component.css']
 })
 export class QuizMainPageComponent implements OnInit {
-  quizFiles:QuizFiles
-  constructor(private courseService:CoursesService,private route:ActivatedRoute) { }
+  quizFiles:QuizFiles;
+  questionsList:any=[];
+
+  constructor(private courseService:CoursesService,private route:ActivatedRoute,private questionsService:QuizService) { }
   
   ngOnInit(): void {
+    this.getAllQuestions();
     this.loadCourse();
   }
   loadCourse(){
@@ -25,5 +29,11 @@ export class QuizMainPageComponent implements OnInit {
         
       }
     )
+  }
+  getAllQuestions(){
+    this.questionsService.getQuestionsJson().subscribe(res=>{
+      console.log(res.questions);
+      this.questionsList=res.questions;
+    });
   }
 }

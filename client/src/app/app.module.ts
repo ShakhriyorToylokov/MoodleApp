@@ -56,6 +56,8 @@ import { QuizPageComponent } from './quiz/quiz-page/quiz-page.component';
 import { ChangeBgDirective } from './quiz/change-bg.directive';
 import { QuizUploaderComponent } from './quiz/quiz-uploader/quiz-uploader.component';
 import { QuizSetComponent } from './quiz/quiz-set/quiz-set.component';
+import { QuizReviewComponent } from './quiz/quiz-review/quiz-review.component';
+import { ReviewQuizDirective } from './quiz/review-quiz.directive';
 
 
 @NgModule({
@@ -105,7 +107,9 @@ import { QuizSetComponent } from './quiz/quiz-set/quiz-set.component';
     QuizPageComponent,
     ChangeBgDirective,
     QuizUploaderComponent,
-    QuizSetComponent
+    QuizSetComponent,
+    QuizReviewComponent,
+    ReviewQuizDirective
   ],
   imports: [
     BrowserModule,
