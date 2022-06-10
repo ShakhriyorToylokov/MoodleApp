@@ -135,16 +135,10 @@ namespace API.Data.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("FileName")
+                    b.Property<string>("Definition")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsOutline")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Url")
+                    b.Property<string>("nameOfHomework")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -214,6 +208,9 @@ namespace API.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FileName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HomeworkName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PublicId")

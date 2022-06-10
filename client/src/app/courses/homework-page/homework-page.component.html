@@ -1,12 +1,13 @@
-<table class="table">
+<div *ngIf="homeworks"> <table class="table">
     <tbody>
       <tr>
         <td >Submission Status</td>
-        <td  class="table-success">No attempt</td>
+        <td *ngIf="homeworks.length>0" class="table-success">Submitted</td>
+        <td *ngIf="homeworks.length<=0" class="table-default">No attempt</td>
       </tr>
       <tr>
         <td>Grading Status</td>
-        <td  class="table-success">Not graded</td>
+        <td  class="table-default">Not graded</td>
       </tr>
       <tr>
         <td >Time remaining</td>
@@ -15,4 +16,8 @@
     </tbody>
   </table>
 
-  <button class="btn btn-outline-info " style="margin-left: 40%;">Add Submission</button>
+  <button *ngIf="homeworks.length<=0" class="btn btn-outline-info " style="margin-left: 40%;" routerLink="homework-upload">Add Submission</button>
+  <button *ngIf="homeworks.length>0" class="btn btn-outline-info " style="margin-left: 40%;" routerLink="homework-upload">Edit Submission</button>
+
+</div>
+ 

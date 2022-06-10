@@ -8,7 +8,7 @@
     </div>
     <div class="col-3">
       <div class="card ">
-          <img src="{{student.photoUrl || './assets/student.png'}}" alt="{{student.name}}" class="card-img-top img-thumbnail">
+          <img src="{{student.photoUrl || getDefaultPhoto()}}" alt="{{student.name}}" class="card-img-top img-thumbnail">
         <div class="card-body">
             <div>
                 <strong>Full Name:</strong>
@@ -37,12 +37,14 @@
                 <div id="containerIntro">
                     
                     <div >
+                    <ng-container *ngIf="getUserType()==='Admin' || 'Student'" >
                     <label for="name"><b> Name:</b></label>
                     <input type="text" [(ngModel)]="student.name" name="name" class="form-control">
                     <label for="surname"><b>Surname:</b></label>
                     <input type="text" name="surname" [(ngModel)]="student.surname" class="form-control">
                     <label for="email"><b>Email:</b></label>
                     <input type="text" [(ngModel)]="student.email" name="email" class="form-control">
+                </ng-container>
                     <ng-container *ngIf="getUserType()==='Admin'">
                     <label for="faculty"><b>Faculty:</b></label>
                     <select class="form-control" [(ngModel)]="student.faculty" name="faculty">

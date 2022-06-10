@@ -4,10 +4,10 @@
     margin-left: 50%;
 }
 
-a h6{
+a p{
     margin-left: 20%;
 }
-a h6:hover{
+a p:hover{
     color: blue;
 }
 a {

@@ -36,7 +36,6 @@ export class LectureNotesComponent implements OnInit {
     this.courseService.getSpecificCourse(this.route.snapshot.paramMap.get('coursecode')).subscribe(
       response=>{
         this.course=response;
-        console.log(this.course);
       }
     )
   }

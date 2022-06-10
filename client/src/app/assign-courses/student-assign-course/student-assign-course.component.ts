@@ -69,7 +69,7 @@ export class StudentAssignCourseComponent implements OnInit {
       }
     }
     this.student.courses=this.courses;
-    this.studentService.updateStudent(this.student).subscribe(()=>{
+    this.studentService.updateStudentCourse(this.student).subscribe(()=>{
       this.toastr.success('Assigned Successfully!');
       this.editForm.reset(); 
 

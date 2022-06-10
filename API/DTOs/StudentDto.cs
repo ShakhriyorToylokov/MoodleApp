@@ -24,7 +24,7 @@ namespace API.DTOs
         public string Faculty { get; set; }
         public ICollection<StudentPhotoDto> Photos { get; set; }        
         public ICollection<CourseDto> Courses { get; set; }
-        public ICollection<HomeworkDto> Homeworks { get; set; }
+        public ICollection<StudentHomeworkDto> Homeworks { get; set; }
 
     }
 }

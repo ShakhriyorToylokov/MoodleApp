@@ -4,6 +4,7 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { StudentAssignCourseComponent } from './assign-courses/student-assign-course/student-assign-course.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
+import { HomeworkUploadComponent } from './courses/homework-upload/homework-upload.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -49,7 +50,9 @@ const routes: Routes = [
       {path:'admin/edit',component: AdminEditComponent},
       {path:'student/:username/edit',component: StudentSettingsComponent},
       {path:'students/:username/edit/assign-course',component: StudentAssignCourseComponent},
-      {path:'courses/:coursecode/quiz',component: QuizPageComponent}
+      {path:'courses/:coursecode/quiz',component: QuizPageComponent},
+      {path:'courses/:coursecode/homework-upload',component: HomeworkUploadComponent}
+
 
     ]
   },

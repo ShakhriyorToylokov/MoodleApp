@@ -8,10 +8,7 @@ namespace API.DTOs.Course
     public class HomeworkDto
     {
         public int Id { get; set; }
-        public string HomeworkName { get; set; }
-        public string Url { get; set; }
-        public string FileName { get; set; }
-        public string PublicId { get; set; }
-
+        public string nameOfHomework { get; set; }
+        public string Definition { get; set; }
     }
 }

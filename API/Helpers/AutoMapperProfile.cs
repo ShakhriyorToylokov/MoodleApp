@@ -26,6 +26,7 @@ namespace API.Helpers
             CreateMap<TeacherPhoto,TeacherPhotoDto>();
             CreateMap<TeacherPhotoDto,TeacherPhoto>();
             CreateMap<Course,CourseDto>();
+            CreateMap<CourseDto,Course>();
             CreateMap<Faculty,FacultyDto>();
             CreateMap<StudentUpdateDto,Student>();
             CreateMap<TeacherUpdateDto,Teacher>();
@@ -45,11 +46,14 @@ namespace API.Helpers
             CreateMap<RegisterDto,Teacher>();
             CreateMap<RegisterCourseDto,Course>();
             CreateMap<CourseDto,Course>();
-            CreateMap<StudentHomework,HomeworkDto>();
-            CreateMap<HomeworkDto,StudentHomework>();
+            CreateMap<Homework,HomeworkDto>();
+            CreateMap<HomeworkDto,Homework>();
+            CreateMap<StudentHomework,StudentHomeworkDto>();
+            CreateMap<StudentHomeworkDto,StudentHomework>();
             CreateMap<CourseUploadFile,Homework>();
             CreateMap<QuizFiles,QuizFileDto>();
-
+            CreateMap<QuizFileDto,QuizFiles>();
+            CreateMap<StudentCoursesUpdateDto,Student>();
         }
 
     }

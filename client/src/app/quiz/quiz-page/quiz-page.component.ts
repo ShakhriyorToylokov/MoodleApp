@@ -145,7 +145,6 @@ export class QuizPageComponent implements OnInit {
   }
   //write to review quiz solve the issue option is not popping up
   clearChoice(){
-    console.log(this.isCanceled);
     
     this.isCanceled=true;
   }

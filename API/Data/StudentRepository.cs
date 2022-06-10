@@ -30,7 +30,7 @@ namespace API.Data
 
         public async Task<Student> GetStudentByUsernameAsync(string username)
         {
-            return await _context.Students.Include(x=>x.Courses).Include(x=>x.Photos).AsSplitQuery().
+            return await _context.Students.Include(x=>x.Courses).Include(x=>x.Photos).Include(x=>x.Homeworks).AsSplitQuery().
                 SingleOrDefaultAsync(x=>x.UserName.ToLower() == username.ToLower());
         }
 

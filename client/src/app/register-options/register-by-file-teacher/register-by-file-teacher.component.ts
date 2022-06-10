@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
@@ -23,7 +24,7 @@ export class RegisterByFileTeacherComponent implements OnInit {
   userType='Teacher';
   @Input() admin: Admin;
     constructor(private accountService:AccountService,private courseService: CoursesService,
-              private toast: ToastrService) {
+              private toast: ToastrService,private route: Router) {
     accountService.currentUser$.pipe(take(1)).subscribe(response=>{
       this.user=response
     })
@@ -55,6 +56,7 @@ export class RegisterByFileTeacherComponent implements OnInit {
         this.toast.success('Registered Successfully!')   
         const file = JSON.parse(response);
         this.admin.registerFiles?.push(file);
+        this.route.navigateByUrl('/teachers');
 
       }
     },error=>{

@@ -50,12 +50,18 @@ export class StudentsService {
     return this.http.put(this.baseUrl+'students/set-main-photo/'+photoId,{});
   }
   updateStudent(student: Student){
-    console.log(student);
-    return this.http.put(this.baseUrl+'students/course-update',student).pipe(
+    return this.http.put(this.baseUrl+'students',student).pipe(
       map(()=>{
         const index= this.students.indexOf(student);
-        console.log(this.students); 
-        
+        this.students[index]=student;
+      })
+    );
+  }
+
+  updateStudentCourse(student: Student){
+    return this.http.put(this.baseUrl+'students/course-update',student).pipe(
+      map(()=>{
+        const index= this.students.indexOf(student); 
         this.students[index]=student;
       })
     );
@@ -63,4 +69,8 @@ export class StudentsService {
   deletePhoto(photoId:number){
     return this.http.delete(this.baseUrl+'students/delete-photo/'+photoId);
   }
+  deleteHomework(fileId:number){
+    return this.http.delete(this.baseUrl+'students/delete-homework/'+fileId);
+  }
+  
 }

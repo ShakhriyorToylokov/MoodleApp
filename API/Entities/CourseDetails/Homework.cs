@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace API.Entities.CourseDetails
 {
-    public class Homework: FileCommonProps
+    public class Homework
     {
+        public int Id { get; set; }
+        public string nameOfHomework { get; set; }
+        public string Definition { get; set; }
         public  Course Course { get; set; }
         public  int CourseId { get; set; } 
  

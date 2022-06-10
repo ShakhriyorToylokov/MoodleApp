@@ -9,7 +9,7 @@
     <select class="form-control mb-3" formControlName="teacherName" name="teacherName"> 
         <option value="" class="defaultoption" disabled selected>Select Teacher</option>
         <option *ngFor="let teacher of teachers">
-            {{teacher.name }}
+            {{teacher.name }} {{teacher.surname}}
         </option>
     </select> 
 <!-- 

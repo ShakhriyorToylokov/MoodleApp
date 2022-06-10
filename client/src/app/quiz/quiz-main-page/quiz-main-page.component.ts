@@ -22,11 +22,7 @@ export class QuizMainPageComponent implements OnInit {
   loadCourse(){
     this.courseService.getSpecificCourse(this.route.snapshot.paramMap.get('coursecode')).subscribe(
       response=>{
-        console.log(response);
-        this.quizFiles=response.quizFiles[response.quizFiles.length-1];
-        
-        console.log(this.quizFiles);
-        
+        this.quizFiles=response.quizFiles[response.quizFiles.length-1];     
       }
     )
   }

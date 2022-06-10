@@ -16,11 +16,18 @@ import { Course } from "./course";
         faculty: string;
         photos: StdPhoto[];
         courses: Course[];
+        homeworks: Homework[];
     }
     export interface StdPhoto {
         id: number;
         url: string;
         isMain: boolean;
+    }
+    export interface Homework {
+        id: number;
+        url: string;
+        fileName: string;
+        homeworkName: string;
     }
 
   

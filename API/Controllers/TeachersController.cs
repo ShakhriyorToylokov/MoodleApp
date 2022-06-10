@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -47,15 +49,17 @@ namespace API.Controllers
         
         [HttpPut]
         public async Task<ActionResult> UpdateTeacher(TeacherUpdateDto teacherUpdateDto){
-          //  var username= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
           var username= teacherUpdateDto.Username;
             var teacher= await _userRepository.GetTeacherByUsernameAsync(username);
+            using var hmac = new HMACSHA512();
+            //  teacher.PasswordHash= hmac.ComputeHash(Encoding.UTF8.GetBytes("password"));
+            // teacher.PasswordSalt=hmac.Key;
             _mapper.Map(teacherUpdateDto,teacher);
             _userRepository.UpdateTeacher(teacher);
             if(await _userRepository.SaveAllChangesAsync()) return NoContent();
             return BadRequest("Failed to update teacher information!");  
         }
-        [HttpPost("add-photo")]
+        [HttpPost("add-photo")] 
         public async Task<ActionResult<TeacherPhotoDto>> AddPhoto(IFormFile file){
             var username= User.GetUsername();
             var user = await _userRepository.GetTeacherByUsernameAsync(username);

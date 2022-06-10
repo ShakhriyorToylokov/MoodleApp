@@ -19,6 +19,7 @@ export class StudentEditComponent implements OnInit {
   faculties: Faculty[];
   student: Student;
   user: User;
+  userType:string='';
   @HostListener('window:beforeunload',['$event']) unloadNotification($event:any){
     if (this.editForm.dirty) {
       $event.returnValue=true;
@@ -47,6 +48,7 @@ export class StudentEditComponent implements OnInit {
     })
     
     if (username?.includes('std')) {
+      this.userType='std'
       return 'Student';
     }
     else if (username?.includes('@admin')) {
@@ -59,6 +61,7 @@ export class StudentEditComponent implements OnInit {
   loadStudent(){
     this.studentService.getStudent(this.route.snapshot.paramMap.get('username')).subscribe(response=>{
       this.student=response;
+      console.log(this.student);
       
     
     });
@@ -69,7 +72,13 @@ export class StudentEditComponent implements OnInit {
         console.log(this.student);
         this.toastr.success("Updated Successfully!!!");
         this.editForm.reset(this.student);
-    })
-    
+    })   
+  }
+  getDefaultPhoto(){
+    if(this.student.gender==='female'){
+      
+      return './assets/student_female.png'
+    }
+        return './assets/student.png';
   }
 }

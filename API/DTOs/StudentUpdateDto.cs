@@ -16,6 +16,5 @@ namespace API.DTOs
         public string Gender { get; set; }
         public int Age { get; set; }
         public string Faculty { get; set; }
-        public ICollection<CourseDto> Courses { get; set; }
     }
 }

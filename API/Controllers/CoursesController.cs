@@ -61,18 +61,20 @@ namespace API.Controllers
     [HttpPost("register-course")]
     public async Task<ActionResult<CourseDto>> RegisterCourse(RegisterCourseDto registerDto)
     {
-
+       int index = registerDto.TeacherName.IndexOf(" ");
+       string teacherName = registerDto.TeacherName.Substring(0, index);
         if (await CourseExists(registerDto.CourseCode, registerDto.NameOfCourse)) return BadRequest("Course Code or Course Name is taken!");
-        var teacher = await _context.Teachers.SingleOrDefaultAsync(x => x.Name.ToLower() == registerDto.TeacherName.ToLower());
+        
+        var teacher = await _context.Teachers.SingleOrDefaultAsync(x => x.Name.ToLower() == teacherName.ToLower());
         registerDto.TeacherId = teacher.Id;
         var course = _mapper.Map<Course>(registerDto);
 
         _context.Courses.Add(course);
         await _context.SaveChangesAsync();
-
+ 
         return new CourseDto
         {
-            NameOfCourse = registerDto.NameOfCourse,
+            NameOfCourse = registerDto.NameOfCourse, 
             CourseCode = registerDto.CourseCode,
             Definition = registerDto.Definition
         };
@@ -178,28 +180,23 @@ namespace API.Controllers
         return BadRequest("Problem occured while uploading video!");
     }
     [HttpPost("add-homework")]
-    public async Task<ActionResult<HomeworkDto>> AddHomework(IFormFile file, string nameofHomework, string courseCode, string stdNum)
+    public async Task<ActionResult<HomeworkDto>> AddHomework(HomeworkParams homeworkParams,string courseCode)
     {
-        var course = await _context.Courses
-                                        .SingleOrDefaultAsync(x => x.CourseCode.ToLower() == "comp337");
-        var student = await _userRepository.GetStudentByUsernameAsync("184119");
-        var result = file.FileName.Contains(".pdf") ? await _fileService.AddPDFFileAsync(file) :
-                                                     await _fileService.AddFileAsync(file);
-        if (result.Error != null) return BadRequest(result.Error.Message);
+        var course = await _context.Courses.Include(x=>x.Homeworks)
+                                        .SingleOrDefaultAsync(x => x.CourseCode.ToLower() == courseCode.ToLower());
         var homework = new Homework
         {
-            Url = result.SecureUrl.AbsoluteUri,
-            PublicId = result.PublicId,
-            FileName = file.FileName
+            nameOfHomework=homeworkParams.nameOfHomework,
+            Definition=homeworkParams.Definition
         };
+
         course.Homeworks.Add(homework);
         if (await _userRepository.SaveAllChangesAsync())
-        {
-            return NoContent();
-            // return CreatedAtRoute("GetStudent", new {username=user.UserName},
-            //                         _mapper.Map<HomeworkDto>(homework));
+        {   
+         return CreatedAtRoute("GetCourse", new { name = course.CourseCode },
+                            _mapper.Map<HomeworkDto>(homework));
+        
         }
-        //stuck in here since there is no chance to add homework to Homeworks
         return BadRequest("Problem occured while adding a homework!");
     }
 

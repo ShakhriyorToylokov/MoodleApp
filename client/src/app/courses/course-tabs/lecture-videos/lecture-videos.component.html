@@ -1,7 +1,7 @@
 <div class="col-2 " style="margin-top: -4%;"  *ngFor="let video of course.lectureVideos">
     <ng-container  class="mr-3">
         <br>
-     <a href="{{video.url}}" ><img class="filetype" src="assets/video_icon.png" alt="Video Icon"> <h6>{{video.nameOfVideo}}</h6></a>
+     <a href="{{video.url}}" ><img class="filetype" src="assets/video_icon.png" alt="Video Icon"> <p class="mb-3"><b>{{video.nameOfVideo}}</b></p></a>
     </ng-container>
     
     <div class="text-center" *ngIf="usertype==='Teacher'">
