@@ -22,8 +22,6 @@ namespace API.Entities
         public ICollection<StudentPhoto> Photos { get; set; }        
         public ICollection<Course> Courses { get; set; }
         public ICollection<StudentHomework> Homeworks { get; set; }
-        // public int GetAge(){ 
-        //     return DateOfBirth.CalculateAge();
-        // }
+        
     }
 }

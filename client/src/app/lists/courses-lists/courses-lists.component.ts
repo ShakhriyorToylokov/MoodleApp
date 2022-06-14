@@ -18,6 +18,7 @@ export class CoursesListsComponent implements OnInit {
   username: string="";
   userType: string;
   courses$: Observable<Course[]> ;
+  courses: Course[];
   constructor(private studentService: StudentsService,private accountService: AccountService,
                private teacherService: TeachersService, private courseService: CoursesService) { }
 
@@ -36,13 +37,31 @@ export class CoursesListsComponent implements OnInit {
     }
   }
   loadAllCourses(){
-      this.courses$= this.courseService.getAllCourses();
+      this.courseService.getAllCourses().subscribe(response=>{
+        this.courses=response;
+        console.log(response);
+        
+       console.log(this.courses);
+       
+       });
   }
   loadTeachersCourses(){
-    this.courses$= this.teacherService.getCourses(this.username);
+    this.teacherService.getCourses(this.username).subscribe(response=>{
+      this.courses=response;
+      console.log(response);      
+     console.log(this.courses);
+     
+     });
   }
   loadStudentsCourses(){
     
-   this.courses$= this.studentService.getCourses(this.username);
+   this.studentService.getCourses(this.username).subscribe(response=>{
+    this.courses=response;
+    console.log(response);
+    
+   console.log(this.courses);
+   
+   })
+   
   }
 }

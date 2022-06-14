@@ -62,5 +62,8 @@ export class NavComponent implements OnInit {
   logout(){
    this.accountService.logout();
    this.router.navigateByUrl('/');
+   setTimeout(()=>{
+    window.location.reload();
+  }, 100);
   }
 }

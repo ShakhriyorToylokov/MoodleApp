@@ -27,7 +27,6 @@ namespace API.Data
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.ConfigureWarnings(w=>w.Ignore(CoreEventId.RowLimitingOperationWithoutOrderByWarning));
-             // ** the warning is about Skip/Take when Include() Photo,Course , for getting single user
         }
          protected override void OnModelCreating(ModelBuilder modelBuilder){
         base.OnModelCreating(modelBuilder);

@@ -42,7 +42,7 @@ namespace API.Data
          public async Task<IEnumerable<StudentDto>> GetMemberStudentsAsync()
         {
             return await _context.Students
-                .ProjectTo<StudentDto>(_mapper.ConfigurationProvider).AsSingleQuery() //** Might cause issue
+                .ProjectTo<StudentDto>(_mapper.ConfigurationProvider).AsSingleQuery() 
                 .ToListAsync();
         }
         

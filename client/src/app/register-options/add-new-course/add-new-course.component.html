@@ -1,7 +1,7 @@
 <div class="container row justify-content-center ">
     <div class="col-4"> 
       <form [formGroup]="registerForm"  (ngSubmit)="register()" autocomplete="off">
-    <h2 class="text-center text-primary " style="margin-top: 20%;">Sign Up</h2>
+    <h2 class="text-center text-primary " style="margin-top: 20%;">Add new course</h2>
     <hr>
     <app-text-input [formControl]="registerForm.controls['nameOfCourse']" [label]='"Name of Course"'></app-text-input>
     <app-text-input [formControl]="registerForm.controls['courseCode']" [label]='"Course Code"'></app-text-input>

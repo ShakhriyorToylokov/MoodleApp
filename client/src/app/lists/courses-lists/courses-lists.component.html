@@ -1,5 +1,7 @@
+<div *ngIf="courses">
 <div class="row">
-    <div *ngFor="let course of courses$ | async" class="col-3">
+    <div *ngFor="let course of courses" class="col-3">
         <app-course-card [course]="course"></app-course-card>
     </div>
+</div>
 </div>
